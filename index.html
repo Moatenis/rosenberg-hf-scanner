@@ -1,34 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-  <base target="_top">
+  <meta charset="UTF-8">
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   >
 
-  <title>
-    Rosenberg Health & Fitness
-  </title>
+  <title>Rosenberg Health & Fitness</title>
+
+
+  <!-- QR SCANNER LIBRARY -->
 
   <script
     src="https://unpkg.com/html5-qrcode"
     type="text/javascript">
   </script>
 
+
   <style>
+
+    /* =====================================================
+       GLOBAL
+       ===================================================== */
 
     * {
       box-sizing: border-box;
     }
 
 
+    html,
     body {
 
       margin: 0;
+
+      padding: 0;
+
+      width: 100%;
+
+      min-height: 100%;
+
+      background: #ffffff;
+
+      color: #111111;
+
+    }
+
+
+    body {
 
       font-family:
         -apple-system,
@@ -37,19 +59,38 @@
         Arial,
         sans-serif;
 
-      background: #ffffff;
-
-      color: #111111;
-
       text-align: center;
+
+      overflow-x: hidden;
 
     }
 
 
+    /* =====================================================
+       PAGE
+       ===================================================== */
+
+    .page {
+
+      min-height: 100vh;
+
+      display: flex;
+
+      flex-direction: column;
+
+    }
+
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
+
     .header {
 
       padding:
-        30px 20px 20px;
+        24px
+        20px
+        18px;
 
       border-bottom:
         1px solid #111111;
@@ -57,7 +98,24 @@
     }
 
 
-    .header h1 {
+    .logo {
+
+      width: 105px;
+
+      max-width: 30vw;
+
+      height: auto;
+
+      display: block;
+
+      margin:
+        0 auto
+        14px;
+
+    }
+
+
+    .brand {
 
       margin: 0;
 
@@ -66,23 +124,25 @@
         "Times New Roman",
         serif;
 
-      font-size: 30px;
+      font-size: 29px;
 
       font-weight: 400;
 
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
+
+      line-height: 1.15;
 
     }
 
 
-    .header p {
+    .subtitle {
 
       margin:
         8px 0 0;
 
-      font-size: 14px;
+      font-size: 13px;
 
-      letter-spacing: 2px;
+      letter-spacing: 3px;
 
       text-transform: uppercase;
 
@@ -91,72 +151,151 @@
     }
 
 
-    .container {
+    /* =====================================================
+       MAIN CONTENT
+       ===================================================== */
 
-      width: 100%;
+    .content {
 
-      max-width: 600px;
+      flex: 1;
 
-      margin: 0 auto;
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
 
       padding:
-        25px 20px;
+        34px
+        20px
+        30px;
+
+    }
+
+
+    .scanner-section {
+
+      width: 100%;
 
     }
 
 
     .instruction {
 
+      margin:
+        0 0 22px;
+
       font-family:
         Georgia,
         "Times New Roman",
         serif;
 
-      font-size: 24px;
+      font-size: 27px;
 
-      margin-bottom: 20px;
+      font-weight: 400;
+
+      line-height: 1.2;
 
     }
 
+
+    .divider {
+
+      width: 70px;
+
+      height: 1px;
+
+      background: #111111;
+
+      margin:
+        0 auto
+        25px;
+
+    }
+
+
+    /* =====================================================
+       QR SCANNER
+       ===================================================== */
 
     #reader {
 
       width: 100%;
 
-      max-width: 330px;
+      max-width: 380px;
 
       margin: 0 auto;
 
       background: #111111;
 
-      overflow: hidden;
-
       border:
-        2px solid #111111;
+        1px solid #111111;
+
+      overflow: hidden;
 
     }
 
 
     #reader video {
 
+      display: block;
+
       width: 100% !important;
 
       height: auto !important;
 
-      display: block;
+      object-fit: cover;
 
     }
 
 
+    /*
+     * Hide unnecessary html5-qrcode controls.
+     */
+
+    #reader img {
+
+      display: none !important;
+
+    }
+
+
+    #reader__dashboard {
+
+      display: none !important;
+
+    }
+
+
+    #reader__dashboard_section_csr {
+
+      display: none !important;
+
+    }
+
+
+    #reader__scan_region {
+
+      width: 100% !important;
+
+      min-height: 260px;
+
+    }
+
+
+    /* =====================================================
+       STATUS
+       ===================================================== */
+
     #status {
+
+      min-height: 25px;
 
       margin-top: 18px;
 
-      min-height: 30px;
+      font-size: 13px;
 
-      font-size: 15px;
-
-      letter-spacing: 1px;
+      letter-spacing: 2px;
 
       text-transform: uppercase;
 
@@ -179,10 +318,14 @@
 
     .error {
 
-      color: #b00000;
+      color: #9b0000;
 
     }
 
+
+    /* =====================================================
+       RESULT SCREEN
+       ===================================================== */
 
     .result {
 
@@ -192,15 +335,15 @@
 
       inset: 0;
 
+      z-index: 100;
+
       background:
         rgba(
           255,
           255,
           255,
-          0.97
+          0.98
         );
-
-      z-index: 10;
 
       align-items: center;
 
@@ -211,11 +354,11 @@
     }
 
 
-    .resultCard {
+    .result-card {
 
       width: 100%;
 
-      max-width: 500px;
+      max-width: 520px;
 
       border:
         1px solid #111111;
@@ -225,59 +368,72 @@
     }
 
 
-    .resultContent {
+    .result-content {
 
       padding:
-        45px 25px;
+        55px
+        30px
+        50px;
 
     }
 
 
-    .result h1 {
+    .result-title {
 
       margin:
-        0 0 20px;
+        0 0 25px;
 
       font-family:
         Georgia,
         "Times New Roman",
         serif;
 
-      font-size: 34px;
+      font-size: 38px;
 
       font-weight: 400;
 
+      letter-spacing: 1px;
+
     }
 
 
-    .name {
+    .result-name {
 
-      font-size: 40px;
+      margin:
+        0 0 20px;
+
+      font-size: 38px;
 
       font-weight: 600;
 
-      margin-bottom: 18px;
+      line-height: 1.15;
 
     }
 
 
-    .message {
+    .result-message {
 
-      font-size: 18px;
+      margin: 0;
+
+      font-size: 17px;
+
+      line-height: 1.5;
 
       color: #555555;
 
     }
 
 
-    .resultFooter {
+    .result-footer {
+
+      padding:
+        14px
+        20px;
 
       border-top:
         1px solid #111111;
 
-      padding: 14px;
-
-      font-size: 11px;
+      font-size: 10px;
 
       letter-spacing: 2px;
 
@@ -288,52 +444,139 @@
     }
 
 
+    /* =====================================================
+       MOBILE / IPAD
+       ===================================================== */
+
     @media (max-width: 700px) {
+
 
       .header {
 
         padding:
-          22px 15px 16px;
+          18px
+          15px
+          15px;
 
       }
 
 
-      .header h1 {
+      .logo {
 
-        font-size: 25px;
+        width: 85px;
 
-      }
-
-
-      .header p {
-
-        font-size: 12px;
-
-        letter-spacing: 1.5px;
+        margin-bottom: 10px;
 
       }
 
 
-      .container {
+      .brand {
+
+        font-size: 24px;
+
+        letter-spacing: 1px;
+
+      }
+
+
+      .subtitle {
+
+        font-size: 11px;
+
+        letter-spacing: 2px;
+
+      }
+
+
+      .content {
 
         padding:
-          20px 14px 25px;
+          27px
+          15px
+          25px;
 
       }
 
 
       .instruction {
 
-        font-size: 23px;
+        font-size: 24px;
 
-        margin-bottom: 16px;
+        margin-bottom: 18px;
+
+      }
+
+
+      .divider {
+
+        margin-bottom: 20px;
 
       }
 
 
       #reader {
 
-        max-width: 330px;
+        max-width: 340px;
+
+      }
+
+
+      .result-content {
+
+        padding:
+          45px
+          22px;
+
+      }
+
+
+      .result-title {
+
+        font-size: 32px;
+
+      }
+
+
+      .result-name {
+
+        font-size: 32px;
+
+      }
+
+    }
+
+
+    /* =====================================================
+       SMALL PHONES
+       ===================================================== */
+
+    @media (max-width: 430px) {
+
+
+      .logo {
+
+        width: 75px;
+
+      }
+
+
+      .brand {
+
+        font-size: 22px;
+
+      }
+
+
+      .instruction {
+
+        font-size: 22px;
+
+      }
+
+
+      #reader {
+
+        max-width: 310px;
 
       }
 
@@ -347,84 +590,116 @@
 <body>
 
 
-  <div class="header">
-
-    <h1>
-      Rosenberg Health &amp; Fitness
-    </h1>
-
-    <p>
-      Student Check-In / Check-Out
-    </p>
-
-  </div>
+  <div class="page">
 
 
-  <div class="container">
+    <!-- =================================================
+         HEADER
+         ================================================= -->
+
+    <header class="header">
 
 
-    <div id="scannerSection">
-
-
-      <div class="instruction">
-
-        Scan Your QR Code
-
-      </div>
-
-
-      <div id="reader"></div>
-
-
-      <div
-        id="status"
-        class="ready"
+      <img
+        src="logo.png"
+        alt="Institut auf dem Rosenberg"
+        class="logo"
       >
 
-        Ready to scan
 
-      </div>
-
-
-    </div>
+      <h1 class="brand">
+        Rosenberg Health &amp; Fitness
+      </h1>
 
 
-    <div
-      id="result"
-      class="result"
-    >
+      <p class="subtitle">
+        Student Check-In / Check-Out
+      </p>
 
 
-      <div class="resultCard">
+    </header>
 
 
-        <div class="resultContent">
+
+    <!-- =================================================
+         MAIN
+         ================================================= -->
+
+    <main class="content">
 
 
-          <h1 id="resultTitle"></h1>
+      <section
+        id="scanner-section"
+        class="scanner-section"
+      >
 
 
-          <div
-            id="resultName"
-            class="name">
-          </div>
+        <h2 class="instruction">
+          Scan Your QR Code
+        </h2>
 
 
-          <div
-            id="resultMessage"
-            class="message">
-          </div>
+        <div class="divider"></div>
 
 
-        </div>
+        <div id="reader"></div>
 
 
         <div
-          id="resultFooter"
-          class="resultFooter"
+          id="status"
+          class="ready"
         >
+          Ready to scan
+        </div>
 
-          Returning to scanner...
+
+      </section>
+
+
+
+      <!-- =================================================
+           RESULT
+           ================================================= -->
+
+      <div
+        id="result"
+        class="result"
+      >
+
+
+        <div class="result-card">
+
+
+          <div class="result-content">
+
+
+            <h2
+              id="result-title"
+              class="result-title">
+            </h2>
+
+
+            <div
+              id="result-name"
+              class="result-name">
+            </div>
+
+
+            <p
+              id="result-message"
+              class="result-message">
+            </p>
+
+
+          </div>
+
+
+          <div class="result-footer">
+
+            Returning to scanner...
+
+          </div>
+
 
         </div>
 
@@ -432,36 +707,57 @@
       </div>
 
 
-    </div>
+    </main>
 
 
   </div>
+
 
 
 <script>
 
 
-/*************************************************
- * CONFIGURATION
- *************************************************/
+/* =====================================================
+   CONFIGURATION
+   ===================================================== */
 
+
+/*
+ * NEW APPS SCRIPT WEB APP
+ */
 
 const APPS_SCRIPT_URL =
-  "https://script.google.com/a/macros/instrosenberg.ch/s/AKfycbx92HMvs_apPqSTs1MRV3A4FmSm6rocPec8aD9k_y5HeLisnyhu3K1pcCqVAYDon7Zs/exec";
+  "https://script.google.com/a/macros/instrosenberg.ch/s/AKfycbyNZ1oONCoA8Ub0L4ceoAhYry0xEdx_DId7n3yolkM7xgLyMCSseMAGNTyZrb7MChEfLw/exec";
+
+
+/*
+ * Scanner settings.
+ */
+
+const CAMERA_FPS = 10;
 
 
 const QR_BOX_SIZE = 220;
 
 
-const SCAN_FPS = 10;
+/*
+ * How long the result remains on screen.
+ */
+
+const RESULT_DURATION = 3000;
 
 
-const ATTENDANCE_TIMEOUT = 15000;
+/*
+ * Maximum time we wait for Apps Script.
+ */
+
+const REQUEST_TIMEOUT = 10000;
 
 
-/*************************************************
- * GLOBAL VARIABLES
- *************************************************/
+
+/* =====================================================
+   GLOBAL VARIABLES
+   ===================================================== */
 
 
 let scanner = null;
@@ -470,16 +766,21 @@ let scanner = null;
 let scanLocked = false;
 
 
-let requestCounter = 0;
+let callbackCounter = 0;
 
 
-/*************************************************
- * START SCANNER
- *************************************************/
+
+/* =====================================================
+   START CAMERA
+   ===================================================== */
 
 
 function startScanner() {
 
+
+  /*
+   * Create the QR scanner.
+   */
 
   scanner =
     new Html5Qrcode(
@@ -487,93 +788,124 @@ function startScanner() {
     );
 
 
-  scanner.start(
+  /*
+   * IMPORTANT:
+   *
+   * "user" means the FRONT CAMERA.
+   *
+   * This is intentional because the scanner
+   * will be used on the front-facing iPad camera.
+   */
 
+  scanner
+    .start(
 
-    {
-      facingMode: "user"
-    },
+      {
+        facingMode: "user"
+      },
 
+      {
 
-    {
+        fps:
+          CAMERA_FPS,
 
-      fps:
-        SCAN_FPS,
+        qrbox: {
 
-      qrbox: {
+          width:
+            QR_BOX_SIZE,
 
-        width:
-          QR_BOX_SIZE,
+          height:
+            QR_BOX_SIZE
 
-        height:
-          QR_BOX_SIZE
+        },
+
+        aspectRatio:
+          1.0
 
       },
 
-      aspectRatio: 1.0
 
-    },
+      /*
+       * QR CODE FOUND
+       */
+
+      function(decodedText) {
 
 
-    function(decodedText) {
+        /*
+         * Prevent duplicate scans.
+         */
+
+        if (scanLocked) {
+
+          return;
+
+        }
 
 
-      if (scanLocked) {
+        scanLocked =
+          true;
 
-        return;
+
+        /*
+         * Send the QR value to Apps Script.
+         */
+
+        processQRCode(
+          decodedText
+        );
+
+
+      },
+
+
+      /*
+       * NORMAL SCANNING ERRORS
+       *
+       * These happen constantly while the
+       * scanner is looking for a QR code.
+       *
+       * We therefore ignore them.
+       */
+
+      function(errorMessage) {
+
+        // Intentionally ignored.
 
       }
 
-
-      scanLocked =
-        true;
+    )
 
 
-      processQRCode(
-        decodedText
-      );
+    /*
+     * CAMERA ERROR
+     */
+
+    .catch(
+      function(error) {
 
 
-    },
+        console.error(
+          "Camera could not be started:",
+          error
+        );
 
 
-    function(errorMessage) {
-
-      /*
-       * Normal QR scanning errors
-       * are ignored.
-       */
-
-    }
+        showError(
+          "Camera could not be started."
+        );
 
 
-  )
-
-
-  .catch(
-    function(error) {
-
-
-      console.error(
-        "Camera error:",
-        error
-      );
-
-
-      showError(
-        "Camera could not be started."
-      );
-
-
-    }
-  );
+      }
+    );
 
 }
 
 
-/*************************************************
- * PROCESS QR CODE
- *************************************************/
+
+/* =====================================================
+   PROCESS QR CODE
+   ===================================================== */
 
 
 function processQRCode(
@@ -581,44 +913,28 @@ function processQRCode(
 ) {
 
 
+  /*
+   * Clean the QR value.
+   */
+
+  studentId =
+    String(
+      studentId
+    ).trim();
+
+
+  /*
+   * Show processing status.
+   */
+
   setStatus(
     "Processing...",
     "processing"
   );
 
 
-  try {
-
-
-    if (scanner) {
-
-      scanner.pause(true);
-
-    }
-
-
-  }
-
-  catch (error) {
-
-
-    console.warn(
-      "Could not pause scanner:",
-      error
-    );
-
-
-  }
-
-
   /*
-   * IMPORTANT:
-   *
-   * The GitHub scanner cannot use
-   * google.script.run.
-   *
-   * We therefore use JSONP to communicate
-   * with the Apps Script web app.
+   * Send request to Apps Script.
    */
 
   sendAttendanceRequest(
@@ -628,9 +944,10 @@ function processQRCode(
 }
 
 
-/*************************************************
- * SEND ATTENDANCE REQUEST
- *************************************************/
+
+/* =====================================================
+   SEND ATTENDANCE REQUEST
+   ===================================================== */
 
 
 function sendAttendanceRequest(
@@ -638,15 +955,19 @@ function sendAttendanceRequest(
 ) {
 
 
-  requestCounter++;
+  /*
+   * Create a unique callback name.
+   */
+
+  callbackCounter++;
 
 
   const callbackName =
     "attendanceCallback_" +
-    requestCounter;
+    callbackCounter;
 
 
-  let completed =
+  let finished =
     false;
 
 
@@ -658,56 +979,71 @@ function sendAttendanceRequest(
     null;
 
 
+
   /*
-   * Create the JSONP callback.
+   * Apps Script will call this function
+   * when it has finished processing.
    */
 
   window[callbackName] =
     function(result) {
 
 
-      if (completed) {
+      /*
+       * Ignore duplicate responses.
+       */
+
+      if (finished) {
 
         return;
 
       }
 
 
-      completed =
+      finished =
         true;
 
+
+      /*
+       * Stop timeout.
+       */
 
       clearTimeout(
         timeoutId
       );
 
 
-      cleanupJSONP(
+      /*
+       * Remove temporary script.
+       */
+
+      cleanupRequest(
         script,
         callbackName
       );
 
 
-      handleAttendanceResult(
-        result,
-        studentId
-      );
+      /*
+       * Process response.
+       */
 
+      handleResult(
+        result
+      );
 
     };
 
 
+
   /*
-   * Build the Apps Script URL.
+   * Build Apps Script URL.
    */
 
   const url =
     APPS_SCRIPT_URL +
     "?id=" +
     encodeURIComponent(
-      String(
-        studentId
-      ).trim()
+      studentId
     ) +
     "&callback=" +
     encodeURIComponent(
@@ -717,14 +1053,16 @@ function sendAttendanceRequest(
     Date.now();
 
 
+
   console.log(
-    "Attendance request:",
-    url
+    "Sending attendance request:",
+    studentId
   );
 
 
+
   /*
-   * Create script element.
+   * Create JSONP script.
    */
 
   script =
@@ -741,23 +1079,23 @@ function sendAttendanceRequest(
     true;
 
 
+
   /*
-   * If the browser cannot load
-   * the Apps Script endpoint.
+   * Network error.
    */
 
   script.onerror =
     function(error) {
 
 
-      if (completed) {
+      if (finished) {
 
         return;
 
       }
 
 
-      completed =
+      finished =
         true;
 
 
@@ -766,14 +1104,14 @@ function sendAttendanceRequest(
       );
 
 
-      cleanupJSONP(
+      cleanupRequest(
         script,
         callbackName
       );
 
 
       console.error(
-        "Attendance endpoint error:",
+        "Apps Script request failed:",
         error
       );
 
@@ -783,19 +1121,20 @@ function sendAttendanceRequest(
       );
 
 
-      resumeScanner();
-
+      unlockScanner();
 
     };
 
 
+
   /*
-   * Add the request to the page.
+   * Add request to page.
    */
 
   document.body.appendChild(
     script
   );
+
 
 
   /*
@@ -804,21 +1143,22 @@ function sendAttendanceRequest(
 
   timeoutId =
     setTimeout(
+
       function() {
 
 
-        if (completed) {
+        if (finished) {
 
           return;
 
         }
 
 
-        completed =
+        finished =
           true;
 
 
-        cleanupJSONP(
+        cleanupRequest(
           script,
           callbackName
         );
@@ -834,32 +1174,38 @@ function sendAttendanceRequest(
         );
 
 
-        resumeScanner();
+        unlockScanner();
 
 
       },
-      ATTENDANCE_TIMEOUT
+
+      REQUEST_TIMEOUT
+
     );
 
 }
 
 
-/*************************************************
- * HANDLE ATTENDANCE RESULT
- *************************************************/
+
+/* =====================================================
+   HANDLE RESULT
+   ===================================================== */
 
 
-function handleAttendanceResult(
-  result,
-  studentId
+function handleResult(
+  result
 ) {
 
 
   console.log(
-    "Attendance response:",
+    "Attendance result:",
     result
   );
 
+
+  /*
+   * Make sure we received an object.
+   */
 
   if (
     !result ||
@@ -872,7 +1218,7 @@ function handleAttendanceResult(
     );
 
 
-    resumeScanner();
+    unlockScanner();
 
 
     return;
@@ -880,12 +1226,13 @@ function handleAttendanceResult(
   }
 
 
+
   /*
-   * Attendance failed.
+   * Server rejected the request.
    */
 
   if (
-    result.success === false
+    result.success !== true
   ) {
 
 
@@ -908,261 +1255,28 @@ function handleAttendanceResult(
   }
 
 
-  /*
-   * Attendance succeeded.
-   */
-
-  if (
-    result.success === true
-  ) {
-
-
-    /*
-     * Show the result immediately.
-     */
-
-    showResult(
-
-      result.title ||
-        "",
-
-      result.name ||
-        "",
-
-      result.message ||
-        ""
-
-    );
-
-
-    /*
-     * Send the House email separately.
-     *
-     * This does NOT delay the result.
-     */
-
-    sendHouseNotification(
-
-      studentId,
-
-      result.action,
-
-      Date.now()
-
-    );
-
-
-    return;
-
-  }
-
-
-  showError(
-    "Unexpected response from the attendance system."
-  );
-
-
-  resumeScanner();
-
-}
-
-
-/*************************************************
- * SEND HOUSE NOTIFICATION
- *************************************************/
-
-
-function sendHouseNotification(
-  studentId,
-  action,
-  timestamp
-) {
-
-
-  if (
-    !studentId ||
-    !action
-  ) {
-
-    console.warn(
-      "Notification not sent: missing data."
-    );
-
-
-    return;
-
-  }
-
 
   /*
-   * Build notification URL.
+   * Successful attendance.
    */
 
-  const url =
-    APPS_SCRIPT_URL +
-    "?notification=1" +
-    "&id=" +
-    encodeURIComponent(
-      String(
-        studentId
-      ).trim()
-    ) +
-    "&action=" +
-    encodeURIComponent(
-      action
-    ) +
-    "&timestamp=" +
-    encodeURIComponent(
-      timestamp
-    ) +
-    "&_=" +
-    Date.now();
+  showResult(
 
+    result.title,
 
-  console.log(
-    "Sending House notification."
-  );
+    result.name,
 
+    result.message
 
-  /*
-   * Use an invisible iframe.
-   *
-   * This is a simple fire-and-forget
-   * request from the GitHub scanner.
-   */
-
-  const iframe =
-    document.createElement(
-      "iframe"
-    );
-
-
-  iframe.style.display =
-    "none";
-
-
-  iframe.style.width =
-    "0";
-
-
-  iframe.style.height =
-    "0";
-
-
-  iframe.style.border =
-    "0";
-
-
-  iframe.src =
-    url;
-
-
-  document.body.appendChild(
-    iframe
-  );
-
-
-  /*
-   * Remove the iframe after a short
-   * period so the page does not collect
-   * invisible elements.
-   */
-
-  setTimeout(
-    function() {
-
-
-      try {
-
-        iframe.remove();
-
-      }
-
-      catch (error) {
-
-        console.warn(
-          "Could not remove notification iframe:",
-          error
-        );
-
-      }
-
-
-    },
-    10000
   );
 
 }
 
 
-/*************************************************
- * CLEAN UP JSONP
- *************************************************/
 
-
-function cleanupJSONP(
-  script,
-  callbackName
-) {
-
-
-  try {
-
-
-    if (
-      script &&
-      script.parentNode
-    ) {
-
-
-      script.parentNode.removeChild(
-        script
-      );
-
-
-    }
-
-
-  }
-
-  catch (error) {
-
-
-    console.warn(
-      "Could not remove JSONP script:",
-      error
-    );
-
-
-  }
-
-
-  try {
-
-
-    delete window[
-      callbackName
-    ];
-
-
-  }
-
-  catch (error) {
-
-
-    window[
-      callbackName
-    ] = undefined;
-
-
-  }
-
-}
-
-
-/*************************************************
- * SHOW RESULT
- *************************************************/
+/* =====================================================
+   SHOW RESULT
+   ===================================================== */
 
 
 function showResult(
@@ -1172,54 +1286,70 @@ function showResult(
 ) {
 
 
+  /*
+   * Hide scanner.
+   */
+
   document.getElementById(
-    "scannerSection"
+    "scanner-section"
   ).style.display =
     "none";
 
 
-  const resultElement =
+
+  /*
+   * Show result overlay.
+   */
+
+  const result =
     document.getElementById(
       "result"
     );
 
 
-  resultElement.style.display =
+  result.style.display =
     "flex";
 
 
-  document.getElementById(
-    "resultTitle"
-  ).textContent =
-    title ||
-    "";
 
+  /*
+   * Fill result.
+   */
 
   document.getElementById(
-    "resultName"
+    "result-title"
   ).textContent =
-    name ||
-    "";
+    title || "";
 
 
   document.getElementById(
-    "resultMessage"
+    "result-name"
   ).textContent =
-    message ||
-    "";
+    name || "";
 
+
+  document.getElementById(
+    "result-message"
+  ).textContent =
+    message || "";
+
+
+
+  /*
+   * Return to scanner.
+   */
 
   setTimeout(
 
     function() {
 
 
-      resultElement.style.display =
+      result.style.display =
         "none";
 
 
       document.getElementById(
-        "scannerSection"
+        "scanner-section"
       ).style.display =
         "block";
 
@@ -1230,21 +1360,22 @@ function showResult(
       );
 
 
-      resumeScanner();
+      unlockScanner();
 
 
     },
 
-    3000
+    RESULT_DURATION
 
   );
 
 }
 
 
-/*************************************************
- * STATUS
- *************************************************/
+
+/* =====================================================
+   STATUS
+   ===================================================== */
 
 
 function setStatus(
@@ -1270,9 +1401,10 @@ function setStatus(
 }
 
 
-/*************************************************
- * ERROR
- *************************************************/
+
+/* =====================================================
+   ERROR
+   ===================================================== */
 
 
 function showError(
@@ -1281,7 +1413,7 @@ function showError(
 
 
   document.getElementById(
-    "scannerSection"
+    "scanner-section"
   ).style.display =
     "block";
 
@@ -1300,24 +1432,50 @@ function showError(
 }
 
 
-/*************************************************
- * RESUME SCANNER
- *************************************************/
+
+/* =====================================================
+   UNLOCK SCANNER
+   ===================================================== */
 
 
-function resumeScanner() {
+function unlockScanner() {
 
 
   scanLocked =
     false;
 
+}
+
+
+
+/* =====================================================
+   CLEANUP JSONP REQUEST
+   ===================================================== */
+
+
+function cleanupRequest(
+  script,
+  callbackName
+) {
+
+
+  /*
+   * Remove temporary script element.
+   */
 
   try {
 
 
-    if (scanner) {
+    if (
+      script &&
+      script.parentNode
+    ) {
 
-      scanner.resume();
+
+      script.parentNode.removeChild(
+        script
+      );
+
 
     }
 
@@ -1327,10 +1485,36 @@ function resumeScanner() {
   catch (error) {
 
 
-    console.error(
-      "Could not resume scanner:",
+    console.warn(
+      "Could not remove request:",
       error
     );
+
+
+  }
+
+
+
+  /*
+   * Remove callback function.
+   */
+
+  try {
+
+
+    delete window[
+      callbackName
+    ];
+
+
+  }
+
+  catch (error) {
+
+
+    window[
+      callbackName
+    ] = undefined;
 
 
   }
@@ -1338,9 +1522,10 @@ function resumeScanner() {
 }
 
 
-/*************************************************
- * START
- *************************************************/
+
+/* =====================================================
+   PAGE LOAD
+   ===================================================== */
 
 
 window.addEventListener(
