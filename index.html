@@ -1151,12 +1151,12 @@ function startScanner() {
 }
 
 
+
 /*************************************************
  * PROCESS QR CODE
  *************************************************/
 
 function processQRCode(studentId) {
-
 
   document.getElementById(
     "status"
@@ -1173,7 +1173,7 @@ function processQRCode(studentId) {
   /*
    * Pause scanning while processing.
    *
-   * Camera remains active.
+   * The camera remains active.
    */
 
   try {
@@ -1190,142 +1190,283 @@ function processQRCode(studentId) {
 
 
   /*
-   * Create unique callback name.
+   * Create a unique request ID.
    */
 
-  const callbackName =
-    "attendanceCallback_" +
+  const requestId =
+    "attendance_" +
     Date.now();
 
 
   /*
-   * Create callback function.
+   * Listen for the response from
+   * the Apps Script bridge.
    */
 
-  window[callbackName] =
-    function(result) {
-
-
-      /*
-       * Clear timeout because
-       * the server responded.
-       */
-
-      if (requestTimeout) {
-
-        clearTimeout(
-          requestTimeout
-        );
-
-        requestTimeout = null;
-
-      }
-
-
-      handleResult(result);
-
-
-      /*
-       * Clean up callback.
-       */
-
-      delete window[callbackName];
-
-    };
+  window.addEventListener(
+    "message",
+    handleAttendanceBridgeMessage
+  );
 
 
   /*
-   * Create JSONP request.
+   * Create hidden iframe.
+   *
+   * The iframe loads the Apps Script
+   * attendance bridge.
    */
 
-  const script =
-    document.createElement("script");
+  const bridge =
+    document.createElement("iframe");
 
 
-  /*
-   * Add timestamp to prevent
-   * cached requests.
-   */
-
-  const timestamp =
-    Date.now();
+  bridge.id =
+    "attendanceBridge";
 
 
-  script.src =
+  bridge.style.display =
+    "none";
+
+
+  bridge.src =
     APPS_SCRIPT_URL +
-    "?id=" +
-    encodeURIComponent(studentId) +
-    "&callback=" +
-    callbackName +
-    "&t=" +
-    timestamp;
+    "?bridge=1";
+
+
+  document.body.appendChild(
+    bridge
+  );
 
 
   /*
-   * Handle connection errors.
+   * Wait briefly for the bridge
+   * to load before sending the request.
    */
 
-  script.onerror =
+  bridge.onload =
     function() {
 
+      try {
 
-      if (requestTimeout) {
+        bridge.contentWindow.postMessage(
 
-        clearTimeout(
-          requestTimeout
+          {
+
+            type:
+              "HNF_ATTENDANCE_SCAN",
+
+            studentId:
+              studentId,
+
+            requestId:
+              requestId
+
+          },
+
+          "https://script.google.com"
+
         );
-
-        requestTimeout = null;
 
       }
 
+      catch (error) {
 
-      delete window[callbackName];
+        console.error(error);
 
+        cleanupAttendanceBridge();
 
-      showError(
-        "Could not connect to the attendance system."
-      );
+        showError(
+          "Could not connect to the attendance system."
+        );
 
+        resumeScanner();
 
-      resumeScanner();
+      }
 
     };
-
-
-  /*
-   * Add script to page.
-   */
-
-  document.body.appendChild(script);
 
 
   /*
    * Safety timeout.
    *
-   * If Apps Script does not respond
-   * within 10 seconds, reset scanner.
+   * If the Apps Script bridge does not
+   * respond within 10 seconds, reset.
    */
 
-  requestTimeout =
+  window.attendanceBridgeTimeout =
     setTimeout(function() {
 
-
-      requestTimeout = null;
-
-
-      delete window[callbackName];
-
+      cleanupAttendanceBridge();
 
       showError(
         "The attendance system is taking too long to respond."
       );
 
-
       resumeScanner();
 
-
     }, 10000);
+
+}
+
+
+/*************************************************
+ * HANDLE BRIDGE RESPONSE
+ *************************************************/
+
+function handleAttendanceBridgeMessage(event) {
+
+
+  /*
+   * Only accept messages from the
+   * Apps Script domain.
+   */
+
+  if (
+    event.origin !==
+    "https://script.google.com"
+  ) {
+
+    return;
+
+  }
+
+
+  /*
+   * Make sure this is our
+   * attendance response.
+   */
+
+  if (
+    !event.data ||
+    event.data.type !==
+    "HNF_ATTENDANCE_RESULT"
+  ) {
+
+    return;
+
+  }
+
+
+  /*
+   * Stop timeout.
+   */
+
+  if (
+    window.attendanceBridgeTimeout
+  ) {
+
+    clearTimeout(
+      window.attendanceBridgeTimeout
+    );
+
+    window.attendanceBridgeTimeout =
+      null;
+
+  }
+
+
+  /*
+   * Remove event listener.
+   */
+
+  window.removeEventListener(
+    "message",
+    handleAttendanceBridgeMessage
+  );
+
+
+  /*
+   * Remove hidden iframe.
+
+  */
+
+  cleanupAttendanceBridge();
+
+
+  /*
+   * Get the result.
+
+  */
+
+  let result;
+
+
+  if (
+    event.data.result
+  ) {
+
+    result =
+      event.data.result;
+
+  }
+
+  else {
+
+    result = {
+
+      success:
+        false,
+
+      title:
+        event.data.title ||
+        "System Error",
+
+      name:
+        event.data.name ||
+        "",
+
+      message:
+        event.data.message ||
+        "The attendance system could not process the request."
+
+    };
+
+  }
+
+
+  /*
+   * Show result.
+
+  */
+
+  handleResult(result);
+
+}
+
+
+/*************************************************
+ * CLEAN UP BRIDGE
+ *************************************************/
+
+function cleanupAttendanceBridge() {
+
+
+  /*
+   * Remove hidden iframe.
+   */
+
+  const bridge =
+    document.getElementById(
+      "attendanceBridge"
+    );
+
+
+  if (bridge) {
+
+    bridge.remove();
+
+  }
+
+
+  /*
+   * Remove event listener.
+
+   */
+
+  window.removeEventListener(
+    "message",
+    handleAttendanceBridgeMessage
+  );
 
 }
 
