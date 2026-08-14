@@ -36,7 +36,6 @@ body {
   margin: 0;
 
   width: 100%;
-
   min-height: 100%;
 
   font-family:
@@ -85,11 +84,9 @@ body {
   position: fixed;
 
   top: 54%;
-
   left: 50%;
 
   width: 900px;
-
   height: 900px;
 
   transform:
@@ -383,7 +380,6 @@ body {
   content: "";
 
   width: 8px;
-
   height: 8px;
 
   border-radius: 50%;
@@ -407,7 +403,6 @@ body {
   content: "";
 
   width: 8px;
-
   height: 8px;
 
   border-radius: 50%;
@@ -439,7 +434,6 @@ body {
   justify-content: center;
 
   width: 18px;
-
   height: 18px;
 
   border:
@@ -516,11 +510,9 @@ body {
   position: absolute;
 
   top: 50%;
-
   left: 50%;
 
   width: 850px;
-
   height: 850px;
 
   transform:
@@ -584,7 +576,6 @@ body {
 .resultIcon {
 
   width: 62px;
-
   height: 62px;
 
   margin:
@@ -1171,16 +1162,12 @@ function processQRCode(studentId) {
   ).textContent =
     "Processing...";
 
+
   document.getElementById(
     "status"
   ).className =
     "processing";
 
-
-  /*
-   * Pause scanning while processing.
-   * The camera remains active.
-   */
 
   try {
 
@@ -1196,233 +1183,178 @@ function processQRCode(studentId) {
 
 
   /*
-   * Create a unique request ID.
+   * Use the original JSONP method for the
+   * attendance transaction.
+   *
+   * The Apps Script now returns the attendance
+   * result before sending the house notification,
+   * so the scanner should respond much faster.
    */
 
-  const requestId =
-    "attendance_" +
+  const callbackName =
+    "attendanceCallback_" +
     Date.now();
 
 
-  /*
-   * Listen for the response from
-   * the Apps Script bridge.
-   */
+  window[callbackName] =
+    function(result) {
 
-  window.addEventListener(
-    "message",
-    handleAttendanceBridgeMessage
-  );
+      delete window[callbackName];
 
 
-  /*
-   * Create hidden iframe.
-   *
-   * The student ID is sent directly
-   * to Apps Script in the URL.
-   */
+      /*
+       * Start the house notification separately.
+       * This request does NOT block the scanner result.
+       */
 
-  const bridge =
-    document.createElement("iframe");
+      if (
+        result &&
+        result.success
+      ) {
+
+        sendHouseNotification(
+          studentId,
+          result.action,
+          Date.now()
+        );
+
+      }
 
 
-  bridge.id =
-    "attendanceBridge";
+      handleResult(result);
+
+    };
 
 
-  bridge.style.display =
-    "none";
+  const script =
+    document.createElement("script");
 
 
-  bridge.src =
+  script.src =
     APPS_SCRIPT_URL +
-    "?bridge=1" +
-    "&id=" +
+    "?id=" +
     encodeURIComponent(studentId) +
-    "&requestId=" +
-    encodeURIComponent(requestId);
+    "&callback=" +
+    callbackName;
 
 
-  document.body.appendChild(
-    bridge
-  );
+  script.onerror =
+    function() {
 
-
-  /*
-   * Safety timeout.
-   *
-   * If the Apps Script bridge does not
-   * respond within 10 seconds, reset.
-   */
-
-  window.attendanceBridgeTimeout =
-    setTimeout(function() {
-
-      cleanupAttendanceBridge();
+      delete window[callbackName];
 
       showError(
-        "The attendance system is taking too long to respond."
+        "Could not connect to the attendance system."
       );
 
       resumeScanner();
 
-    }, 10000);
+    };
+
+
+  document.body.appendChild(
+    script
+  );
+
+
+  /*
+   * Remove the temporary script element after
+   * the request has been given time to execute.
+   */
+
+  setTimeout(
+
+    function() {
+
+      if (script.parentNode) {
+
+        script.parentNode.removeChild(
+          script
+        );
+
+      }
+
+    },
+
+    15000
+
+  );
 
 }
 
 
 /*************************************************
- * HANDLE ATTENDANCE BRIDGE RESPONSE
+ * SEND HOUSE NOTIFICATION IN BACKGROUND
  *************************************************/
 
-function handleAttendanceBridgeMessage(event) {
+function sendHouseNotification(
+  studentId,
+  action,
+  timestamp
+) {
 
-  /*
-   * Only accept messages from Google Apps Script.
-   *
-   * Apps Script may use either of these origins.
-   */
-
-  if (
-    !event.origin.includes(
-      "googleusercontent.com"
-    ) &&
-    !event.origin.includes(
-      "script.google.com"
-    )
-  ) {
-
-    return;
-
-  }
+  const callbackName =
+    "notificationCallback_" +
+    Date.now();
 
 
-  /*
-   * Make sure this is our attendance response.
-   */
+  window[callbackName] =
+    function() {
 
-  if (
-    !event.data ||
-    event.data.type !==
-    "HNF_ATTENDANCE_RESULT"
-  ) {
+      delete window[callbackName];
 
-    return;
-
-  }
+    };
 
 
-  /*
-   * Stop timeout.
-   */
-
-  if (
-    window.attendanceBridgeTimeout
-  ) {
-
-    clearTimeout(
-      window.attendanceBridgeTimeout
-    );
-
-    window.attendanceBridgeTimeout =
-      null;
-
-  }
+  const script =
+    document.createElement("script");
 
 
-  /*
-   * Remove listener.
-   */
+  script.src =
+    APPS_SCRIPT_URL +
+    "?notification=1" +
+    "&id=" +
+    encodeURIComponent(studentId) +
+    "&action=" +
+    encodeURIComponent(action) +
+    "&timestamp=" +
+    encodeURIComponent(timestamp) +
+    "&callback=" +
+    callbackName;
 
-  window.removeEventListener(
-    "message",
-    handleAttendanceBridgeMessage
+
+  script.onerror =
+    function() {
+
+      delete window[callbackName];
+
+    };
+
+
+  document.body.appendChild(
+    script
   );
 
 
-  /*
-   * Remove hidden iframe.
-   */
+  setTimeout(
 
-  cleanupAttendanceBridge();
+    function() {
 
+      delete window[callbackName];
 
-  /*
-   * Display the result.
-   */
+      if (script.parentNode) {
 
-  if (
-    event.data.result
-  ) {
+        script.parentNode.removeChild(
+          script
+        );
 
-    handleResult(
-      event.data.result
-    );
+      }
 
-  }
+    },
 
-  else {
+    30000
 
-    showError(
-      "The attendance system could not process the request."
-    );
-
-    resumeScanner();
-
-  }
-
-}
-
-
-/*************************************************
- * CLEAN UP ATTENDANCE BRIDGE
- *************************************************/
-
-function cleanupAttendanceBridge() {
-
-  /*
-   * Remove hidden iframe.
-   */
-
-  const bridge =
-    document.getElementById(
-      "attendanceBridge"
-    );
-
-
-  if (bridge) {
-
-    bridge.remove();
-
-  }
-
-
-  /*
-   * Remove event listener.
-   */
-
-  window.removeEventListener(
-    "message",
-    handleAttendanceBridgeMessage
   );
-
-
-  /*
-   * Clear timeout.
-   */
-
-  if (
-    window.attendanceBridgeTimeout
-  ) {
-
-    clearTimeout(
-      window.attendanceBridgeTimeout
-    );
-
-    window.attendanceBridgeTimeout =
-      null;
-
-  }
 
 }
 
