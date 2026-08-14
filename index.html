@@ -67,8 +67,8 @@ body::before {
   top: 50%;
   left: 50%;
 
-  width: 850px;
-  height: 850px;
+  width: 950px;
+  height: 950px;
 
   transform:
     translate(-50%, -50%);
@@ -82,7 +82,7 @@ body::before {
 
   background-size: contain;
 
-  opacity: 0.045;
+  opacity: 0.09;
 
   filter: grayscale(100%);
 
@@ -249,11 +249,6 @@ body::before {
 }
 
 
-/*
- * Remove the default html5-qrcode
- * border/title elements.
- */
-
 #reader__dashboard_section {
 
   background: #111111 !important;
@@ -317,8 +312,6 @@ body::before {
 
 }
 
-
-/* Small scanner icon */
 
 #status.ready::before {
 
@@ -401,7 +394,7 @@ body::before {
 }
 
 
-/* Faint logo on result screen */
+/* Faint Rosenberg logo */
 
 .result::before {
 
@@ -419,9 +412,9 @@ body::before {
   background-position: center;
 
   background-size:
-    min(750px, 90vw);
+    min(850px, 90vw);
 
-  opacity: 0.045;
+  opacity: 0.09;
 
   filter: grayscale(100%);
 
@@ -915,11 +908,8 @@ function processQRCode(studentId) {
 
 
   /*
-   * Pause scanning while we process
-   * the attendance record.
-   *
-   * IMPORTANT:
-   * We DO NOT stop the camera.
+   * Pause scanning while processing.
+   * Camera remains active.
    */
 
   try {
@@ -936,7 +926,7 @@ function processQRCode(studentId) {
 
 
   /*
-   * Create a unique callback name.
+   * Create unique JSONP callback.
    */
 
   const callbackName =
@@ -953,17 +943,13 @@ function processQRCode(studentId) {
 
       handleResult(result);
 
-      /*
-       * Clean up callback.
-       */
-
       delete window[callbackName];
 
     };
 
 
   /*
-   * JSONP request.
+   * JSONP request to Apps Script.
    */
 
   const script =
@@ -1030,7 +1016,8 @@ function handleResult(result) {
 
   /*
    * Populate result.
-   */
+
+  */
 
   document.getElementById(
     "resultTitle"
@@ -1044,10 +1031,6 @@ function handleResult(result) {
     result.name;
 
 
-  /*
-   * Display message.
-   */
-
   document.getElementById(
     "resultMessage"
   ).textContent =
@@ -1055,11 +1038,8 @@ function handleResult(result) {
 
 
   /*
-   * Try to extract time from the
-   * returned message if available.
-   *
-   * If no separate time is provided,
-   * the message remains unchanged.
+   * Keep time field available for
+   * future use.
    */
 
   document.getElementById(
@@ -1069,7 +1049,7 @@ function handleResult(result) {
 
 
   /*
-   * Determine icon and wording.
+   * Determine result icon.
    */
 
   const title =
@@ -1087,7 +1067,8 @@ function handleResult(result) {
     title.includes("CHECK-IN")
   ) {
 
-    icon.textContent = "✓";
+    icon.textContent =
+      "✓";
 
   }
 
@@ -1095,19 +1076,21 @@ function handleResult(result) {
     title.includes("CHECK-OUT")
   ) {
 
-    icon.textContent = "✓";
+    icon.textContent =
+      "✓";
 
   }
 
   else {
 
-    icon.textContent = "!";
+    icon.textContent =
+      "!";
 
   }
 
 
   /*
-   * Show result for 3 seconds.
+   * Countdown.
    */
 
   let seconds = 3;
@@ -1140,6 +1123,10 @@ function handleResult(result) {
 
     }, 1000);
 
+
+  /*
+   * Return to scanner.
+   */
 
   setTimeout(function() {
 
