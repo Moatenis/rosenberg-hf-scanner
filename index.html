@@ -1,410 +1,268 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
 
-<meta charset="UTF-8">
+  <base target="_top">
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
->
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
 
-<title>
-Rosenberg Health & Fitness
-</title>
+  <title>
+    Rosenberg Health & Fitness
+  </title>
 
-<script
-  src="https://unpkg.com/html5-qrcode"
-  type="text/javascript">
-</script>
+  <script
+    src="https://unpkg.com/html5-qrcode"
+    type="text/javascript">
+  </script>
 
-<style>
+  <style>
 
-* {
-  box-sizing: border-box;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-html,
-body {
+    body {
 
-  margin: 0;
+      margin: 0;
 
-  padding: 0;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
 
-  width: 100%;
+      background: #ffffff;
 
-  min-height: 100%;
+      color: #111111;
 
-  background: #ffffff;
+      text-align: center;
 
-  color: #111111;
+    }
 
-}
 
-body {
+    .header {
 
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Arial,
-    sans-serif;
+      padding: 30px 20px 20px;
 
-  text-align: center;
+      border-bottom:
+        1px solid #111111;
 
-  -webkit-font-smoothing: antialiased;
+    }
 
-}
 
+    .header h1 {
 
-/* =========================================================
-   HEADER
-   ========================================================= */
+      margin: 0;
 
-.header {
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
-  padding:
-    26px
-    20px
-    20px;
+      font-size: 30px;
 
-  border-bottom:
-    1px solid #111111;
+      font-weight: 400;
 
-}
+      letter-spacing: 1px;
 
-.header h1 {
+    }
 
-  margin: 0;
 
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+    .header p {
 
-  font-size: 30px;
+      margin: 8px 0 0;
 
-  font-weight: 400;
+      font-size: 14px;
 
-  letter-spacing: 1px;
+      letter-spacing: 2px;
 
-}
+      text-transform: uppercase;
 
-.header p {
+      color: #555555;
 
-  margin:
-    8px
-    0
-    0;
+    }
 
-  font-size: 14px;
 
-  letter-spacing: 2px;
+    .container {
 
-  text-transform: uppercase;
+      width: 100%;
 
-  color: #555555;
+      max-width: 600px;
 
-}
+      margin: 0 auto;
 
+      padding: 25px 20px;
 
-/* =========================================================
-   MAIN
-   ========================================================= */
+    }
 
-.container {
 
-  width: 100%;
+    .instruction {
 
-  max-width: 600px;
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
-  margin: 0 auto;
+      font-size: 24px;
 
-  padding:
-    24px
-    20px
-    30px;
+      margin-bottom: 20px;
 
-}
+    }
 
-.instruction {
 
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+    #reader {
 
-  font-size: 25px;
+      width: 100%;
 
-  margin:
-    0
-    0
-    20px;
+      max-width: 400px;
 
-}
+      margin: 0 auto;
 
+      background: #111111;
 
-/* =========================================================
-   QR READER
-   ========================================================= */
+      overflow: hidden;
 
-#reader {
+      border: 5px solid #111111;
 
-  width: 100%;
+    }
 
-  max-width: 330px;
 
-  margin: 0 auto;
+    #status {
 
-  background: #111111;
+      margin-top: 18px;
 
-  overflow: hidden;
+      min-height: 30px;
 
-  border:
-    2px
-    solid
-    #111111;
+      font-size: 15px;
 
-}
+      letter-spacing: 1px;
 
-#reader video {
+      text-transform: uppercase;
 
-  width: 100% !important;
+    }
 
-  height: auto !important;
 
-  max-height: 330px;
+    .ready {
 
-  object-fit: cover;
+      color: #111111;
 
-  display: block;
+    }
 
-}
 
-#reader__scan_region {
+    .processing {
 
-  min-height: 0 !important;
+      color: #555555;
 
-}
+    }
 
-#reader__dashboard {
 
-  display: none !important;
+    .error {
 
-}
+      color: #b00000;
 
-#reader__status_span {
+    }
 
-  display: none !important;
 
-}
+    .result {
 
+      display: none;
 
-/* =========================================================
-   STATUS
-   ========================================================= */
+      position: fixed;
 
-#status {
+      inset: 0;
 
-  margin-top: 16px;
+      background: rgba(255,255,255,0.97);
 
-  min-height: 28px;
+      z-index: 10;
 
-  font-size: 14px;
+      align-items: center;
 
-  letter-spacing: 1.4px;
+      justify-content: center;
 
-  text-transform: uppercase;
+      padding: 25px;
 
-}
+    }
 
-.ready {
-  color: #111111;
-}
 
-.processing {
-  color: #555555;
-}
+    .resultCard {
 
-.error {
-  color: #b00000;
-}
+      width: 100%;
 
-.success {
-  color: #111111;
-}
+      max-width: 500px;
 
+      border: 1px solid #111111;
 
-/* =========================================================
-   RESULT
-   ========================================================= */
+      background: #ffffff;
 
-.result {
+    }
 
-  display: none;
 
-  position: fixed;
+    .resultContent {
 
-  inset: 0;
+      padding: 45px 25px;
 
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      0.98
-    );
+    }
 
-  z-index: 1000;
 
-  align-items: center;
+    .result h1 {
 
-  justify-content: center;
+      margin: 0 0 20px;
 
-  padding: 25px;
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
-}
+      font-size: 34px;
 
-.resultCard {
+      font-weight: 400;
 
-  width: 100%;
+    }
 
-  max-width: 500px;
 
-  border:
-    1px solid
-    #111111;
+    .name {
 
-  background: #ffffff;
+      font-size: 40px;
 
-}
+      font-weight: 600;
 
-.resultContent {
+      margin-bottom: 18px;
 
-  padding:
-    45px
-    25px;
+    }
 
-}
 
-.result h1 {
+    .message {
 
-  margin:
-    0
-    0
-    20px;
+      font-size: 18px;
 
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+      color: #555555;
 
-  font-size: 34px;
+    }
 
-  font-weight: 400;
 
-}
+    .resultFooter {
 
-.name {
+      border-top:
+        1px solid #111111;
 
-  font-size: 40px;
+      padding: 14px;
 
-  font-weight: 600;
+      font-size: 11px;
 
-  margin-bottom: 18px;
+      letter-spacing: 2px;
 
-}
+      text-transform: uppercase;
 
-.message {
+      color: #555555;
 
-  font-size: 18px;
+    }
 
-  color: #555555;
-
-}
-
-.resultFooter {
-
-  border-top:
-    1px
-    solid
-    #111111;
-
-  padding: 14px;
-
-  font-size: 11px;
-
-  letter-spacing: 2px;
-
-  text-transform: uppercase;
-
-  color: #555555;
-
-}
-
-
-/* =========================================================
-   iPAD / MOBILE
-   ========================================================= */
-
-@media (max-width: 700px) {
-
-  .header {
-
-    padding:
-      22px
-      15px
-      16px;
-
-  }
-
-  .header h1 {
-
-    font-size: 25px;
-
-  }
-
-  .header p {
-
-    font-size: 12px;
-
-    letter-spacing: 1.5px;
-
-  }
-
-  .container {
-
-    padding:
-      20px
-      14px
-      25px;
-
-  }
-
-  .instruction {
-
-    font-size: 23px;
-
-    margin-bottom: 16px;
-
-  }
-
-  #reader {
-
-    max-width: 330px;
-
-  }
-
-  #reader video {
-
-    max-height: 330px;
-
-  }
-
-}
-
-</style>
+  </style>
 
 </head>
 
@@ -412,119 +270,116 @@ body {
 <body>
 
 
-<div class="header">
+  <div class="header">
 
-  <h1>
-    Rosenberg Health &amp; Fitness
-  </h1>
+    <h1>
+      Rosenberg Health &amp; Fitness
+    </h1>
 
-  <p>
-    Student Check-In / Check-Out
-  </p>
+    <p>
+      Student Check-In / Check-Out
+    </p>
 
-</div>
-
-
-<div class="container">
+  </div>
 
 
-  <div id="scannerSection">
+  <div class="container">
 
-    <div class="instruction">
+    <div id="scannerSection">
 
-      Scan Your QR Code
+      <div class="instruction">
+
+        Scan Your QR Code
+
+      </div>
+
+      <div id="reader"></div>
+
+      <div
+        id="status"
+        class="ready"
+      >
+
+        Ready to scan
+
+      </div>
 
     </div>
 
-    <div id="reader"></div>
 
     <div
-      id="status"
-      class="ready"
+      id="result"
+      class="result"
     >
 
-      Ready to scan
+      <div class="resultCard">
 
-    </div>
+        <div class="resultContent">
 
-  </div>
+          <h1 id="resultTitle"></h1>
 
+          <div
+            id="resultName"
+            class="name">
+          </div>
 
-  <div
-    id="result"
-    class="result"
-  >
+          <div
+            id="resultMessage"
+            class="message">
+          </div>
 
-    <div class="resultCard">
-
-      <div class="resultContent">
-
-        <h1 id="resultTitle"></h1>
-
-        <div
-          id="resultName"
-          class="name">
         </div>
 
         <div
-          id="resultMessage"
-          class="message">
+          id="resultFooter"
+          class="resultFooter"
+        >
+
+          Returning to scanner...
+
         </div>
-
-      </div>
-
-      <div class="resultFooter">
-
-        Returning to scanner...
 
       </div>
 
     </div>
 
   </div>
-
-</div>
 
 
 <script>
 
 
-/* =========================================================
-   CONFIGURATION
-   ========================================================= */
+/*************************************************
+ * ROSENBERG HEALTH & FITNESS
+ * QR SCANNER
+ *************************************************/
 
-const ATTENDANCE_ENDPOINT =
+
+/*************************************************
+ * APPS SCRIPT URL
+ *************************************************/
+
+const APPS_SCRIPT_URL =
   "https://script.google.com/a/macros/instrosenberg.ch/s/AKfycbx92HMvs_apPqSTs1MRV3A4FmSm6rocPec8aD9k_y5HeLisnyhu3K1pcCqVAYDon7Zs/exec";
 
 
-const QR_BOX_SIZE = 220;
-
-const SCAN_FPS = 10;
-
-const ATTENDANCE_TIMEOUT = 15000;
-
-
-/* =========================================================
-   GLOBALS
-   ========================================================= */
+/*************************************************
+ * SCANNER
+ *************************************************/
 
 let scanner = null;
 
 let scanLocked = false;
 
-let requestCounter = 0;
 
-
-/* =========================================================
-   START SCANNER
-   ========================================================= */
+/*************************************************
+ * START SCANNER
+ *************************************************/
 
 function startScanner() {
 
   scanner =
-    new Html5Qrcode(
-      "reader"
-    );
+    new Html5Qrcode("reader");
 
 
   scanner.start(
@@ -534,21 +389,12 @@ function startScanner() {
     },
 
     {
-
-      fps:
-        SCAN_FPS,
+      fps: 10,
 
       qrbox: {
-
-        width:
-          QR_BOX_SIZE,
-
-        height:
-          QR_BOX_SIZE
-
-      },
-
-      aspectRatio: 1.0
+        width: 240,
+        height: 240
+      }
 
     },
 
@@ -560,14 +406,9 @@ function startScanner() {
 
       }
 
+      scanLocked = true;
 
-      scanLocked =
-        true;
-
-
-      processQRCode(
-        decodedText
-      );
+      processQRCode(decodedText);
 
     },
 
@@ -582,573 +423,197 @@ function startScanner() {
 
   )
 
-  .catch(
-    function(error) {
+  .catch(function(error) {
 
-      console.error(
-        "Camera error:",
-        error
-      );
+    console.error(error);
 
-      showError(
-        "Camera could not be started."
-      );
+    showError(
+      "Camera could not be started."
+    );
 
-    }
-  );
+  });
 
 }
 
 
-/* =========================================================
-   PROCESS QR CODE
-   ========================================================= */
+/*************************************************
+ * PROCESS QR CODE
+ *************************************************/
 
-function processQRCode(
-  studentId
-) {
+function processQRCode(studentId) {
 
-  setStatus(
-    "Processing...",
-    "processing"
-  );
+  document.getElementById(
+    "status"
+  ).textContent =
+    "Processing...";
 
+
+  document.getElementById(
+    "status"
+  ).className =
+    "processing";
+
+
+  /*
+   * Pause scanner while processing.
+   */
 
   try {
 
-    if (scanner) {
-
-      scanner.pause(true);
-
-    }
+    scanner.pause(true);
 
   }
 
   catch (error) {
 
-    console.warn(
-      "Could not pause scanner:",
-      error
-    );
+    console.log(error);
 
   }
 
 
-  sendAttendanceRequest(
-    studentId
-  );
-
-}
-
-
-/* =========================================================
-   SEND ATTENDANCE REQUEST
-   ========================================================= */
-
-function sendAttendanceRequest(
-  studentId
-) {
-
-  requestCounter++;
-
-
-  const callbackName =
-    "attendanceCallback_" +
-    requestCounter;
-
-
-  let completed =
-    false;
-
-
-  let timeoutId =
-    null;
-
-
-  let script =
-    null;
-
-
   /*
-   * Save the student ID so the notification
-   * request can use it after attendance succeeds.
+   * Send attendance request directly
+   * through Apps Script.
    */
 
-  window.lastScannedStudentId =
-    String(
-      studentId
-    ).trim();
+  google.script.run
+
+    .withSuccessHandler(
+      function(result) {
+
+        /*
+         * Attendance has been saved.
+         *
+         * Show the result immediately.
+         */
+
+        handleResult(result);
 
 
-  /*
-   * Attendance JSONP callback.
-   */
+        /*
+         * Send the House notification
+         * separately in the background.
+         *
+         * This request does NOT use
+         * google.script.run.
+         */
 
-  window[callbackName] =
-    function(result) {
+        if (
+          result &&
+          result.success
+        ) {
 
-      if (completed) {
-
-        return;
-
-      }
-
-
-      completed =
-        true;
-
-
-      clearTimeout(
-        timeoutId
-      );
-
-
-      cleanupJSONP(
-        script,
-        callbackName
-      );
-
-
-      handleAttendanceResult(
-        result
-      );
-
-    };
-
-
-  /*
-   * Build attendance request.
-   */
-
-  const url =
-    ATTENDANCE_ENDPOINT +
-    "?id=" +
-    encodeURIComponent(
-      String(
-        studentId
-      ).trim()
-    ) +
-    "&callback=" +
-    encodeURIComponent(
-      callbackName
-    ) +
-    "&_=" +
-    Date.now();
-
-
-  console.log(
-    "Attendance request:",
-    url
-  );
-
-
-  script =
-    document.createElement(
-      "script"
-    );
-
-
-  script.src =
-    url;
-
-  script.async =
-    true;
-
-
-  script.onerror =
-    function(error) {
-
-      if (completed) {
-
-        return;
-
-      }
-
-
-      completed =
-        true;
-
-
-      clearTimeout(
-        timeoutId
-      );
-
-
-      cleanupJSONP(
-        script,
-        callbackName
-      );
-
-
-      console.error(
-        "Attendance endpoint error:",
-        error
-      );
-
-
-      showError(
-        "Could not connect to the attendance system."
-      );
-
-
-      resumeScanner();
-
-    };
-
-
-  document.body.appendChild(
-    script
-  );
-
-
-  /*
-   * Safety timeout.
-   */
-
-  timeoutId =
-    setTimeout(
-      function() {
-
-        if (completed) {
-
-          return;
+          sendHouseNotification(
+            studentId,
+            result.action,
+            Date.now()
+          );
 
         }
 
+      }
+    )
 
-        completed =
-          true;
+    .withFailureHandler(
+      function(error) {
 
-
-        cleanupJSONP(
-          script,
-          callbackName
-        );
-
-
-        console.error(
-          "Attendance request timed out."
-        );
-
+        console.error(error);
 
         showError(
-          "The attendance system is taking too long to respond."
+          "Could not connect to the attendance system."
         );
-
 
         resumeScanner();
 
-      },
-      ATTENDANCE_TIMEOUT
+      }
+    )
+
+    .scannerCheckInOut(
+      studentId
     );
 
 }
 
 
-/* =========================================================
-   HANDLE ATTENDANCE RESULT
-   ========================================================= */
+/*************************************************
+ * SEND HOUSE NOTIFICATION
+ *************************************************/
 
-function handleAttendanceResult(
-  result
-) {
-
-  console.log(
-    "Attendance response:",
-    result
-  );
-
-
-  if (
-    !result ||
-    typeof result !== "object"
-  ) {
-
-    showError(
-      "Invalid response from the attendance system."
-    );
-
-
-    resumeScanner();
-
-    return;
-
-  }
-
-
-  /*
-   * Attendance failed or student not found.
-   */
-
-  if (
-    result.success === false
-  ) {
-
-    showResult(
-
-      result.title ||
-        "Unable to check in/out",
-
-      result.name ||
-        "",
-
-      result.message ||
-        "Please try again."
-
-    );
-
-
-    return;
-
-  }
-
-
-  /*
-   * Attendance succeeded.
-   *
-   * SHOW THE RESULT FIRST.
-   *
-   * We do not wait for email/dashboard.
-   */
-
-  if (
-    result.success === true
-  ) {
-
-    showResult(
-
-      result.title ||
-        "",
-
-      result.name ||
-        "",
-
-      result.message ||
-        ""
-
-    );
-
-
-    /*
-     * Start the secondary actions separately.
-     *
-     * They do not block the result.
-     */
-
-    sendBackgroundUpdate(
-      window.lastScannedStudentId,
-      result.action
-    );
-
-
-    return;
-
-  }
-
-
-  showError(
-    "Unexpected response from the attendance system."
-  );
-
-
-  resumeScanner();
-
-}
-
-
-/* =========================================================
-   BACKGROUND EMAIL + DASHBOARD UPDATE
-   ========================================================= */
-
-function sendBackgroundUpdate(
+function sendHouseNotification(
   studentId,
-  action
+  action,
+  timestamp
 ) {
 
-  if (
-    !studentId ||
-    !action
-  ) {
-
-    return;
-
-  }
-
-
-  const callbackName =
-    "notificationCallback_" +
-    Date.now();
-
-
-  let script =
-    null;
-
-
   /*
-   * Notification callback.
-   *
-   * We don't display anything to the user
-   * if this fails because attendance itself
-   * has already been recorded.
+   * Build the notification URL.
    */
-
-  window[callbackName] =
-    function(response) {
-
-      console.log(
-        "Background update completed:",
-        response
-      );
-
-
-      cleanupJSONP(
-        script,
-        callbackName
-      );
-
-    };
-
 
   const url =
-    ATTENDANCE_ENDPOINT +
+    APPS_SCRIPT_URL +
     "?notification=1" +
     "&id=" +
-    encodeURIComponent(
-      String(
-        studentId
-      ).trim()
-    ) +
+    encodeURIComponent(studentId) +
     "&action=" +
-    encodeURIComponent(
-      action
-    ) +
+    encodeURIComponent(action) +
     "&timestamp=" +
-    encodeURIComponent(
-      Date.now()
-    ) +
-    "&callback=" +
-    encodeURIComponent(
-      callbackName
-    ) +
+    encodeURIComponent(timestamp) +
     "&_=" +
     Date.now();
 
 
-  console.log(
-    "Background update request:",
-    url
-  );
+  /*
+   * Create an invisible image.
+   *
+   * The browser makes the request
+   * without navigating away from the scanner.
+   */
+
+  const img =
+    new Image();
 
 
-  script =
-    document.createElement(
-      "script"
-    );
+  /*
+   * The response itself is not important.
+   *
+   * Apps Script receives the request
+   * and sends the House email.
+   */
 
+  img.onload =
+    function() {
 
-  script.src =
-    url;
-
-  script.async =
-    true;
-
-
-  script.onerror =
-    function(error) {
-
-      console.warn(
-        "Background update failed:",
-        error
-      );
-
-
-      cleanupJSONP(
-        script,
-        callbackName
+      console.log(
+        "House notification request completed."
       );
 
     };
 
 
-  document.body.appendChild(
-    script
-  );
+  img.onerror =
+    function() {
+
+      console.log(
+        "House notification request sent."
+      );
+
+    };
 
 
   /*
-   * IMPORTANT:
-   *
-   * There is intentionally no timeout
-   * that affects the scanner result.
-   *
-   * Attendance is already complete.
+   * Start the request.
    */
 
-}
-
-
-/* =========================================================
-   CLEAN UP JSONP
-   ========================================================= */
-
-function cleanupJSONP(
-  script,
-  callbackName
-) {
-
-  try {
-
-    if (
-      script &&
-      script.parentNode
-    ) {
-
-      script.parentNode.removeChild(
-        script
-      );
-
-    }
-
-  }
-
-  catch (error) {
-
-    console.warn(
-      "Could not remove JSONP script:",
-      error
-    );
-
-  }
-
-
-  try {
-
-    delete window[
-      callbackName
-    ];
-
-  }
-
-  catch (error) {
-
-    window[
-      callbackName
-    ] = undefined;
-
-  }
+  img.src = url;
 
 }
 
 
-/* =========================================================
-   SHOW RESULT
-   ========================================================= */
+/*************************************************
+ * SHOW RESULT
+ *************************************************/
 
-function showResult(
-  title,
-  name,
-  message
-) {
+function handleResult(result) {
 
   document.getElementById(
     "scannerSection"
@@ -1169,25 +634,23 @@ function showResult(
   document.getElementById(
     "resultTitle"
   ).textContent =
-    title ||
-    "";
+    result.title || "";
 
 
   document.getElementById(
     "resultName"
   ).textContent =
-    name ||
-    "";
+    result.name || "";
 
 
   document.getElementById(
     "resultMessage"
   ).textContent =
-    message ||
-    "";
+    result.message || "";
 
 
   setTimeout(
+
     function() {
 
       resultElement.style.display =
@@ -1200,54 +663,58 @@ function showResult(
         "block";
 
 
-      setStatus(
-        "Ready to scan",
-        "ready"
-      );
+      document.getElementById(
+        "status"
+      ).textContent =
+        "Ready to scan";
+
+
+      document.getElementById(
+        "status"
+      ).className =
+        "ready";
 
 
       resumeScanner();
 
     },
+
     3000
+
   );
 
 }
 
 
-/* =========================================================
-   STATUS
-   ========================================================= */
+/*************************************************
+ * RESUME SCANNER
+ *************************************************/
 
-function setStatus(
-  message,
-  className
-) {
+function resumeScanner() {
 
-  const status =
-    document.getElementById(
-      "status"
-    );
+  scanLocked = false;
 
 
-  status.textContent =
-    message;
+  try {
 
+    scanner.resume();
 
-  status.className =
-    className ||
-    "ready";
+  }
+
+  catch (error) {
+
+    console.error(error);
+
+  }
 
 }
 
 
-/* =========================================================
-   ERROR
-   ========================================================= */
+/*************************************************
+ * ERROR
+ *************************************************/
 
-function showError(
-  message
-) {
+function showError(message) {
 
   document.getElementById(
     "scannerSection"
@@ -1261,58 +728,29 @@ function showError(
     "none";
 
 
-  setStatus(
-    message,
-    "error"
-  );
+  document.getElementById(
+    "status"
+  ).textContent =
+    message;
+
+
+  document.getElementById(
+    "status"
+  ).className =
+    "error";
 
 }
 
 
-/* =========================================================
-   RESUME SCANNER
-   ========================================================= */
-
-function resumeScanner() {
-
-  scanLocked =
-    false;
-
-
-  try {
-
-    if (scanner) {
-
-      scanner.resume();
-
-    }
-
-  }
-
-  catch (error) {
-
-    console.warn(
-      "Could not resume scanner:",
-      error
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   START
-   ========================================================= */
+/*************************************************
+ * START
+ *************************************************/
 
 window.addEventListener(
   "load",
-  function() {
-
-    startScanner();
-
-  }
+  startScanner
 );
+
 
 </script>
 
