@@ -7,12 +7,10 @@
 
 <meta
   name="viewport"
-  content="width=device-width, initial-scale=1.0"
+  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
 >
 
-<title>
-Rosenberg Health & Fitness
-</title>
+<title>Rosenberg Health & Fitness</title>
 
 
 <script
@@ -23,14 +21,22 @@ Rosenberg Health & Fitness
 
 <style>
 
+/* =================================================
+   GENERAL
+================================================= */
+
 * {
   box-sizing: border-box;
 }
 
 
+html,
 body {
 
   margin: 0;
+
+  width: 100%;
+  min-height: 100%;
 
   font-family:
     -apple-system,
@@ -39,22 +45,87 @@ body {
     Arial,
     sans-serif;
 
-  background: #f4f6f8;
+  background: #ffffff;
 
-  color: #222;
+  color: #111111;
 
   text-align: center;
 
 }
 
 
+/* =================================================
+   BACKGROUND WATERMARK
+================================================= */
+
+body::before {
+
+  content: "";
+
+  position: fixed;
+
+  top: 50%;
+  left: 50%;
+
+  width: 850px;
+  height: 850px;
+
+  transform:
+    translate(-50%, -50%);
+
+  background-image:
+    url("logo.png");
+
+  background-repeat: no-repeat;
+
+  background-position: center;
+
+  background-size: contain;
+
+  opacity: 0.045;
+
+  filter: grayscale(100%);
+
+  pointer-events: none;
+
+  z-index: 0;
+
+}
+
+
+/* =================================================
+   MAIN PAGE
+================================================= */
+
+.page {
+
+  position: relative;
+
+  z-index: 1;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+}
+
+
+/* =================================================
+   HEADER
+================================================= */
+
 .header {
 
-  background: #1f4e78;
+  background: #111111;
 
-  color: white;
+  color: #ffffff;
 
-  padding: 28px 20px;
+  padding:
+    30px
+    20px
+    28px;
 
 }
 
@@ -63,161 +134,537 @@ body {
 
   margin: 0;
 
-  font-size: 30px;
+  font-size: clamp(26px, 4vw, 38px);
 
-  font-weight: 600;
+  font-weight: 700;
+
+  letter-spacing: 2px;
 
 }
 
 
 .header p {
 
-  margin: 8px 0 0;
+  margin:
+    9px
+    0
+    0;
 
-  font-size: 17px;
+  font-size: clamp(15px, 2.2vw, 19px);
+
+  font-weight: 400;
+
+  letter-spacing: 1px;
 
 }
 
+
+/* =================================================
+   MAIN CONTENT
+================================================= */
 
 .container {
 
-  max-width: 650px;
+  width: 100%;
+
+  max-width: 760px;
 
   margin: 0 auto;
 
-  padding: 30px 20px;
+  padding:
+    34px
+    24px
+    20px;
+
+  flex: 1;
 
 }
 
+
+/* =================================================
+   INSTRUCTION
+================================================= */
 
 .instruction {
 
-  font-size: 25px;
+  display: flex;
 
-  font-weight: 500;
+  align-items: center;
 
-  margin-bottom: 25px;
+  justify-content: center;
+
+  gap: 18px;
+
+  margin-bottom: 24px;
+
+  font-size: clamp(19px, 3vw, 27px);
+
+  font-weight: 600;
+
+  letter-spacing: 1px;
 
 }
 
+
+.instruction::before,
+.instruction::after {
+
+  content: "";
+
+  height: 1px;
+
+  width: 80px;
+
+  background: #111111;
+
+}
+
+
+/* =================================================
+   SCANNER
+================================================= */
 
 #reader {
 
   width: 100%;
 
-  max-width: 500px;
+  max-width: 600px;
 
   margin: 0 auto;
 
-  background: white;
+  background: #111111;
 
-  border-radius: 18px;
+  border-radius: 22px;
 
   overflow: hidden;
 
+  border:
+    5px solid
+    #ffffff;
+
   box-shadow:
-    0 4px 20px rgba(0,0,0,0.10);
+    0 8px 30px
+    rgba(0,0,0,0.18);
 
 }
 
 
+/*
+ * Remove the default html5-qrcode
+ * border/title elements.
+ */
+
+#reader__dashboard_section {
+
+  background: #111111 !important;
+
+}
+
+
+#reader__scan_region {
+
+  background: #111111 !important;
+
+}
+
+
+#reader img {
+
+  max-width: 100%;
+
+}
+
+
+/* =================================================
+   STATUS
+================================================= */
+
 #status {
 
-  margin-top: 25px;
+  display: inline-flex;
 
-  font-size: 21px;
+  align-items: center;
 
-  font-weight: 500;
+  justify-content: center;
 
-  min-height: 30px;
+  gap: 12px;
+
+  margin-top: 24px;
+
+  min-height: 52px;
+
+  padding:
+    12px
+    28px;
+
+  border-radius: 30px;
+
+  background: #ffffff;
+
+  border:
+    1px solid
+    #d7d7d7;
+
+  box-shadow:
+    0 4px 15px
+    rgba(0,0,0,0.08);
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  letter-spacing: 1px;
+
+}
+
+
+/* Small scanner icon */
+
+#status.ready::before {
+
+  content: "⌗";
+
+  font-size: 25px;
+
+  font-weight: 700;
 
 }
 
 
 .ready {
 
-  color: #555;
+  color: #111111;
 
 }
 
 
 .processing {
 
-  color: #1f4e78;
+  color: #555555;
+
+}
+
+
+.processing::before {
+
+  content: "•••";
+
+  letter-spacing: 3px;
 
 }
 
 
 .error {
 
-  color: #dc3545;
+  color: #ffffff !important;
+
+  background: #111111 !important;
+
+  border-color: #111111 !important;
 
 }
 
 
 .success {
 
-  color: #1f4e78;
+  color: #111111;
 
 }
 
+
+/* =================================================
+   RESULT SCREEN
+================================================= */
 
 .result {
 
   display: none;
 
-  background: white;
+  position: fixed;
 
-  border-radius: 20px;
+  inset: 0;
 
-  padding: 45px 25px;
+  z-index: 20;
 
-  max-width: 500px;
+  background:
+    rgba(255,255,255,0.94);
 
-  margin: 20px auto;
+  backdrop-filter:
+    blur(8px);
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 25px;
+
+}
+
+
+/* Faint logo on result screen */
+
+.result::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background-image:
+    url("logo.png");
+
+  background-repeat: no-repeat;
+
+  background-position: center;
+
+  background-size:
+    min(750px, 90vw);
+
+  opacity: 0.045;
+
+  filter: grayscale(100%);
+
+  pointer-events: none;
+
+}
+
+
+.resultCard {
+
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+
+  max-width: 560px;
+
+  background: #ffffff;
+
+  border-radius: 24px;
+
+  overflow: hidden;
 
   box-shadow:
-    0 5px 25px rgba(0,0,0,0.12);
+    0 15px 55px
+    rgba(0,0,0,0.20);
+
+  border:
+    1px solid
+    #e2e2e2;
+
+}
+
+
+/* =================================================
+   RESULT CONTENT
+================================================= */
+
+.resultContent {
+
+  padding:
+    48px
+    30px
+    42px;
+
+}
+
+
+.resultIcon {
+
+  width: 70px;
+  height: 70px;
+
+  margin:
+    0 auto
+    22px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #111111;
+
+  color: #ffffff;
+
+  font-size: 38px;
+
+  font-weight: 600;
 
 }
 
 
 .result h1 {
 
-  font-size: 30px;
+  margin:
+    0
+    0
+    18px;
 
-  margin-bottom: 15px;
+  font-size: clamp(27px, 5vw, 38px);
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
 
 }
 
 
 .result .name {
 
-  font-size: 38px;
+  font-size: clamp(34px, 7vw, 48px);
 
-  font-weight: bold;
+  font-weight: 700;
 
-  margin: 15px 0;
+  margin:
+    10px
+    0
+    18px;
 
 }
 
 
 .result .message {
 
-  font-size: 22px;
+  font-size: 19px;
 
-  color: #555;
+  color: #555555;
+
+  letter-spacing: 0.5px;
 
 }
 
 
-.footer {
+.resultTime {
 
-  margin-top: 30px;
+  font-size: 27px;
+
+  font-weight: 500;
+
+  margin-top: 10px;
+
+}
+
+
+/* =================================================
+   RESULT FOOTER
+================================================= */
+
+.resultFooter {
+
+  background: #111111;
+
+  color: #ffffff;
+
+  padding:
+    17px
+    20px;
 
   font-size: 15px;
 
-  color: #777;
+  font-weight: 500;
+
+  letter-spacing: 1px;
+
+}
+
+
+/* =================================================
+   FOOTER
+================================================= */
+
+.footer {
+
+  padding:
+    18px
+    20px
+    25px;
+
+  font-size: 13px;
+
+  color: #777777;
+
+  letter-spacing: 1px;
+
+}
+
+
+/* =================================================
+   MOBILE / IPAD
+================================================= */
+
+@media (max-width: 700px) {
+
+  .header {
+
+    padding:
+      24px
+      15px
+      22px;
+
+  }
+
+
+  .container {
+
+    padding:
+      25px
+      15px
+      15px;
+
+  }
+
+
+  .instruction::before,
+  .instruction::after {
+
+    width: 35px;
+
+  }
+
+
+  #reader {
+
+    border-radius: 18px;
+
+  }
+
+
+  .resultContent {
+
+    padding:
+      40px
+      20px
+      35px;
+
+  }
+
+}
+
+
+/* =================================================
+   LARGE IPAD LANDSCAPE
+================================================= */
+
+@media (min-width: 900px) {
+
+  .container {
+
+    padding-top: 42px;
+
+  }
+
+
+  #reader {
+
+    max-width: 620px;
+
+  }
 
 }
 
@@ -229,71 +676,131 @@ body {
 <body>
 
 
-<div class="header">
-
-  <h1>
-    ROSENBERG HEALTH & FITNESS
-  </h1>
-
-  <p>
-    Student Check-In / Check-Out
-  </p>
-
-</div>
+<div class="page">
 
 
-<div class="container">
+  <!-- =============================================
+       HEADER
+  ============================================== -->
 
+  <div class="header">
 
-  <div
-    id="scannerSection"
-  >
+    <h1>
+      ROSENBERG HEALTH &amp; FITNESS
+    </h1>
 
-    <div class="instruction">
-
-      Please scan your QR code
-
-    </div>
-
-
-    <div id="reader"></div>
-
-
-    <div
-      id="status"
-      class="ready"
-    >
-
-      Ready to scan
-
-    </div>
+    <p>
+      Student Check-In / Check-Out
+    </p>
 
   </div>
 
+
+  <!-- =============================================
+       MAIN SCANNER
+  ============================================== -->
+
+  <div class="container">
+
+
+    <div id="scannerSection">
+
+
+      <div class="instruction">
+
+        Scan Your QR Code
+
+      </div>
+
+
+      <div id="reader"></div>
+
+
+      <div
+        id="status"
+        class="ready"
+      >
+
+        Ready to scan
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+  <!-- =============================================
+       RESULT
+  ============================================== -->
 
   <div
     id="result"
     class="result"
   >
 
-    <h1 id="resultTitle"></h1>
+    <div class="resultCard">
 
-    <div
-      id="resultName"
-      class="name">
-    </div>
 
-    <div
-      id="resultMessage"
-      class="message">
+      <div class="resultContent">
+
+
+        <div
+          id="resultIcon"
+          class="resultIcon"
+        >
+          ✓
+        </div>
+
+
+        <h1 id="resultTitle"></h1>
+
+
+        <div
+          id="resultName"
+          class="name">
+        </div>
+
+
+        <div
+          id="resultTime"
+          class="resultTime">
+        </div>
+
+
+        <div
+          id="resultMessage"
+          class="message">
+        </div>
+
+
+      </div>
+
+
+      <div
+        id="resultFooter"
+        class="resultFooter"
+      >
+
+        Returning to scanner...
+
+      </div>
+
+
     </div>
 
   </div>
 
 
+  <!-- =============================================
+       FOOTER
+  ============================================== -->
+
   <div class="footer">
 
-    Health & Fitness
+    Health &amp; Fitness
 
   </div>
 
@@ -338,8 +845,8 @@ function startScanner() {
       fps: 10,
 
       qrbox: {
-        width: 250,
-        height: 250
+        width: 300,
+        height: 300
       }
 
     },
@@ -419,7 +926,9 @@ function processQRCode(studentId) {
 
     scanner.pause(true);
 
-  } catch (error) {
+  }
+
+  catch (error) {
 
     console.log(error);
 
@@ -455,10 +964,6 @@ function processQRCode(studentId) {
 
   /*
    * JSONP request.
-   *
-   * This allows the GitHub page to
-   * communicate with Google Apps Script
-   * without leaving the scanner page.
    */
 
   const script =
@@ -499,17 +1004,33 @@ function processQRCode(studentId) {
 function handleResult(result) {
 
 
+  /*
+   * Hide scanner.
+   */
+
   document.getElementById(
     "scannerSection"
   ).style.display =
     "none";
 
 
-  document.getElementById(
-    "result"
-  ).style.display =
-    "block";
+  /*
+   * Show result screen.
+   */
 
+  const resultElement =
+    document.getElementById(
+      "result"
+    );
+
+
+  resultElement.style.display =
+    "flex";
+
+
+  /*
+   * Populate result.
+   */
 
   document.getElementById(
     "resultTitle"
@@ -523,6 +1044,10 @@ function handleResult(result) {
     result.name;
 
 
+  /*
+   * Display message.
+   */
+
   document.getElementById(
     "resultMessage"
   ).textContent =
@@ -530,44 +1055,122 @@ function handleResult(result) {
 
 
   /*
+   * Try to extract time from the
+   * returned message if available.
+   *
+   * If no separate time is provided,
+   * the message remains unchanged.
+   */
+
+  document.getElementById(
+    "resultTime"
+  ).textContent =
+    "";
+
+
+  /*
+   * Determine icon and wording.
+   */
+
+  const title =
+    String(result.title || "")
+      .toUpperCase();
+
+
+  const icon =
+    document.getElementById(
+      "resultIcon"
+    );
+
+
+  if (
+    title.includes("CHECK-IN")
+  ) {
+
+    icon.textContent = "✓";
+
+  }
+
+  else if (
+    title.includes("CHECK-OUT")
+  ) {
+
+    icon.textContent = "✓";
+
+  }
+
+  else {
+
+    icon.textContent = "!";
+
+  }
+
+
+  /*
    * Show result for 3 seconds.
    */
 
-  setTimeout(
-
-    function() {
-
-      document.getElementById(
-        "result"
-      ).style.display =
-        "none";
+  let seconds = 3;
 
 
-      document.getElementById(
-        "scannerSection"
-      ).style.display =
-        "block";
+  const footer =
+    document.getElementById(
+      "resultFooter"
+    );
 
 
-      document.getElementById(
-        "status"
-      ).textContent =
-        "Ready to scan";
+  footer.textContent =
+    "Returning to scanner in " +
+    seconds;
 
 
-      document.getElementById(
-        "status"
-      ).className =
-        "ready";
+  const countdown =
+    setInterval(function() {
+
+      seconds--;
 
 
-      resumeScanner();
+      if (seconds > 0) {
 
-    },
+        footer.textContent =
+          "Returning to scanner in " +
+          seconds;
 
-    3000
+      }
 
-  );
+    }, 1000);
+
+
+  setTimeout(function() {
+
+    clearInterval(countdown);
+
+
+    resultElement.style.display =
+      "none";
+
+
+    document.getElementById(
+      "scannerSection"
+    ).style.display =
+      "block";
+
+
+    document.getElementById(
+      "status"
+    ).textContent =
+      "Ready to scan";
+
+
+    document.getElementById(
+      "status"
+    ).className =
+      "ready";
+
+
+    resumeScanner();
+
+  }, 3000);
 
 }
 
