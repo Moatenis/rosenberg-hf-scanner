@@ -36,6 +36,7 @@ body {
   margin: 0;
 
   width: 100%;
+
   min-height: 100%;
 
   font-family:
@@ -84,9 +85,11 @@ body {
   position: fixed;
 
   top: 54%;
+
   left: 50%;
 
   width: 900px;
+
   height: 900px;
 
   transform:
@@ -380,6 +383,7 @@ body {
   content: "";
 
   width: 8px;
+
   height: 8px;
 
   border-radius: 50%;
@@ -403,6 +407,7 @@ body {
   content: "";
 
   width: 8px;
+
   height: 8px;
 
   border-radius: 50%;
@@ -434,6 +439,7 @@ body {
   justify-content: center;
 
   width: 18px;
+
   height: 18px;
 
   border:
@@ -510,9 +516,11 @@ body {
   position: absolute;
 
   top: 50%;
+
   left: 50%;
 
   width: 850px;
+
   height: 850px;
 
   transform:
@@ -576,6 +584,7 @@ body {
 .resultIcon {
 
   width: 62px;
+
   height: 62px;
 
   margin:
@@ -1151,7 +1160,6 @@ function startScanner() {
 }
 
 
-
 /*************************************************
  * PROCESS QR CODE
  *************************************************/
@@ -1163,7 +1171,6 @@ function processQRCode(studentId) {
   ).textContent =
     "Processing...";
 
-
   document.getElementById(
     "status"
   ).className =
@@ -1172,7 +1179,6 @@ function processQRCode(studentId) {
 
   /*
    * Pause scanning while processing.
-   *
    * The camera remains active.
    */
 
@@ -1212,8 +1218,8 @@ function processQRCode(studentId) {
   /*
    * Create hidden iframe.
    *
-   * The iframe loads the Apps Script
-   * attendance bridge.
+   * The student ID is sent directly
+   * to Apps Script in the URL.
    */
 
   const bridge =
@@ -1230,60 +1236,16 @@ function processQRCode(studentId) {
 
   bridge.src =
     APPS_SCRIPT_URL +
-    "?bridge=1";
+    "?bridge=1" +
+    "&id=" +
+    encodeURIComponent(studentId) +
+    "&requestId=" +
+    encodeURIComponent(requestId);
 
 
   document.body.appendChild(
     bridge
   );
-
-
-  /*
-   * Wait briefly for the bridge
-   * to load before sending the request.
-   */
-
-  bridge.onload =
-    function() {
-
-      try {
-
-        bridge.contentWindow.postMessage(
-
-          {
-
-            type:
-              "HNF_ATTENDANCE_SCAN",
-
-            studentId:
-              studentId,
-
-            requestId:
-              requestId
-
-          },
-
-          "*"
-
-        );
-
-      }
-
-      catch (error) {
-
-        console.error(error);
-
-        cleanupAttendanceBridge();
-
-        showError(
-          "Could not connect to the attendance system."
-        );
-
-        resumeScanner();
-
-      }
-
-    };
 
 
   /*
@@ -1310,34 +1272,33 @@ function processQRCode(studentId) {
 
 
 /*************************************************
- * HANDLE BRIDGE RESPONSE
+ * HANDLE ATTENDANCE BRIDGE RESPONSE
  *************************************************/
 
 function handleAttendanceBridgeMessage(event) {
 
-
   /*
-   * Only accept messages from the
-   * Apps Script domain.
+   * Only accept messages from Google Apps Script.
+   *
+   * Apps Script may use either of these origins.
    */
 
   if (
-  !event.origin.includes(
-    "googleusercontent.com"
-  ) &&
-  !event.origin.includes(
-    "script.google.com"
-  )
-) {
+    !event.origin.includes(
+      "googleusercontent.com"
+    ) &&
+    !event.origin.includes(
+      "script.google.com"
+    )
+  ) {
 
-  return;
+    return;
 
-}
+  }
 
 
   /*
-   * Make sure this is our
-   * attendance response.
+   * Make sure this is our attendance response.
    */
 
   if (
@@ -1370,7 +1331,7 @@ function handleAttendanceBridgeMessage(event) {
 
 
   /*
-   * Remove event listener.
+   * Remove listener.
    */
 
   window.removeEventListener(
@@ -1381,69 +1342,43 @@ function handleAttendanceBridgeMessage(event) {
 
   /*
    * Remove hidden iframe.
-
-  */
+   */
 
   cleanupAttendanceBridge();
 
 
   /*
-   * Get the result.
-
-  */
-
-  let result;
-
+   * Display the result.
+   */
 
   if (
     event.data.result
   ) {
 
-    result =
-      event.data.result;
+    handleResult(
+      event.data.result
+    );
 
   }
 
   else {
 
-    result = {
+    showError(
+      "The attendance system could not process the request."
+    );
 
-      success:
-        false,
-
-      title:
-        event.data.title ||
-        "System Error",
-
-      name:
-        event.data.name ||
-        "",
-
-      message:
-        event.data.message ||
-        "The attendance system could not process the request."
-
-    };
+    resumeScanner();
 
   }
-
-
-  /*
-   * Show result.
-
-  */
-
-  handleResult(result);
 
 }
 
 
 /*************************************************
- * CLEAN UP BRIDGE
+ * CLEAN UP ATTENDANCE BRIDGE
  *************************************************/
 
 function cleanupAttendanceBridge() {
-
 
   /*
    * Remove hidden iframe.
@@ -1464,13 +1399,30 @@ function cleanupAttendanceBridge() {
 
   /*
    * Remove event listener.
-
    */
 
   window.removeEventListener(
     "message",
     handleAttendanceBridgeMessage
   );
+
+
+  /*
+   * Clear timeout.
+   */
+
+  if (
+    window.attendanceBridgeTimeout
+  ) {
+
+    clearTimeout(
+      window.attendanceBridgeTimeout
+    );
+
+    window.attendanceBridgeTimeout =
+      null;
+
+  }
 
 }
 
