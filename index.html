@@ -3,427 +3,442 @@
 
 <head>
 
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  >
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
 
-  <title>Rosenberg Health & Fitness</title>
+<title>
+Rosenberg Health & Fitness
+</title>
 
-  <script
-    src="https://unpkg.com/html5-qrcode"
-    type="text/javascript">
-  </script>
 
+<script
+  src="https://unpkg.com/html5-qrcode"
+  type="text/javascript">
+</script>
 
-  <style>
 
-    /* =========================================================
-       GENERAL
-       ========================================================= */
+<style>
 
-    * {
-      box-sizing: border-box;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      min-height: 100%;
-      background: #ffffff;
-      color: #111111;
-    }
 
-    body {
+html,
+body {
 
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
+  margin: 0;
 
-      text-align: center;
+  padding: 0;
 
-      -webkit-font-smoothing: antialiased;
+  width: 100%;
 
-    }
+  min-height: 100%;
 
+  background: #ffffff;
 
-    /* =========================================================
-       HEADER
-       ========================================================= */
+  color: #111111;
 
-    .header {
+}
 
-      padding:
-        26px
-        20px
-        20px;
 
-      border-bottom:
-        1px solid #111111;
+body {
 
-    }
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
 
+  text-align: center;
 
-    .header h1 {
+  -webkit-font-smoothing: antialiased;
 
-      margin: 0;
+}
 
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
 
-      font-size: 30px;
+/* =========================================================
+   HEADER
+   ========================================================= */
 
-      font-weight: 400;
+.header {
 
-      letter-spacing: 1px;
+  padding:
+    26px
+    20px
+    20px;
 
-    }
+  border-bottom:
+    1px solid #111111;
 
+}
 
-    .header p {
 
-      margin:
-        8px
-        0
-        0;
+.header h1 {
 
-      font-size: 14px;
+  margin: 0;
 
-      letter-spacing: 2px;
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
-      text-transform: uppercase;
+  font-size: 30px;
 
-      color: #555555;
+  font-weight: 400;
 
-    }
+  letter-spacing: 1px;
 
+}
 
-    /* =========================================================
-       MAIN CONTAINER
-       ========================================================= */
 
-    .container {
+.header p {
 
-      width: 100%;
+  margin:
+    8px
+    0
+    0;
 
-      max-width: 600px;
+  font-size: 14px;
 
-      margin: 0 auto;
+  letter-spacing: 2px;
 
-      padding:
-        24px
-        20px
-        30px;
+  text-transform: uppercase;
 
-    }
+  color: #555555;
 
+}
 
-    .instruction {
 
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
 
-      font-size: 25px;
+.container {
 
-      margin:
-        0
-        0
-        20px;
+  width: 100%;
 
-    }
+  max-width: 600px;
 
+  margin: 0 auto;
 
-    /* =========================================================
-       QR READER
-       Smaller so everything fits comfortably on iPad
-       ========================================================= */
+  padding:
+    24px
+    20px
+    30px;
 
-    #reader {
+}
 
-      width: 100%;
 
-      max-width: 360px;
+.instruction {
 
-      margin: 0 auto;
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
-      background: #111111;
+  font-size: 25px;
 
-      overflow: hidden;
+  margin:
+    0
+    0
+    20px;
 
-      border:
-        2px
-        solid
-        #111111;
+}
 
-    }
 
+/* =========================================================
+   QR READER
+   ========================================================= */
 
-    /*
-     * html5-qrcode creates its own video element.
-     * These rules keep the camera area compact.
-     */
+#reader {
 
-    #reader video {
+  width: 100%;
 
-      width: 100% !important;
+  max-width: 330px;
 
-      height: auto !important;
+  margin: 0 auto;
 
-      max-height: 360px;
+  background: #111111;
 
-      object-fit: cover;
+  overflow: hidden;
 
-      display: block;
+  border:
+    2px
+    solid
+    #111111;
 
-    }
+}
 
 
-    #reader__scan_region {
+#reader video {
 
-      min-height: 0 !important;
+  width: 100% !important;
 
-    }
+  height: auto !important;
 
+  max-height: 330px;
 
-    #reader__dashboard {
+  object-fit: cover;
 
-      display: none !important;
+  display: block;
 
-    }
+}
 
 
-    #reader__status_span {
+#reader__scan_region {
 
-      display: none !important;
+  min-height: 0 !important;
 
-    }
+}
 
 
-    /* =========================================================
-       STATUS
-       ========================================================= */
+#reader__dashboard {
 
-    #status {
+  display: none !important;
 
-      margin-top: 16px;
+}
 
-      min-height: 28px;
 
-      font-size: 14px;
+#reader__status_span {
 
-      letter-spacing: 1.4px;
+  display: none !important;
 
-      text-transform: uppercase;
+}
 
-    }
 
+/* =========================================================
+   STATUS
+   ========================================================= */
 
-    .ready {
-      color: #111111;
-    }
+#status {
 
+  margin-top: 16px;
 
-    .processing {
-      color: #555555;
-    }
+  min-height: 28px;
 
+  font-size: 14px;
 
-    .error {
-      color: #b00000;
-    }
+  letter-spacing: 1.4px;
 
+  text-transform: uppercase;
 
-    .success {
-      color: #111111;
-    }
+}
 
 
-    /* =========================================================
-       RESULT OVERLAY
-       ========================================================= */
+.ready {
 
-    .result {
+  color: #111111;
 
-      display: none;
+}
 
-      position: fixed;
 
-      inset: 0;
+.processing {
 
-      background:
-        rgba(
-          255,
-          255,
-          255,
-          0.98
-        );
+  color: #555555;
 
-      z-index: 1000;
+}
 
-      align-items: center;
 
-      justify-content: center;
+.error {
 
-      padding: 25px;
+  color: #b00000;
 
-    }
+}
 
 
-    .resultCard {
+.success {
 
-      width: 100%;
+  color: #111111;
 
-      max-width: 500px;
+}
 
-      border:
-        1px solid
-        #111111;
 
-      background: #ffffff;
+/* =========================================================
+   RESULT
+   ========================================================= */
 
-    }
+.result {
 
+  display: none;
 
-    .resultContent {
+  position: fixed;
 
-      padding:
-        45px
-        25px;
+  inset: 0;
 
-    }
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.98
+    );
 
+  z-index: 1000;
 
-    .result h1 {
+  align-items: center;
 
-      margin:
-        0
-        0
-        20px;
+  justify-content: center;
 
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
+  padding: 25px;
 
-      font-size: 34px;
+}
 
-      font-weight: 400;
 
-    }
+.resultCard {
 
+  width: 100%;
 
-    .name {
+  max-width: 500px;
 
-      font-size: 40px;
+  border:
+    1px solid
+    #111111;
 
-      font-weight: 600;
+  background: #ffffff;
 
-      margin-bottom: 18px;
+}
 
-    }
 
+.resultContent {
 
-    .message {
+  padding:
+    45px
+    25px;
 
-      font-size: 18px;
+}
 
-      color: #555555;
 
-    }
+.result h1 {
 
+  margin:
+    0
+    0
+    20px;
 
-    .resultFooter {
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
-      border-top:
-        1px solid
-        #111111;
+  font-size: 34px;
 
-      padding: 14px;
+  font-weight: 400;
 
-      font-size: 11px;
+}
 
-      letter-spacing: 2px;
 
-      text-transform: uppercase;
+.name {
 
-      color: #555555;
+  font-size: 40px;
 
-    }
+  font-weight: 600;
 
+  margin-bottom: 18px;
 
-    /* =========================================================
-       MOBILE / iPAD
-       ========================================================= */
+}
 
-    @media (max-width: 700px) {
 
-      .header {
+.message {
 
-        padding:
-          22px
-          15px
-          16px;
+  font-size: 18px;
 
-      }
+  color: #555555;
 
-      .header h1 {
+}
 
-        font-size: 25px;
 
-      }
+.resultFooter {
 
-      .header p {
+  border-top:
+    1px solid
+    #111111;
 
-        font-size: 12px;
+  padding: 14px;
 
-        letter-spacing: 1.5px;
+  font-size: 11px;
 
-      }
+  letter-spacing: 2px;
 
-      .container {
+  text-transform: uppercase;
 
-        padding:
-          20px
-          14px
-          25px;
+  color: #555555;
 
-      }
+}
 
-      .instruction {
 
-        font-size: 23px;
+/* =========================================================
+   MOBILE / iPAD
+   ========================================================= */
 
-        margin-bottom: 16px;
+@media (max-width: 700px) {
 
-      }
+  .header {
 
-      #reader {
+    padding:
+      22px
+      15px
+      16px;
 
-        max-width: 330px;
+  }
 
-      }
 
-      #reader video {
+  .header h1 {
 
-        max-height: 330px;
+    font-size: 25px;
 
-      }
+  }
 
-    }
 
+  .header p {
 
-  </style>
+    font-size: 12px;
+
+    letter-spacing: 1.5px;
+
+  }
+
+
+  .container {
+
+    padding:
+      20px
+      14px
+      25px;
+
+  }
+
+
+  .instruction {
+
+    font-size: 23px;
+
+    margin-bottom: 16px;
+
+  }
+
+
+  #reader {
+
+    max-width: 330px;
+
+  }
+
+
+  #reader video {
+
+    max-height: 330px;
+
+  }
+
+}
+
+</style>
 
 </head>
 
@@ -431,138 +446,111 @@
 <body>
 
 
-  <!-- =======================================================
-       HEADER
-       ======================================================= -->
+<div class="header">
 
-  <div class="header">
+  <h1>
+    Rosenberg Health &amp; Fitness
+  </h1>
 
-    <h1>
-      Rosenberg Health &amp; Fitness
-    </h1>
+  <p>
+    Student Check-In / Check-Out
+  </p>
 
-    <p>
-      Student Check-In / Check-Out
-    </p>
-
-  </div>
+</div>
 
 
-  <!-- =======================================================
-       MAIN
-       ======================================================= -->
+<div class="container">
 
-  <div class="container">
 
-    <div id="scannerSection">
+  <div id="scannerSection">
 
-      <div class="instruction">
-        Scan Your QR Code
-      </div>
+    <div class="instruction">
 
-      <div id="reader"></div>
-
-      <div
-        id="status"
-        class="ready"
-      >
-        Ready to scan
-      </div>
+      Scan Your QR Code
 
     </div>
 
 
-    <!-- =====================================================
-         RESULT
-         ===================================================== -->
+    <div id="reader"></div>
+
 
     <div
-      id="result"
-      class="result"
+      id="status"
+      class="ready"
     >
 
-      <div class="resultCard">
+      Ready to scan
 
-        <div class="resultContent">
+    </div>
 
-          <h1 id="resultTitle"></h1>
+  </div>
 
-          <div
-            id="resultName"
-            class="name">
-          </div>
 
-          <div
-            id="resultMessage"
-            class="message">
-          </div>
+  <div
+    id="result"
+    class="result"
+  >
 
+    <div class="resultCard">
+
+      <div class="resultContent">
+
+        <h1 id="resultTitle"></h1>
+
+        <div
+          id="resultName"
+          class="name">
         </div>
 
         <div
-          id="resultFooter"
-          class="resultFooter"
-        >
-          Returning to scanner...
+          id="resultMessage"
+          class="message">
         </div>
+
+      </div>
+
+      <div
+        class="resultFooter"
+      >
+
+        Returning to scanner...
 
       </div>
 
     </div>
 
   </div>
+
+</div>
 
 
 <script>
 
 
-/* ============================================================
+/* =========================================================
    CONFIGURATION
-   ============================================================ */
+   ========================================================= */
 
-
-/*
- * IMPORTANT:
- *
- * Replace the value below with the COMPLETE Web App URL
- * from Apps Script:
- *
- * Deploy
- * → Manage deployments
- * → Web app
- * → URL
- *
- * It must end with /exec
- */
 
 const ATTENDANCE_ENDPOINT =
-  "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+  "https://script.google.com/a/macros/instrosenberg.ch/s/AKfycbx92HMvs_apPqSTs1MRV3A4FmSm6rocPec8aD9k_y5HeLisnyhu3K1pcCqVAYDon7Zs/exec";
 
 
-/*
- * QR scanner settings.
- */
-
-const QR_BOX_SIZE = 220;
-
-const SCAN_FPS = 10;
+const QR_BOX_SIZE =
+  220;
 
 
-/*
- * Maximum time we allow the attendance system
- * to respond before displaying an error.
- *
- * This does NOT cancel the Apps Script operation.
- * It only prevents the scanner from appearing
- * stuck indefinitely.
- */
-
-const ATTENDANCE_TIMEOUT = 15000;
+const SCAN_FPS =
+  10;
 
 
-/* ============================================================
+const ATTENDANCE_TIMEOUT =
+  15000;
+
+
+/* =========================================================
    GLOBALS
-   ============================================================ */
+   ========================================================= */
 
 let scanner = null;
 
@@ -571,113 +559,107 @@ let scanLocked = false;
 let requestCounter = 0;
 
 
-/* ============================================================
+/* =========================================================
    START SCANNER
-   ============================================================ */
+   ========================================================= */
 
 function startScanner() {
 
-  if (
-    ATTENDANCE_ENDPOINT ===
-    "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE"
-  ) {
-
-    showError(
-      "Attendance system is not configured."
+  scanner =
+    new Html5Qrcode(
+      "reader"
     );
 
-    return;
 
-  }
+  scanner.start(
+
+    /*
+     * FRONT CAMERA
+     */
+
+    {
+      facingMode: "user"
+    },
 
 
-  scanner =
-    new Html5Qrcode("reader");
+    {
+
+      fps:
+        SCAN_FPS,
+
+      qrbox: {
+
+        width:
+          QR_BOX_SIZE,
+
+        height:
+          QR_BOX_SIZE
+
+      },
+
+      aspectRatio:
+        1.0
+
+    },
 
 
-  scanner
-    .start(
+    function(decodedText) {
+
+      if (scanLocked) {
+
+        return;
+
+      }
+
+
+      scanLocked =
+        true;
+
+
+      processQRCode(
+        decodedText
+      );
+
+    },
+
+
+    function(errorMessage) {
 
       /*
-       * FRONT CAMERA
-       *
-       * "user" requests the front-facing camera.
+       * Normal QR scanning errors
+       * are ignored.
        */
 
-      {
-        facingMode: "user"
-      },
+    }
+
+  )
+
+  .catch(
+    function(error) {
+
+      console.error(
+        "Camera error:",
+        error
+      );
 
 
-      {
-        fps: SCAN_FPS,
+      showError(
+        "Camera could not be started."
+      );
 
-        qrbox: {
-          width: QR_BOX_SIZE,
-          height: QR_BOX_SIZE
-        },
-
-        aspectRatio: 1.0
-
-      },
-
-
-      function(decodedText) {
-
-        if (scanLocked) {
-          return;
-        }
-
-
-        /*
-         * Lock immediately so the same QR code
-         * cannot trigger multiple attendance records.
-         */
-
-        scanLocked = true;
-
-
-        processQRCode(
-          decodedText
-        );
-
-      },
-
-
-      function(errorMessage) {
-
-        /*
-         * Normal QR scanning errors are ignored.
-         */
-
-      }
-
-    )
-
-    .catch(
-      function(error) {
-
-        console.error(
-          "Camera error:",
-          error
-        );
-
-
-        showError(
-          "Camera could not be started."
-        );
-
-      }
-    );
+    }
+  );
 
 }
 
 
-/* ============================================================
+/* =========================================================
    PROCESS QR CODE
-   ============================================================ */
+   ========================================================= */
 
-function processQRCode(studentId) {
+function processQRCode(
+  studentId
+) {
 
   setStatus(
     "Processing...",
@@ -685,14 +667,14 @@ function processQRCode(studentId) {
   );
 
 
-  /*
-   * Pause scanner while attendance is processed.
-   */
-
   try {
 
     if (scanner) {
-      scanner.pause(true);
+
+      scanner.pause(
+        true
+      );
+
     }
 
   }
@@ -707,19 +689,6 @@ function processQRCode(studentId) {
   }
 
 
-  /*
-   * Use JSONP instead of fetch().
-   *
-   * This is the important part.
-   *
-   * GitHub Pages and Apps Script are different origins.
-   *
-   * A normal fetch() can be blocked by CORS.
-   *
-   * JSONP works through a dynamically-created
-   * <script> element.
-   */
-
   sendAttendanceRequest(
     studentId
   );
@@ -727,38 +696,63 @@ function processQRCode(studentId) {
 }
 
 
-/* ============================================================
+/* =========================================================
    SEND ATTENDANCE REQUEST
-   ============================================================ */
+   ========================================================= */
 
-function sendAttendanceRequest(studentId) {
+function sendAttendanceRequest(
+  studentId
+) {
 
   requestCounter++;
+
 
   const callbackName =
     "attendanceCallback_" +
     requestCounter;
 
 
-  let completed = false;
+  let completed =
+    false;
 
-  let timeoutId = null;
 
-  let script = null;
+  let timeoutId =
+    null;
+
+
+  let script =
+    null;
 
 
   /*
-   * Global JSONP callback.
+   * Store the student ID.
+   *
+   * We will use this later if we need
+   * the notification request.
+   */
+
+  window.lastScannedStudentId =
+    String(
+      studentId
+    ).trim();
+
+
+  /*
+   * JSONP callback.
    */
 
   window[callbackName] =
     function(result) {
 
       if (completed) {
+
         return;
+
       }
 
-      completed = true;
+
+      completed =
+        true;
 
 
       clearTimeout(
@@ -772,11 +766,6 @@ function sendAttendanceRequest(studentId) {
       );
 
 
-      /*
-       * Attendance has now been processed
-       * by Apps Script.
-       */
-
       handleAttendanceResult(
         result
       );
@@ -785,14 +774,16 @@ function sendAttendanceRequest(studentId) {
 
 
   /*
-   * Create the request URL.
+   * Build Apps Script URL.
    */
 
   const url =
     ATTENDANCE_ENDPOINT +
     "?id=" +
     encodeURIComponent(
-      String(studentId).trim()
+      String(
+        studentId
+      ).trim()
     ) +
     "&callback=" +
     encodeURIComponent(
@@ -802,8 +793,14 @@ function sendAttendanceRequest(studentId) {
     Date.now();
 
 
+  console.log(
+    "Attendance request:",
+    url
+  );
+
+
   /*
-   * Create the script element.
+   * Create JSONP script.
    */
 
   script =
@@ -812,24 +809,30 @@ function sendAttendanceRequest(studentId) {
     );
 
 
-  script.src = url;
+  script.src =
+    url;
 
-  script.async = true;
+
+  script.async =
+    true;
 
 
   /*
-   * If the script itself fails to load,
-   * show a useful error.
+   * Request failed.
    */
 
   script.onerror =
     function(error) {
 
       if (completed) {
+
         return;
+
       }
 
-      completed = true;
+
+      completed =
+        true;
 
 
       clearTimeout(
@@ -860,7 +863,7 @@ function sendAttendanceRequest(studentId) {
 
 
   /*
-   * Add to page.
+   * Add request to page.
    */
 
   document.body.appendChild(
@@ -870,9 +873,6 @@ function sendAttendanceRequest(studentId) {
 
   /*
    * Timeout.
-   *
-   * This prevents the scanner from appearing
-   * frozen forever.
    */
 
   timeoutId =
@@ -880,10 +880,14 @@ function sendAttendanceRequest(studentId) {
       function() {
 
         if (completed) {
+
           return;
+
         }
 
-        completed = true;
+
+        completed =
+          true;
 
 
         cleanupJSONP(
@@ -911,9 +915,9 @@ function sendAttendanceRequest(studentId) {
 }
 
 
-/* ============================================================
+/* =========================================================
    CLEAN UP JSONP
-   ============================================================ */
+   ========================================================= */
 
 function cleanupJSONP(
   script,
@@ -964,9 +968,9 @@ function cleanupJSONP(
 }
 
 
-/* ============================================================
-   HANDLE ATTENDANCE RESULT
-   ============================================================ */
+/* =========================================================
+   HANDLE RESULT
+   ========================================================= */
 
 function handleAttendanceResult(
   result
@@ -978,10 +982,6 @@ function handleAttendanceResult(
   );
 
 
-  /*
-   * Make sure we received an object.
-   */
-
   if (
     !result ||
     typeof result !== "object"
@@ -991,6 +991,7 @@ function handleAttendanceResult(
       "Invalid response from the attendance system."
     );
 
+
     resumeScanner();
 
     return;
@@ -998,16 +999,12 @@ function handleAttendanceResult(
   }
 
 
-  /*
-   * If Apps Script returned an error,
-   * show its message.
-   */
-
   if (
     result.success === false
   ) {
 
     showResult(
+
       result.title ||
         "Unable to check in/out",
 
@@ -1016,6 +1013,7 @@ function handleAttendanceResult(
 
       result.message ||
         "Please try again."
+
     );
 
 
@@ -1024,15 +1022,12 @@ function handleAttendanceResult(
   }
 
 
-  /*
-   * Successful attendance.
-   */
-
   if (
     result.success === true
   ) {
 
     showResult(
+
       result.title ||
         "",
 
@@ -1041,21 +1036,7 @@ function handleAttendanceResult(
 
       result.message ||
         ""
-    );
 
-
-    /*
-     * IMPORTANT:
-     *
-     * We do NOT wait for the email.
-     *
-     * The attendance record has already been saved.
-     *
-     * The email is sent separately.
-     */
-
-    sendNotification(
-      result
     );
 
 
@@ -1063,10 +1044,6 @@ function handleAttendanceResult(
 
   }
 
-
-  /*
-   * Unexpected response.
-   */
 
   showError(
     "Unexpected response from the attendance system."
@@ -1078,131 +1055,9 @@ function handleAttendanceResult(
 }
 
 
-/* ============================================================
-   SEND HOUSE NOTIFICATION
-   ============================================================ */
-
-function sendNotification(
-  result
-) {
-
-  /*
-   * The backend needs the student ID.
-   *
-   * We stored it when the scan started.
-   */
-
-  const studentId =
-    result.studentId ||
-    window.lastScannedStudentId;
-
-
-  if (!studentId) {
-
-    console.warn(
-      "No student ID available for notification."
-    );
-
-    return;
-
-  }
-
-
-  const action =
-    result.action ||
-    "";
-
-
-  if (!action) {
-
-    return;
-
-  }
-
-
-  const callbackName =
-    "notificationCallback_" +
-    Date.now();
-
-
-  let script = null;
-
-
-  window[callbackName] =
-    function(response) {
-
-      cleanupJSONP(
-        script,
-        callbackName
-      );
-
-    };
-
-
-  const url =
-    ATTENDANCE_ENDPOINT +
-    "?notification=1" +
-    "&id=" +
-    encodeURIComponent(
-      String(studentId).trim()
-    ) +
-    "&action=" +
-    encodeURIComponent(
-      action
-    ) +
-    "&timestamp=" +
-    encodeURIComponent(
-      Date.now()
-    ) +
-    "&callback=" +
-    encodeURIComponent(
-      callbackName
-    );
-
-
-  script =
-    document.createElement(
-      "script"
-    );
-
-
-  script.src = url;
-
-  script.async = true;
-
-
-  script.onerror =
-    function(error) {
-
-      console.warn(
-        "Notification request failed:",
-        error
-      );
-
-
-      cleanupJSONP(
-        script,
-        callbackName
-      );
-
-    };
-
-
-  document.body.appendChild(
-    script
-  );
-
-
-  /*
-   * We deliberately do not wait for this request.
-   */
-
-}
-
-
-/* ============================================================
+/* =========================================================
    SHOW RESULT
-   ============================================================ */
+   ========================================================= */
 
 function showResult(
   title,
@@ -1229,24 +1084,23 @@ function showResult(
   document.getElementById(
     "resultTitle"
   ).textContent =
-    title || "";
+    title ||
+    "";
 
 
   document.getElementById(
     "resultName"
   ).textContent =
-    name || "";
+    name ||
+    "";
 
 
   document.getElementById(
     "resultMessage"
   ).textContent =
-    message || "";
+    message ||
+    "";
 
-
-  /*
-   * Return to scanner after 3 seconds.
-   */
 
   setTimeout(
     function() {
@@ -1276,9 +1130,9 @@ function showResult(
 }
 
 
-/* ============================================================
+/* =========================================================
    STATUS
-   ============================================================ */
+   ========================================================= */
 
 function setStatus(
   message,
@@ -1296,14 +1150,15 @@ function setStatus(
 
 
   status.className =
-    className || "ready";
+    className ||
+    "ready";
 
 }
 
 
-/* ============================================================
+/* =========================================================
    ERROR
-   ============================================================ */
+   ========================================================= */
 
 function showError(
   message
@@ -1329,13 +1184,14 @@ function showError(
 }
 
 
-/* ============================================================
+/* =========================================================
    RESUME SCANNER
-   ============================================================ */
+   ========================================================= */
 
 function resumeScanner() {
 
-  scanLocked = false;
+  scanLocked =
+    false;
 
 
   try {
@@ -1360,9 +1216,9 @@ function resumeScanner() {
 }
 
 
-/* ============================================================
+/* =========================================================
    START
-   ============================================================ */
+   ========================================================= */
 
 window.addEventListener(
   "load",
@@ -1372,33 +1228,6 @@ window.addEventListener(
 
   }
 );
-
-
-/* ============================================================
-   STORE LAST STUDENT ID
-   ============================================================ */
-
-const originalProcessQRCode =
-  processQRCode;
-
-
-/*
- * We need the scanned ID later for the
- * separate notification request.
- */
-
-processQRCode =
-  function(studentId) {
-
-    window.lastScannedStudentId =
-      String(studentId).trim();
-
-
-    originalProcessQRCode(
-      studentId
-    );
-
-  };
 
 
 </script>
