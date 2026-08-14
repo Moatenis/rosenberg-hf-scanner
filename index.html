@@ -3,890 +3,427 @@
 
 <head>
 
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
->
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
 
-<title>Rosenberg Health & Fitness</title>
+  <title>Rosenberg Health & Fitness</title>
 
+  <script
+    src="https://unpkg.com/html5-qrcode"
+    type="text/javascript">
+  </script>
 
-<script
-  src="https://unpkg.com/html5-qrcode"
-  type="text/javascript">
-</script>
 
+  <style>
 
-<style>
+    /* =========================================================
+       GENERAL
+       ========================================================= */
 
-/* =================================================
-   GENERAL
-================================================= */
+    * {
+      box-sizing: border-box;
+    }
 
-* {
-  box-sizing: border-box;
-}
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      background: #ffffff;
+      color: #111111;
+    }
 
+    body {
 
-html,
-body {
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
 
-  margin: 0;
+      text-align: center;
 
-  width: 100%;
-  min-height: 100%;
+      -webkit-font-smoothing: antialiased;
 
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Arial,
-    sans-serif;
+    }
 
-  background: #ffffff;
 
-  color: #111111;
+    /* =========================================================
+       HEADER
+       ========================================================= */
 
-  text-align: center;
+    .header {
 
-}
+      padding:
+        26px
+        20px
+        20px;
 
+      border-bottom:
+        1px solid #111111;
 
-/* =================================================
-   PAGE
-================================================= */
+    }
 
-.page {
 
-  position: relative;
+    .header h1 {
 
-  min-height: 100vh;
+      margin: 0;
 
-  display: flex;
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
-  flex-direction: column;
+      font-size: 30px;
 
-  overflow: hidden;
+      font-weight: 400;
 
-}
+      letter-spacing: 1px;
 
+    }
 
-/* =================================================
-   SUBTLE BACKGROUND WATERMARK
-================================================= */
 
-.page::before {
+    .header p {
 
-  content: "";
+      margin:
+        8px
+        0
+        0;
 
-  position: fixed;
+      font-size: 14px;
 
-  top: 54%;
-  left: 50%;
+      letter-spacing: 2px;
 
-  width: 900px;
-  height: 900px;
+      text-transform: uppercase;
 
-  transform:
-    translate(-50%, -50%);
+      color: #555555;
 
-  background-image:
-    url("logo.png");
+    }
 
-  background-repeat: no-repeat;
 
-  background-position: center;
+    /* =========================================================
+       MAIN CONTAINER
+       ========================================================= */
 
-  background-size: contain;
+    .container {
 
-  opacity: 0.035;
+      width: 100%;
 
-  filter: grayscale(100%);
+      max-width: 600px;
 
-  pointer-events: none;
+      margin: 0 auto;
 
-  z-index: 0;
+      padding:
+        24px
+        20px
+        30px;
 
-}
+    }
 
 
-/* =================================================
-   HEADER / BRANDING
-================================================= */
+    .instruction {
 
-.branding {
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
-  position: relative;
+      font-size: 25px;
 
-  z-index: 2;
+      margin:
+        0
+        0
+        20px;
 
-  padding:
-    32px
-    25px
-    16px;
+    }
 
-}
 
+    /* =========================================================
+       QR READER
+       Smaller so everything fits comfortably on iPad
+       ========================================================= */
 
-/* Rosenberg logo */
+    #reader {
 
-.schoolLogo {
+      width: 100%;
 
-  display: block;
+      max-width: 360px;
 
-  width: 165px;
+      margin: 0 auto;
 
-  max-width: 40vw;
+      background: #111111;
 
-  height: auto;
+      overflow: hidden;
 
-  margin:
-    0 auto
-    16px;
+      border:
+        2px
+        solid
+        #111111;
 
-}
+    }
 
 
-/* =================================================
-   H&F TITLE
-================================================= */
+    /*
+     * html5-qrcode creates its own video element.
+     * These rules keep the camera area compact.
+     */
 
-.brandTitle {
+    #reader video {
 
-  margin: 0;
+      width: 100% !important;
 
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+      height: auto !important;
 
-  font-size:
-    clamp(27px, 4vw, 38px);
+      max-height: 360px;
 
-  font-weight: 400;
+      object-fit: cover;
 
-  letter-spacing: 2px;
+      display: block;
 
-  line-height: 1.15;
+    }
 
-}
 
+    #reader__scan_region {
 
-.brandSubtitle {
+      min-height: 0 !important;
 
-  margin:
-    9px
-    0
-    0;
+    }
 
-  font-size:
-    clamp(13px, 2vw, 16px);
 
-  font-weight: 400;
+    #reader__dashboard {
 
-  letter-spacing: 2px;
+      display: none !important;
 
-  text-transform: uppercase;
+    }
 
-  color: #444444;
 
-}
+    #reader__status_span {
 
+      display: none !important;
 
-/* =================================================
-   THIN DIVIDER
-================================================= */
+    }
 
-.divider {
 
-  width: 85px;
+    /* =========================================================
+       STATUS
+       ========================================================= */
 
-  height: 1px;
+    #status {
 
-  background: #111111;
+      margin-top: 16px;
 
-  margin:
-    19px
-    auto
-    0;
+      min-height: 28px;
 
-}
+      font-size: 14px;
 
+      letter-spacing: 1.4px;
 
-/* =================================================
-   MAIN
-================================================= */
+      text-transform: uppercase;
 
-.container {
+    }
 
-  position: relative;
 
-  z-index: 2;
+    .ready {
+      color: #111111;
+    }
 
-  width: 100%;
 
-  max-width: 700px;
+    .processing {
+      color: #555555;
+    }
 
-  margin: 0 auto;
 
-  padding:
-    12px
-    24px
-    5px;
+    .error {
+      color: #b00000;
+    }
 
-  flex: 1;
 
-}
+    .success {
+      color: #111111;
+    }
 
 
-/* =================================================
-   INSTRUCTION
-================================================= */
+    /* =========================================================
+       RESULT OVERLAY
+       ========================================================= */
 
-.instruction {
+    .result {
 
-  margin:
-    0
-    0
-    16px;
+      display: none;
 
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+      position: fixed;
 
-  font-size:
-    clamp(21px, 3vw, 28px);
+      inset: 0;
 
-  font-weight: 400;
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.98
+        );
 
-  letter-spacing: 0.5px;
+      z-index: 1000;
 
-}
+      align-items: center;
 
+      justify-content: center;
 
-/* =================================================
-   SCANNER FRAME
-================================================= */
+      padding: 25px;
 
-.scannerFrame {
+    }
 
-  position: relative;
 
-  width: 100%;
+    .resultCard {
 
-  max-width: 480px;
+      width: 100%;
 
-  margin: 0 auto;
+      max-width: 500px;
 
-  padding: 6px;
+      border:
+        1px solid
+        #111111;
 
-  background: #ffffff;
+      background: #ffffff;
 
-  border:
-    1px solid
-    #111111;
+    }
 
-}
 
+    .resultContent {
 
-/* Inner scanner */
+      padding:
+        45px
+        25px;
 
-#reader {
+    }
 
-  width: 100%;
 
-  margin: 0 auto;
+    .result h1 {
 
-  background: #111111;
+      margin:
+        0
+        0
+        20px;
 
-  overflow: hidden;
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
-}
+      font-size: 34px;
 
+      font-weight: 400;
 
-/* =================================================
-   HTML5 QR CODE OVERRIDES
-================================================= */
+    }
 
-#reader__dashboard_section {
 
-  background: #111111 !important;
+    .name {
 
-}
+      font-size: 40px;
 
+      font-weight: 600;
 
-#reader__scan_region {
+      margin-bottom: 18px;
 
-  background: #111111 !important;
+    }
 
-}
 
+    .message {
 
-#reader img {
+      font-size: 18px;
 
-  max-width: 100%;
+      color: #555555;
 
-}
+    }
 
 
-#reader__dashboard {
+    .resultFooter {
 
-  padding:
-    6px
-    8px !important;
+      border-top:
+        1px solid
+        #111111;
 
-}
+      padding: 14px;
 
+      font-size: 11px;
 
-/* =================================================
-   STATUS
-================================================= */
+      letter-spacing: 2px;
 
-#status {
+      text-transform: uppercase;
 
-  display: flex;
+      color: #555555;
 
-  align-items: center;
+    }
 
-  justify-content: center;
 
-  gap: 10px;
+    /* =========================================================
+       MOBILE / iPAD
+       ========================================================= */
 
-  margin:
-    15px
-    auto
-    0;
+    @media (max-width: 700px) {
 
-  min-height: 34px;
+      .header {
 
-  font-size: 14px;
+        padding:
+          22px
+          15px
+          16px;
 
-  font-weight: 500;
+      }
 
-  letter-spacing: 1.5px;
+      .header h1 {
 
-  text-transform: uppercase;
+        font-size: 25px;
 
-}
+      }
 
+      .header p {
 
-/* Ready */
+        font-size: 12px;
 
-#status.ready::before {
+        letter-spacing: 1.5px;
 
-  content: "";
+      }
 
-  width: 8px;
-  height: 8px;
+      .container {
 
-  border-radius: 50%;
+        padding:
+          20px
+          14px
+          25px;
 
-  background: #111111;
+      }
 
-}
+      .instruction {
 
+        font-size: 23px;
 
-/* Processing */
+        margin-bottom: 16px;
 
-#status.processing {
+      }
 
-  color: #555555;
+      #reader {
 
-}
+        max-width: 330px;
 
+      }
 
-#status.processing::before {
+      #reader video {
 
-  content: "";
+        max-height: 330px;
 
-  width: 8px;
-  height: 8px;
+      }
 
-  border-radius: 50%;
+    }
 
-  border:
-    1px solid
-    #555555;
 
-}
-
-
-/* Error */
-
-#status.error {
-
-  color: #111111;
-
-}
-
-
-#status.error::before {
-
-  content: "!";
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  width: 18px;
-  height: 18px;
-
-  border:
-    1px solid
-    #111111;
-
-  border-radius: 50%;
-
-  font-size: 12px;
-
-}
-
-
-/* =================================================
-   FOOTER
-================================================= */
-
-.footer {
-
-  position: relative;
-
-  z-index: 2;
-
-  padding:
-    8px
-    20px
-    18px;
-
-  font-size: 10px;
-
-  letter-spacing: 3px;
-
-  text-transform: uppercase;
-
-  color: #777777;
-
-}
-
-
-/* =================================================
-   RESULT SCREEN
-================================================= */
-
-.result {
-
-  display: none;
-
-  position: fixed;
-
-  inset: 0;
-
-  z-index: 20;
-
-  background:
-    rgba(255,255,255,0.97);
-
-  align-items: center;
-
-  justify-content: center;
-
-  padding: 25px;
-
-  overflow: hidden;
-
-}
-
-
-/* Result watermark */
-
-.result::before {
-
-  content: "";
-
-  position: absolute;
-
-  top: 50%;
-  left: 50%;
-
-  width: 850px;
-  height: 850px;
-
-  transform:
-    translate(-50%, -50%);
-
-  background-image:
-    url("logo.png");
-
-  background-repeat: no-repeat;
-
-  background-position: center;
-
-  background-size: contain;
-
-  opacity: 0.035;
-
-  filter: grayscale(100%);
-
-  pointer-events: none;
-
-}
-
-
-/* =================================================
-   RESULT CARD
-================================================= */
-
-.resultCard {
-
-  position: relative;
-
-  z-index: 2;
-
-  width: 100%;
-
-  max-width: 560px;
-
-  background: #ffffff;
-
-  border:
-    1px solid
-    #111111;
-
-}
-
-
-/* =================================================
-   RESULT CONTENT
-================================================= */
-
-.resultContent {
-
-  padding:
-    50px
-    30px
-    44px;
-
-}
-
-
-.resultIcon {
-
-  width: 62px;
-  height: 62px;
-
-  margin:
-    0 auto
-    24px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  border:
-    1px solid
-    #111111;
-
-  border-radius: 50%;
-
-  color: #111111;
-
-  font-size: 30px;
-
-  font-weight: 400;
-
-}
-
-
-.result h1 {
-
-  margin:
-    0
-    0
-    20px;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size:
-    clamp(28px, 5vw, 40px);
-
-  font-weight: 400;
-
-  letter-spacing: 1px;
-
-}
-
-
-.result .name {
-
-  font-size:
-    clamp(32px, 7vw, 48px);
-
-  font-weight: 600;
-
-  margin:
-    0
-    18px;
-
-}
-
-
-.result .message {
-
-  font-size: 17px;
-
-  color: #555555;
-
-  letter-spacing: 0.5px;
-
-  line-height: 1.5;
-
-}
-
-
-.resultTime {
-
-  font-size: 20px;
-
-  margin-top: 8px;
-
-}
-
-
-/* =================================================
-   RESULT FOOTER
-================================================= */
-
-.resultFooter {
-
-  border-top:
-    1px solid
-    #111111;
-
-  padding:
-    15px
-    20px;
-
-  font-size: 11px;
-
-  letter-spacing: 2px;
-
-  text-transform: uppercase;
-
-  color: #555555;
-
-}
-
-
-/* =================================================
-   IPAD / TABLET
-================================================= */
-
-@media (max-width: 700px) {
-
-  .branding {
-
-    padding:
-      25px
-      20px
-      12px;
-
-  }
-
-
-  .schoolLogo {
-
-    width: 140px;
-
-    margin-bottom: 12px;
-
-  }
-
-
-  .brandTitle {
-
-    font-size: 26px;
-
-  }
-
-
-  .brandSubtitle {
-
-    font-size: 12px;
-
-    letter-spacing: 1.5px;
-
-  }
-
-
-  .divider {
-
-    margin-top: 16px;
-
-  }
-
-
-  .container {
-
-    padding:
-      10px
-      15px
-      5px;
-
-  }
-
-
-  .instruction {
-
-    margin-bottom: 14px;
-
-    font-size: 22px;
-
-  }
-
-
-  .scannerFrame {
-
-    max-width: 440px;
-
-    padding: 5px;
-
-  }
-
-
-  .resultContent {
-
-    padding:
-      45px
-      20px
-      40px;
-
-  }
-
-}
-
-
-/* =================================================
-   IPAD LANDSCAPE / LARGE TABLETS
-================================================= */
-
-@media (min-width: 701px) and (max-width: 1200px) {
-
-  .branding {
-
-    padding-top: 25px;
-
-  }
-
-
-  .schoolLogo {
-
-    width: 150px;
-
-  }
-
-
-  .scannerFrame {
-
-    max-width: 440px;
-
-  }
-
-}
-
-
-/* =================================================
-   SHORT SCREENS
-================================================= */
-
-@media (max-height: 700px) {
-
-  .branding {
-
-    padding-top: 16px;
-
-    padding-bottom: 8px;
-
-  }
-
-
-  .schoolLogo {
-
-    width: 120px;
-
-    margin-bottom: 8px;
-
-  }
-
-
-  .brandTitle {
-
-    font-size: 24px;
-
-  }
-
-
-  .brandSubtitle {
-
-    margin-top: 5px;
-
-  }
-
-
-  .divider {
-
-    margin-top: 10px;
-
-  }
-
-
-  .container {
-
-    padding-top: 7px;
-
-  }
-
-
-  .instruction {
-
-    margin-bottom: 10px;
-
-    font-size: 21px;
-
-  }
-
-
-  .scannerFrame {
-
-    max-width: 420px;
-
-  }
-
-
-  #status {
-
-    margin-top: 10px;
-
-  }
-
-
-  .footer {
-
-    padding-bottom: 10px;
-
-  }
-
-}
-
-</style>
+  </style>
 
 </head>
 
@@ -894,439 +431,759 @@ body {
 <body>
 
 
-<div class="page">
+  <!-- =======================================================
+       HEADER
+       ======================================================= -->
 
+  <div class="header">
 
-  <!-- =============================================
-       ROSENBERG BRANDING
-  ============================================== -->
-
-  <header class="branding">
-
-    <img
-      src="logo.png"
-      alt="Institut auf dem Rosenberg"
-      class="schoolLogo"
-    >
-
-
-    <h1 class="brandTitle">
-
+    <h1>
       Rosenberg Health &amp; Fitness
-
     </h1>
 
-
-    <p class="brandSubtitle">
-
+    <p>
       Student Check-In / Check-Out
-
     </p>
 
-
-    <div class="divider"></div>
-
-  </header>
+  </div>
 
 
-  <!-- =============================================
-       SCANNER
-  ============================================== -->
+  <!-- =======================================================
+       MAIN
+       ======================================================= -->
 
-  <main class="container">
-
+  <div class="container">
 
     <div id="scannerSection">
 
-
       <div class="instruction">
-
         Scan Your QR Code
-
       </div>
 
-
-      <div class="scannerFrame">
-
-        <div id="reader"></div>
-
-      </div>
-
+      <div id="reader"></div>
 
       <div
         id="status"
         class="ready"
       >
-
         Ready to scan
-
       </div>
-
 
     </div>
 
 
-  </main>
+    <!-- =====================================================
+         RESULT
+         ===================================================== -->
 
+    <div
+      id="result"
+      class="result"
+    >
 
-  <!-- =============================================
-       RESULT SCREEN
-  ============================================== -->
+      <div class="resultCard">
 
-  <div
-    id="result"
-    class="result"
-  >
+        <div class="resultContent">
 
-    <div class="resultCard">
+          <h1 id="resultTitle"></h1>
 
+          <div
+            id="resultName"
+            class="name">
+          </div>
 
-      <div class="resultContent">
+          <div
+            id="resultMessage"
+            class="message">
+          </div>
 
+        </div>
 
         <div
-          id="resultIcon"
-          class="resultIcon"
+          id="resultFooter"
+          class="resultFooter"
         >
-
-          ✓
-
+          Returning to scanner...
         </div>
-
-
-        <h1 id="resultTitle"></h1>
-
-
-        <div
-          id="resultName"
-          class="name">
-        </div>
-
-
-        <div
-          id="resultTime"
-          class="resultTime">
-        </div>
-
-
-        <div
-          id="resultMessage"
-          class="message">
-        </div>
-
 
       </div>
-
-
-      <div
-        id="resultFooter"
-        class="resultFooter"
-      >
-
-        Returning to scanner...
-
-      </div>
-
 
     </div>
 
   </div>
 
 
-  <!-- =============================================
-       FOOTER
-  ============================================== -->
-
-  <footer class="footer">
-
-    Health &amp; Fitness
-
-  </footer>
-
-
-</div>
-
-
 <script>
 
 
-/*************************************************
- * GOOGLE APPS SCRIPT
- *************************************************/
+/* ============================================================
+   CONFIGURATION
+   ============================================================ */
 
-const APPS_SCRIPT_URL =
-  "https://script.google.com/a/macros/instrosenberg.ch/s/AKfycbzZq6AKRHz_6-ab83I6ALVQrsslcyKvlCASxOOOWKjindU6Byg0ZPRdIMGkJ1kk0Kx3/exec";
 
+/*
+ * IMPORTANT:
+ *
+ * Replace the value below with the COMPLETE Web App URL
+ * from Apps Script:
+ *
+ * Deploy
+ * → Manage deployments
+ * → Web app
+ * → URL
+ *
+ * It must end with /exec
+ */
+
+const ATTENDANCE_ENDPOINT =
+  "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+
+/*
+ * QR scanner settings.
+ */
+
+const QR_BOX_SIZE = 220;
+
+const SCAN_FPS = 10;
+
+
+/*
+ * Maximum time we allow the attendance system
+ * to respond before displaying an error.
+ *
+ * This does NOT cancel the Apps Script operation.
+ * It only prevents the scanner from appearing
+ * stuck indefinitely.
+ */
+
+const ATTENDANCE_TIMEOUT = 15000;
+
+
+/* ============================================================
+   GLOBALS
+   ============================================================ */
 
 let scanner = null;
 
 let scanLocked = false;
 
-let requestTimeout = null;
+let requestCounter = 0;
 
 
-/*************************************************
- * START SCANNER
- *************************************************/
+/* ============================================================
+   START SCANNER
+   ============================================================ */
 
 function startScanner() {
+
+  if (
+    ATTENDANCE_ENDPOINT ===
+    "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE"
+  ) {
+
+    showError(
+      "Attendance system is not configured."
+    );
+
+    return;
+
+  }
+
 
   scanner =
     new Html5Qrcode("reader");
 
 
-  scanner.start(
-
-    /*
-     * FRONT CAMERA
-     *
-     * "user" = front-facing camera
-     */
-
-    {
-      facingMode: "user"
-    },
-
-    {
+  scanner
+    .start(
 
       /*
-       * Scan frequency.
+       * FRONT CAMERA
+       *
+       * "user" requests the front-facing camera.
        */
 
-      fps: 10,
+      {
+        facingMode: "user"
+      },
 
 
-      /*
-       * Smaller QR detection area.
-       */
+      {
+        fps: SCAN_FPS,
 
-      qrbox: {
-        width: 240,
-        height: 240
+        qrbox: {
+          width: QR_BOX_SIZE,
+          height: QR_BOX_SIZE
+        },
+
+        aspectRatio: 1.0
+
+      },
+
+
+      function(decodedText) {
+
+        if (scanLocked) {
+          return;
+        }
+
+
+        /*
+         * Lock immediately so the same QR code
+         * cannot trigger multiple attendance records.
+         */
+
+        scanLocked = true;
+
+
+        processQRCode(
+          decodedText
+        );
+
+      },
+
+
+      function(errorMessage) {
+
+        /*
+         * Normal QR scanning errors are ignored.
+         */
+
       }
 
-    },
+    )
 
-    function(decodedText) {
+    .catch(
+      function(error) {
 
-      if (scanLocked) {
+        console.error(
+          "Camera error:",
+          error
+        );
 
-        return;
+
+        showError(
+          "Camera could not be started."
+        );
 
       }
-
-      scanLocked = true;
-
-      processQRCode(decodedText);
-
-    },
-
-    function(errorMessage) {
-
-      /*
-       * Normal scanning errors
-       * are ignored.
-       */
-
-    }
-
-  )
-
-  .catch(function(error) {
-
-    console.error(error);
-
-    document.getElementById(
-      "status"
-    ).textContent =
-      "Camera could not be started. Please allow camera access.";
-
-    document.getElementById(
-      "status"
-    ).className =
-      "error";
-
-  });
+    );
 
 }
 
 
-/*************************************************
- * PROCESS QR CODE
- *************************************************/
+/* ============================================================
+   PROCESS QR CODE
+   ============================================================ */
 
 function processQRCode(studentId) {
 
-  document.getElementById(
-    "status"
-  ).textContent =
-    "Processing...";
+  setStatus(
+    "Processing...",
+    "processing"
+  );
 
 
-  document.getElementById(
-    "status"
-  ).className =
-    "processing";
-
+  /*
+   * Pause scanner while attendance is processed.
+   */
 
   try {
 
-    scanner.pause(true);
+    if (scanner) {
+      scanner.pause(true);
+    }
 
   }
 
   catch (error) {
 
-    console.log(error);
+    console.warn(
+      "Could not pause scanner:",
+      error
+    );
 
   }
 
 
   /*
-   * Use the original JSONP method for the
-   * attendance transaction.
+   * Use JSONP instead of fetch().
    *
-   * The Apps Script now returns the attendance
-   * result before sending the house notification,
-   * so the scanner should respond much faster.
+   * This is the important part.
+   *
+   * GitHub Pages and Apps Script are different origins.
+   *
+   * A normal fetch() can be blocked by CORS.
+   *
+   * JSONP works through a dynamically-created
+   * <script> element.
    */
+
+  sendAttendanceRequest(
+    studentId
+  );
+
+}
+
+
+/* ============================================================
+   SEND ATTENDANCE REQUEST
+   ============================================================ */
+
+function sendAttendanceRequest(studentId) {
+
+  requestCounter++;
 
   const callbackName =
     "attendanceCallback_" +
-    Date.now();
+    requestCounter;
 
+
+  let completed = false;
+
+  let timeoutId = null;
+
+  let script = null;
+
+
+  /*
+   * Global JSONP callback.
+   */
 
   window[callbackName] =
     function(result) {
 
-      delete window[callbackName];
+      if (completed) {
+        return;
+      }
+
+      completed = true;
+
+
+      clearTimeout(
+        timeoutId
+      );
+
+
+      cleanupJSONP(
+        script,
+        callbackName
+      );
 
 
       /*
-       * Start the house notification separately.
-       * This request does NOT block the scanner result.
+       * Attendance has now been processed
+       * by Apps Script.
        */
 
-      if (
-        result &&
-        result.success
-      ) {
-
-        sendHouseNotification(
-          studentId,
-          result.action,
-          Date.now()
-        );
-
-      }
-
-
-      handleResult(result);
+      handleAttendanceResult(
+        result
+      );
 
     };
 
 
-  const script =
-    document.createElement("script");
+  /*
+   * Create the request URL.
+   */
 
-
-  script.src =
-    APPS_SCRIPT_URL +
+  const url =
+    ATTENDANCE_ENDPOINT +
     "?id=" +
-    encodeURIComponent(studentId) +
+    encodeURIComponent(
+      String(studentId).trim()
+    ) +
     "&callback=" +
-    callbackName;
+    encodeURIComponent(
+      callbackName
+    ) +
+    "&_=" +
+    Date.now();
 
+
+  /*
+   * Create the script element.
+   */
+
+  script =
+    document.createElement(
+      "script"
+    );
+
+
+  script.src = url;
+
+  script.async = true;
+
+
+  /*
+   * If the script itself fails to load,
+   * show a useful error.
+   */
 
   script.onerror =
-    function() {
+    function(error) {
 
-      delete window[callbackName];
+      if (completed) {
+        return;
+      }
+
+      completed = true;
+
+
+      clearTimeout(
+        timeoutId
+      );
+
+
+      cleanupJSONP(
+        script,
+        callbackName
+      );
+
+
+      console.error(
+        "Attendance endpoint error:",
+        error
+      );
+
 
       showError(
         "Could not connect to the attendance system."
       );
+
 
       resumeScanner();
 
     };
 
 
+  /*
+   * Add to page.
+   */
+
   document.body.appendChild(
     script
   );
 
 
   /*
-   * Remove the temporary script element after
-   * the request has been given time to execute.
+   * Timeout.
+   *
+   * This prevents the scanner from appearing
+   * frozen forever.
    */
 
-  setTimeout(
+  timeoutId =
+    setTimeout(
+      function() {
 
-    function() {
+        if (completed) {
+          return;
+        }
 
-      if (script.parentNode) {
+        completed = true;
 
-        script.parentNode.removeChild(
-          script
+
+        cleanupJSONP(
+          script,
+          callbackName
         );
 
-      }
 
-    },
+        console.error(
+          "Attendance request timed out."
+        );
 
-    15000
 
-  );
+        showError(
+          "The attendance system is taking too long to respond."
+        );
+
+
+        resumeScanner();
+
+      },
+      ATTENDANCE_TIMEOUT
+    );
 
 }
 
 
-/*************************************************
- * SEND HOUSE NOTIFICATION IN BACKGROUND
- *************************************************/
+/* ============================================================
+   CLEAN UP JSONP
+   ============================================================ */
 
-function sendHouseNotification(
-  studentId,
-  action,
-  timestamp
+function cleanupJSONP(
+  script,
+  callbackName
 ) {
+
+  try {
+
+    if (
+      script &&
+      script.parentNode
+    ) {
+
+      script.parentNode.removeChild(
+        script
+      );
+
+    }
+
+  }
+
+  catch (error) {
+
+    console.warn(
+      "Could not remove JSONP script:",
+      error
+    );
+
+  }
+
+
+  try {
+
+    delete window[
+      callbackName
+    ];
+
+  }
+
+  catch (error) {
+
+    window[
+      callbackName
+    ] = undefined;
+
+  }
+
+}
+
+
+/* ============================================================
+   HANDLE ATTENDANCE RESULT
+   ============================================================ */
+
+function handleAttendanceResult(
+  result
+) {
+
+  console.log(
+    "Attendance response:",
+    result
+  );
+
+
+  /*
+   * Make sure we received an object.
+   */
+
+  if (
+    !result ||
+    typeof result !== "object"
+  ) {
+
+    showError(
+      "Invalid response from the attendance system."
+    );
+
+    resumeScanner();
+
+    return;
+
+  }
+
+
+  /*
+   * If Apps Script returned an error,
+   * show its message.
+   */
+
+  if (
+    result.success === false
+  ) {
+
+    showResult(
+      result.title ||
+        "Unable to check in/out",
+
+      result.name ||
+        "",
+
+      result.message ||
+        "Please try again."
+    );
+
+
+    return;
+
+  }
+
+
+  /*
+   * Successful attendance.
+   */
+
+  if (
+    result.success === true
+  ) {
+
+    showResult(
+      result.title ||
+        "",
+
+      result.name ||
+        "",
+
+      result.message ||
+        ""
+    );
+
+
+    /*
+     * IMPORTANT:
+     *
+     * We do NOT wait for the email.
+     *
+     * The attendance record has already been saved.
+     *
+     * The email is sent separately.
+     */
+
+    sendNotification(
+      result
+    );
+
+
+    return;
+
+  }
+
+
+  /*
+   * Unexpected response.
+   */
+
+  showError(
+    "Unexpected response from the attendance system."
+  );
+
+
+  resumeScanner();
+
+}
+
+
+/* ============================================================
+   SEND HOUSE NOTIFICATION
+   ============================================================ */
+
+function sendNotification(
+  result
+) {
+
+  /*
+   * The backend needs the student ID.
+   *
+   * We stored it when the scan started.
+   */
+
+  const studentId =
+    result.studentId ||
+    window.lastScannedStudentId;
+
+
+  if (!studentId) {
+
+    console.warn(
+      "No student ID available for notification."
+    );
+
+    return;
+
+  }
+
+
+  const action =
+    result.action ||
+    "";
+
+
+  if (!action) {
+
+    return;
+
+  }
+
 
   const callbackName =
     "notificationCallback_" +
     Date.now();
 
 
-  window[callbackName] =
-    function() {
+  let script = null;
 
-      delete window[callbackName];
+
+  window[callbackName] =
+    function(response) {
+
+      cleanupJSONP(
+        script,
+        callbackName
+      );
 
     };
 
 
-  const script =
-    document.createElement("script");
-
-
-  script.src =
-    APPS_SCRIPT_URL +
+  const url =
+    ATTENDANCE_ENDPOINT +
     "?notification=1" +
     "&id=" +
-    encodeURIComponent(studentId) +
+    encodeURIComponent(
+      String(studentId).trim()
+    ) +
     "&action=" +
-    encodeURIComponent(action) +
+    encodeURIComponent(
+      action
+    ) +
     "&timestamp=" +
-    encodeURIComponent(timestamp) +
+    encodeURIComponent(
+      Date.now()
+    ) +
     "&callback=" +
-    callbackName;
+    encodeURIComponent(
+      callbackName
+    );
+
+
+  script =
+    document.createElement(
+      "script"
+    );
+
+
+  script.src = url;
+
+  script.async = true;
 
 
   script.onerror =
-    function() {
+    function(error) {
 
-      delete window[callbackName];
+      console.warn(
+        "Notification request failed:",
+        error
+      );
+
+
+      cleanupJSONP(
+        script,
+        callbackName
+      );
 
     };
 
@@ -1336,49 +1193,28 @@ function sendHouseNotification(
   );
 
 
-  setTimeout(
-
-    function() {
-
-      delete window[callbackName];
-
-      if (script.parentNode) {
-
-        script.parentNode.removeChild(
-          script
-        );
-
-      }
-
-    },
-
-    30000
-
-  );
+  /*
+   * We deliberately do not wait for this request.
+   */
 
 }
 
 
-/*************************************************
- * SHOW RESULT
- *************************************************/
+/* ============================================================
+   SHOW RESULT
+   ============================================================ */
 
-function handleResult(result) {
-
-
-  /*
-   * Hide scanner.
-   */
+function showResult(
+  title,
+  name,
+  message
+) {
 
   document.getElementById(
     "scannerSection"
   ).style.display =
     "none";
 
-
-  /*
-   * Show result screen.
-   */
 
   const resultElement =
     document.getElementById(
@@ -1390,182 +1226,88 @@ function handleResult(result) {
     "flex";
 
 
-  /*
-   * Populate result.
-   */
-
   document.getElementById(
     "resultTitle"
   ).textContent =
-    result.title;
+    title || "";
 
 
   document.getElementById(
     "resultName"
   ).textContent =
-    result.name;
+    name || "";
 
 
   document.getElementById(
     "resultMessage"
   ).textContent =
-    result.message;
+    message || "";
 
 
   /*
-   * Time field remains available
-   * for future use.
+   * Return to scanner after 3 seconds.
    */
 
-  document.getElementById(
-    "resultTime"
-  ).textContent =
-    "";
+  setTimeout(
+    function() {
+
+      resultElement.style.display =
+        "none";
 
 
-  /*
-   * Determine icon.
-   */
-
-  const title =
-    String(result.title || "")
-      .toUpperCase();
+      document.getElementById(
+        "scannerSection"
+      ).style.display =
+        "block";
 
 
-  const icon =
-    document.getElementById(
-      "resultIcon"
-    );
+      setStatus(
+        "Ready to scan",
+        "ready"
+      );
 
 
-  if (
-    title.includes("CHECK-IN")
-  ) {
+      resumeScanner();
 
-    icon.textContent =
-      "✓";
-
-  }
-
-  else if (
-    title.includes("CHECK-OUT")
-  ) {
-
-    icon.textContent =
-      "✓";
-
-  }
-
-  else {
-
-    icon.textContent =
-      "!";
-
-  }
-
-
-  /*
-   * Countdown.
-   */
-
-  let seconds = 3;
-
-
-  const footer =
-    document.getElementById(
-      "resultFooter"
-    );
-
-
-  footer.textContent =
-    "Returning to scanner in " +
-    seconds;
-
-
-  const countdown =
-    setInterval(function() {
-
-      seconds--;
-
-
-      if (seconds > 0) {
-
-        footer.textContent =
-          "Returning to scanner in " +
-          seconds;
-
-      }
-
-    }, 1000);
-
-
-  /*
-   * Return to scanner.
-   */
-
-  setTimeout(function() {
-
-    clearInterval(countdown);
-
-
-    resultElement.style.display =
-      "none";
-
-
-    document.getElementById(
-      "scannerSection"
-    ).style.display =
-      "block";
-
-
-    document.getElementById(
-      "status"
-    ).textContent =
-      "Ready to scan";
-
-
-    document.getElementById(
-      "status"
-    ).className =
-      "ready";
-
-
-    resumeScanner();
-
-  }, 3000);
+    },
+    3000
+  );
 
 }
 
 
-/*************************************************
- * RESUME CAMERA
- *************************************************/
+/* ============================================================
+   STATUS
+   ============================================================ */
 
-function resumeScanner() {
+function setStatus(
+  message,
+  className
+) {
 
-  scanLocked = false;
+  const status =
+    document.getElementById(
+      "status"
+    );
 
 
-  try {
+  status.textContent =
+    message;
 
-    scanner.resume();
 
-  }
-
-  catch (error) {
-
-    console.error(error);
-
-  }
+  status.className =
+    className || "ready";
 
 }
 
 
-/*************************************************
- * ERROR
- *************************************************/
+/* ============================================================
+   ERROR
+   ============================================================ */
 
-function showError(message) {
+function showError(
+  message
+) {
 
   document.getElementById(
     "scannerSection"
@@ -1579,28 +1321,85 @@ function showError(message) {
     "none";
 
 
-  document.getElementById(
-    "status"
-  ).textContent =
-    message;
-
-
-  document.getElementById(
-    "status"
-  ).className =
-    "error";
+  setStatus(
+    message,
+    "error"
+  );
 
 }
 
 
-/*************************************************
- * START WHEN PAGE LOADS
- *************************************************/
+/* ============================================================
+   RESUME SCANNER
+   ============================================================ */
+
+function resumeScanner() {
+
+  scanLocked = false;
+
+
+  try {
+
+    if (scanner) {
+
+      scanner.resume();
+
+    }
+
+  }
+
+  catch (error) {
+
+    console.warn(
+      "Could not resume scanner:",
+      error
+    );
+
+  }
+
+}
+
+
+/* ============================================================
+   START
+   ============================================================ */
 
 window.addEventListener(
   "load",
-  startScanner
+  function() {
+
+    startScanner();
+
+  }
 );
+
+
+/* ============================================================
+   STORE LAST STUDENT ID
+   ============================================================ */
+
+const originalProcessQRCode =
+  processQRCode;
+
+
+/*
+ * We need the scanned ID later for the
+ * separate notification request.
+ */
+
+processQRCode =
+  function(studentId) {
+
+    window.lastScannedStudentId =
+      String(studentId).trim();
+
+
+    originalProcessQRCode(
+      studentId
+    );
+
+  };
+
 
 </script>
 
