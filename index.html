@@ -25,6 +25,7 @@
       box-sizing: border-box;
     }
 
+
     body {
 
       margin: 0;
@@ -47,7 +48,8 @@
 
     .header {
 
-      padding: 30px 20px 20px;
+      padding:
+        30px 20px 20px;
 
       border-bottom:
         1px solid #111111;
@@ -75,7 +77,8 @@
 
     .header p {
 
-      margin: 8px 0 0;
+      margin:
+        8px 0 0;
 
       font-size: 14px;
 
@@ -96,7 +99,8 @@
 
       margin: 0 auto;
 
-      padding: 25px 20px;
+      padding:
+        25px 20px;
 
     }
 
@@ -119,7 +123,7 @@
 
       width: 100%;
 
-      max-width: 400px;
+      max-width: 330px;
 
       margin: 0 auto;
 
@@ -127,7 +131,19 @@
 
       overflow: hidden;
 
-      border: 5px solid #111111;
+      border:
+        2px solid #111111;
+
+    }
+
+
+    #reader video {
+
+      width: 100% !important;
+
+      height: auto !important;
+
+      display: block;
 
     }
 
@@ -176,7 +192,13 @@
 
       inset: 0;
 
-      background: rgba(255,255,255,0.97);
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.97
+        );
 
       z-index: 10;
 
@@ -195,7 +217,8 @@
 
       max-width: 500px;
 
-      border: 1px solid #111111;
+      border:
+        1px solid #111111;
 
       background: #ffffff;
 
@@ -204,14 +227,16 @@
 
     .resultContent {
 
-      padding: 45px 25px;
+      padding:
+        45px 25px;
 
     }
 
 
     .result h1 {
 
-      margin: 0 0 20px;
+      margin:
+        0 0 20px;
 
       font-family:
         Georgia,
@@ -262,6 +287,58 @@
 
     }
 
+
+    @media (max-width: 700px) {
+
+      .header {
+
+        padding:
+          22px 15px 16px;
+
+      }
+
+
+      .header h1 {
+
+        font-size: 25px;
+
+      }
+
+
+      .header p {
+
+        font-size: 12px;
+
+        letter-spacing: 1.5px;
+
+      }
+
+
+      .container {
+
+        padding:
+          20px 14px 25px;
+
+      }
+
+
+      .instruction {
+
+        font-size: 23px;
+
+        margin-bottom: 16px;
+
+      }
+
+
+      #reader {
+
+        max-width: 330px;
+
+      }
+
+    }
+
   </style>
 
 </head>
@@ -285,7 +362,9 @@
 
   <div class="container">
 
+
     <div id="scannerSection">
+
 
       <div class="instruction">
 
@@ -293,7 +372,9 @@
 
       </div>
 
+
       <div id="reader"></div>
+
 
       <div
         id="status"
@@ -304,6 +385,7 @@
 
       </div>
 
+
     </div>
 
 
@@ -312,23 +394,30 @@
       class="result"
     >
 
+
       <div class="resultCard">
+
 
         <div class="resultContent">
 
+
           <h1 id="resultTitle"></h1>
+
 
           <div
             id="resultName"
             class="name">
           </div>
 
+
           <div
             id="resultMessage"
             class="message">
           </div>
 
+
         </div>
+
 
         <div
           id="resultFooter"
@@ -339,9 +428,12 @@
 
         </div>
 
+
       </div>
 
+
     </div>
+
 
   </div>
 
@@ -350,55 +442,81 @@
 
 
 /*************************************************
- * ROSENBERG HEALTH & FITNESS
- * QR SCANNER
+ * CONFIGURATION
  *************************************************/
 
-
-/*************************************************
- * APPS SCRIPT URL
- *************************************************/
 
 const APPS_SCRIPT_URL =
   "https://script.google.com/a/macros/instrosenberg.ch/s/AKfycbx92HMvs_apPqSTs1MRV3A4FmSm6rocPec8aD9k_y5HeLisnyhu3K1pcCqVAYDon7Zs/exec";
 
 
+const QR_BOX_SIZE = 220;
+
+
+const SCAN_FPS = 10;
+
+
+const ATTENDANCE_TIMEOUT = 15000;
+
+
 /*************************************************
- * SCANNER
+ * GLOBAL VARIABLES
  *************************************************/
+
 
 let scanner = null;
 
+
 let scanLocked = false;
+
+
+let requestCounter = 0;
 
 
 /*************************************************
  * START SCANNER
  *************************************************/
 
+
 function startScanner() {
 
+
   scanner =
-    new Html5Qrcode("reader");
+    new Html5Qrcode(
+      "reader"
+    );
 
 
   scanner.start(
+
 
     {
       facingMode: "user"
     },
 
+
     {
-      fps: 10,
+
+      fps:
+        SCAN_FPS,
 
       qrbox: {
-        width: 240,
-        height: 240
-      }
+
+        width:
+          QR_BOX_SIZE,
+
+        height:
+          QR_BOX_SIZE
+
+      },
+
+      aspectRatio: 1.0
 
     },
 
+
     function(decodedText) {
+
 
       if (scanLocked) {
 
@@ -406,11 +524,18 @@ function startScanner() {
 
       }
 
-      scanLocked = true;
 
-      processQRCode(decodedText);
+      scanLocked =
+        true;
+
+
+      processQRCode(
+        decodedText
+      );
+
 
     },
+
 
     function(errorMessage) {
 
@@ -421,17 +546,27 @@ function startScanner() {
 
     }
 
+
   )
 
-  .catch(function(error) {
 
-    console.error(error);
+  .catch(
+    function(error) {
 
-    showError(
-      "Camera could not be started."
-    );
 
-  });
+      console.error(
+        "Camera error:",
+        error
+      );
+
+
+      showError(
+        "Camera could not be started."
+      );
+
+
+    }
+  );
 
 }
 
@@ -440,97 +575,394 @@ function startScanner() {
  * PROCESS QR CODE
  *************************************************/
 
-function processQRCode(studentId) {
 
-  document.getElementById(
-    "status"
-  ).textContent =
-    "Processing...";
+function processQRCode(
+  studentId
+) {
 
 
-  document.getElementById(
-    "status"
-  ).className =
-    "processing";
+  setStatus(
+    "Processing...",
+    "processing"
+  );
 
-
-  /*
-   * Pause scanner while processing.
-   */
 
   try {
 
-    scanner.pause(true);
+
+    if (scanner) {
+
+      scanner.pause(true);
+
+    }
+
 
   }
 
   catch (error) {
 
-    console.log(error);
+
+    console.warn(
+      "Could not pause scanner:",
+      error
+    );
+
 
   }
 
 
   /*
-   * Send attendance request directly
-   * through Apps Script.
+   * IMPORTANT:
+   *
+   * The GitHub scanner cannot use
+   * google.script.run.
+   *
+   * We therefore use JSONP to communicate
+   * with the Apps Script web app.
    */
 
-  google.script.run
+  sendAttendanceRequest(
+    studentId
+  );
 
-    .withSuccessHandler(
-      function(result) {
-
-        /*
-         * Attendance has been saved.
-         *
-         * Show the result immediately.
-         */
-
-        handleResult(result);
+}
 
 
-        /*
-         * Send the House notification
-         * separately in the background.
-         *
-         * This request does NOT use
-         * google.script.run.
-         */
+/*************************************************
+ * SEND ATTENDANCE REQUEST
+ *************************************************/
 
-        if (
-          result &&
-          result.success
-        ) {
 
-          sendHouseNotification(
-            studentId,
-            result.action,
-            Date.now()
-          );
+function sendAttendanceRequest(
+  studentId
+) {
+
+
+  requestCounter++;
+
+
+  const callbackName =
+    "attendanceCallback_" +
+    requestCounter;
+
+
+  let completed =
+    false;
+
+
+  let timeoutId =
+    null;
+
+
+  let script =
+    null;
+
+
+  /*
+   * Create the JSONP callback.
+   */
+
+  window[callbackName] =
+    function(result) {
+
+
+      if (completed) {
+
+        return;
+
+      }
+
+
+      completed =
+        true;
+
+
+      clearTimeout(
+        timeoutId
+      );
+
+
+      cleanupJSONP(
+        script,
+        callbackName
+      );
+
+
+      handleAttendanceResult(
+        result,
+        studentId
+      );
+
+
+    };
+
+
+  /*
+   * Build the Apps Script URL.
+   */
+
+  const url =
+    APPS_SCRIPT_URL +
+    "?id=" +
+    encodeURIComponent(
+      String(
+        studentId
+      ).trim()
+    ) +
+    "&callback=" +
+    encodeURIComponent(
+      callbackName
+    ) +
+    "&_=" +
+    Date.now();
+
+
+  console.log(
+    "Attendance request:",
+    url
+  );
+
+
+  /*
+   * Create script element.
+   */
+
+  script =
+    document.createElement(
+      "script"
+    );
+
+
+  script.src =
+    url;
+
+
+  script.async =
+    true;
+
+
+  /*
+   * If the browser cannot load
+   * the Apps Script endpoint.
+   */
+
+  script.onerror =
+    function(error) {
+
+
+      if (completed) {
+
+        return;
+
+      }
+
+
+      completed =
+        true;
+
+
+      clearTimeout(
+        timeoutId
+      );
+
+
+      cleanupJSONP(
+        script,
+        callbackName
+      );
+
+
+      console.error(
+        "Attendance endpoint error:",
+        error
+      );
+
+
+      showError(
+        "Could not connect to the attendance system."
+      );
+
+
+      resumeScanner();
+
+
+    };
+
+
+  /*
+   * Add the request to the page.
+   */
+
+  document.body.appendChild(
+    script
+  );
+
+
+  /*
+   * Safety timeout.
+   */
+
+  timeoutId =
+    setTimeout(
+      function() {
+
+
+        if (completed) {
+
+          return;
 
         }
 
-      }
-    )
 
-    .withFailureHandler(
-      function(error) {
+        completed =
+          true;
 
-        console.error(error);
+
+        cleanupJSONP(
+          script,
+          callbackName
+        );
+
+
+        console.error(
+          "Attendance request timed out."
+        );
+
 
         showError(
-          "Could not connect to the attendance system."
+          "The attendance system is taking too long to respond."
         );
+
 
         resumeScanner();
 
-      }
-    )
 
-    .scannerCheckInOut(
-      studentId
+      },
+      ATTENDANCE_TIMEOUT
     );
+
+}
+
+
+/*************************************************
+ * HANDLE ATTENDANCE RESULT
+ *************************************************/
+
+
+function handleAttendanceResult(
+  result,
+  studentId
+) {
+
+
+  console.log(
+    "Attendance response:",
+    result
+  );
+
+
+  if (
+    !result ||
+    typeof result !== "object"
+  ) {
+
+
+    showError(
+      "Invalid response from the attendance system."
+    );
+
+
+    resumeScanner();
+
+
+    return;
+
+  }
+
+
+  /*
+   * Attendance failed.
+   */
+
+  if (
+    result.success === false
+  ) {
+
+
+    showResult(
+
+      result.title ||
+        "Unable to check in/out",
+
+      result.name ||
+        "",
+
+      result.message ||
+        "Please try again."
+
+    );
+
+
+    return;
+
+  }
+
+
+  /*
+   * Attendance succeeded.
+   */
+
+  if (
+    result.success === true
+  ) {
+
+
+    /*
+     * Show the result immediately.
+     */
+
+    showResult(
+
+      result.title ||
+        "",
+
+      result.name ||
+        "",
+
+      result.message ||
+        ""
+
+    );
+
+
+    /*
+     * Send the House email separately.
+     *
+     * This does NOT delay the result.
+     */
+
+    sendHouseNotification(
+
+      studentId,
+
+      result.action,
+
+      Date.now()
+
+    );
+
+
+    return;
+
+  }
+
+
+  showError(
+    "Unexpected response from the attendance system."
+  );
+
+
+  resumeScanner();
 
 }
 
@@ -539,72 +971,191 @@ function processQRCode(studentId) {
  * SEND HOUSE NOTIFICATION
  *************************************************/
 
+
 function sendHouseNotification(
   studentId,
   action,
   timestamp
 ) {
 
+
+  if (
+    !studentId ||
+    !action
+  ) {
+
+    console.warn(
+      "Notification not sent: missing data."
+    );
+
+
+    return;
+
+  }
+
+
   /*
-   * Build the notification URL.
+   * Build notification URL.
    */
 
   const url =
     APPS_SCRIPT_URL +
     "?notification=1" +
     "&id=" +
-    encodeURIComponent(studentId) +
+    encodeURIComponent(
+      String(
+        studentId
+      ).trim()
+    ) +
     "&action=" +
-    encodeURIComponent(action) +
+    encodeURIComponent(
+      action
+    ) +
     "&timestamp=" +
-    encodeURIComponent(timestamp) +
+    encodeURIComponent(
+      timestamp
+    ) +
     "&_=" +
     Date.now();
 
 
-  /*
-   * Create an invisible image.
-   *
-   * The browser makes the request
-   * without navigating away from the scanner.
-   */
-
-  const img =
-    new Image();
+  console.log(
+    "Sending House notification."
+  );
 
 
   /*
-   * The response itself is not important.
+   * Use an invisible iframe.
    *
-   * Apps Script receives the request
-   * and sends the House email.
+   * This is a simple fire-and-forget
+   * request from the GitHub scanner.
    */
 
-  img.onload =
+  const iframe =
+    document.createElement(
+      "iframe"
+    );
+
+
+  iframe.style.display =
+    "none";
+
+
+  iframe.style.width =
+    "0";
+
+
+  iframe.style.height =
+    "0";
+
+
+  iframe.style.border =
+    "0";
+
+
+  iframe.src =
+    url;
+
+
+  document.body.appendChild(
+    iframe
+  );
+
+
+  /*
+   * Remove the iframe after a short
+   * period so the page does not collect
+   * invisible elements.
+   */
+
+  setTimeout(
     function() {
 
-      console.log(
-        "House notification request completed."
+
+      try {
+
+        iframe.remove();
+
+      }
+
+      catch (error) {
+
+        console.warn(
+          "Could not remove notification iframe:",
+          error
+        );
+
+      }
+
+
+    },
+    10000
+  );
+
+}
+
+
+/*************************************************
+ * CLEAN UP JSONP
+ *************************************************/
+
+
+function cleanupJSONP(
+  script,
+  callbackName
+) {
+
+
+  try {
+
+
+    if (
+      script &&
+      script.parentNode
+    ) {
+
+
+      script.parentNode.removeChild(
+        script
       );
 
-    };
+
+    }
 
 
-  img.onerror =
-    function() {
+  }
 
-      console.log(
-        "House notification request sent."
-      );
-
-    };
+  catch (error) {
 
 
-  /*
-   * Start the request.
-   */
+    console.warn(
+      "Could not remove JSONP script:",
+      error
+    );
 
-  img.src = url;
+
+  }
+
+
+  try {
+
+
+    delete window[
+      callbackName
+    ];
+
+
+  }
+
+  catch (error) {
+
+
+    window[
+      callbackName
+    ] = undefined;
+
+
+  }
 
 }
 
@@ -613,7 +1164,13 @@ function sendHouseNotification(
  * SHOW RESULT
  *************************************************/
 
-function handleResult(result) {
+
+function showResult(
+  title,
+  name,
+  message
+) {
+
 
   document.getElementById(
     "scannerSection"
@@ -634,24 +1191,28 @@ function handleResult(result) {
   document.getElementById(
     "resultTitle"
   ).textContent =
-    result.title || "";
+    title ||
+    "";
 
 
   document.getElementById(
     "resultName"
   ).textContent =
-    result.name || "";
+    name ||
+    "";
 
 
   document.getElementById(
     "resultMessage"
   ).textContent =
-    result.message || "";
+    message ||
+    "";
 
 
   setTimeout(
 
     function() {
+
 
       resultElement.style.display =
         "none";
@@ -663,19 +1224,14 @@ function handleResult(result) {
         "block";
 
 
-      document.getElementById(
-        "status"
-      ).textContent =
-        "Ready to scan";
-
-
-      document.getElementById(
-        "status"
-      ).className =
-        "ready";
+      setStatus(
+        "Ready to scan",
+        "ready"
+      );
 
 
       resumeScanner();
+
 
     },
 
@@ -687,25 +1243,29 @@ function handleResult(result) {
 
 
 /*************************************************
- * RESUME SCANNER
+ * STATUS
  *************************************************/
 
-function resumeScanner() {
 
-  scanLocked = false;
+function setStatus(
+  message,
+  className
+) {
 
 
-  try {
+  const status =
+    document.getElementById(
+      "status"
+    );
 
-    scanner.resume();
 
-  }
+  status.textContent =
+    message;
 
-  catch (error) {
 
-    console.error(error);
-
-  }
+  status.className =
+    className ||
+    "ready";
 
 }
 
@@ -714,7 +1274,11 @@ function resumeScanner() {
  * ERROR
  *************************************************/
 
-function showError(message) {
+
+function showError(
+  message
+) {
+
 
   document.getElementById(
     "scannerSection"
@@ -728,16 +1292,48 @@ function showError(message) {
     "none";
 
 
-  document.getElementById(
-    "status"
-  ).textContent =
-    message;
+  setStatus(
+    message,
+    "error"
+  );
+
+}
 
 
-  document.getElementById(
-    "status"
-  ).className =
-    "error";
+/*************************************************
+ * RESUME SCANNER
+ *************************************************/
+
+
+function resumeScanner() {
+
+
+  scanLocked =
+    false;
+
+
+  try {
+
+
+    if (scanner) {
+
+      scanner.resume();
+
+    }
+
+
+  }
+
+  catch (error) {
+
+
+    console.error(
+      "Could not resume scanner:",
+      error
+    );
+
+
+  }
 
 }
 
@@ -746,9 +1342,14 @@ function showError(message) {
  * START
  *************************************************/
 
+
 window.addEventListener(
   "load",
-  startScanner
+  function() {
+
+    startScanner();
+
+  }
 );
 
 
