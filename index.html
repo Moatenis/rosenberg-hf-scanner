@@ -55,20 +55,39 @@ body {
 
 
 /* =================================================
-   BACKGROUND WATERMARK
+   PAGE
 ================================================= */
 
-body::before {
+.page {
+
+  position: relative;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+}
+
+
+/* =================================================
+   SUBTLE BACKGROUND WATERMARK
+================================================= */
+
+.page::before {
 
   content: "";
 
   position: fixed;
 
-  top: 50%;
+  top: 54%;
   left: 50%;
 
-  width: 950px;
-  height: 950px;
+  width: 900px;
+  height: 900px;
 
   transform:
     translate(-50%, -50%);
@@ -82,7 +101,7 @@ body::before {
 
   background-size: contain;
 
-  opacity: 0.09;
+  opacity: 0.035;
 
   filter: grayscale(100%);
 
@@ -94,76 +113,117 @@ body::before {
 
 
 /* =================================================
-   MAIN PAGE
+   HEADER / BRANDING
 ================================================= */
 
-.page {
+.branding {
 
   position: relative;
 
-  z-index: 1;
+  z-index: 2;
 
-  min-height: 100vh;
+  padding:
+    38px
+    25px
+    20px;
 
-  display: flex;
+}
 
-  flex-direction: column;
+
+/* Rosenberg logo */
+
+.schoolLogo {
+
+  display: block;
+
+  width: 175px;
+
+  max-width: 42vw;
+
+  height: auto;
+
+  margin:
+    0 auto
+    18px;
 
 }
 
 
 /* =================================================
-   HEADER
+   H&F TITLE
 ================================================= */
 
-.header {
-
-  background: #111111;
-
-  color: #ffffff;
-
-  padding:
-    30px
-    20px
-    28px;
-
-}
-
-
-.header h1 {
+.brandTitle {
 
   margin: 0;
 
-  font-size: clamp(26px, 4vw, 38px);
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
-  font-weight: 700;
+  font-size:
+    clamp(28px, 4vw, 40px);
+
+  font-weight: 400;
 
   letter-spacing: 2px;
+
+  line-height: 1.15;
 
 }
 
 
-.header p {
+.brandSubtitle {
 
   margin:
-    9px
+    10px
     0
     0;
 
-  font-size: clamp(15px, 2.2vw, 19px);
+  font-size:
+    clamp(14px, 2vw, 17px);
 
   font-weight: 400;
 
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  color: #444444;
 
 }
 
 
 /* =================================================
-   MAIN CONTENT
+   THIN DIVIDER
+================================================= */
+
+.divider {
+
+  width: 90px;
+
+  height: 1px;
+
+  background: #111111;
+
+  margin:
+    23px
+    auto
+    0;
+
+}
+
+
+/* =================================================
+   MAIN
 ================================================= */
 
 .container {
+
+  position: relative;
+
+  z-index: 2;
 
   width: 100%;
 
@@ -172,9 +232,9 @@ body::before {
   margin: 0 auto;
 
   padding:
-    34px
+    18px
     24px
-    20px;
+    10px;
 
   flex: 1;
 
@@ -187,44 +247,33 @@ body::before {
 
 .instruction {
 
-  display: flex;
+  margin:
+    0
+    0
+    22px;
 
-  align-items: center;
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
-  justify-content: center;
+  font-size:
+    clamp(22px, 3vw, 30px);
 
-  gap: 18px;
+  font-weight: 400;
 
-  margin-bottom: 24px;
-
-  font-size: clamp(19px, 3vw, 27px);
-
-  font-weight: 600;
-
-  letter-spacing: 1px;
-
-}
-
-
-.instruction::before,
-.instruction::after {
-
-  content: "";
-
-  height: 1px;
-
-  width: 80px;
-
-  background: #111111;
+  letter-spacing: 0.5px;
 
 }
 
 
 /* =================================================
-   SCANNER
+   SCANNER FRAME
 ================================================= */
 
-#reader {
+.scannerFrame {
+
+  position: relative;
 
   width: 100%;
 
@@ -232,22 +281,35 @@ body::before {
 
   margin: 0 auto;
 
-  background: #111111;
+  padding: 8px;
 
-  border-radius: 22px;
-
-  overflow: hidden;
+  background: #ffffff;
 
   border:
-    5px solid
-    #ffffff;
-
-  box-shadow:
-    0 8px 30px
-    rgba(0,0,0,0.18);
+    1px solid
+    #111111;
 
 }
 
+
+/* Inner scanner */
+
+#reader {
+
+  width: 100%;
+
+  margin: 0 auto;
+
+  background: #111111;
+
+  overflow: hidden;
+
+}
+
+
+/* =================================================
+   HTML5 QR CODE OVERRIDES
+================================================= */
 
 #reader__dashboard_section {
 
@@ -270,97 +332,145 @@ body::before {
 }
 
 
+/* Remove unnecessary dashboard spacing */
+
+#reader__dashboard {
+
+  padding:
+    8px
+    10px !important;
+
+}
+
+
 /* =================================================
    STATUS
 ================================================= */
 
 #status {
 
-  display: inline-flex;
+  display: flex;
 
   align-items: center;
 
   justify-content: center;
 
-  gap: 12px;
+  gap: 10px;
 
-  margin-top: 24px;
+  margin:
+    20px
+    auto
+    0;
 
-  min-height: 52px;
+  min-height: 38px;
 
-  padding:
-    12px
-    28px;
+  font-size: 15px;
 
-  border-radius: 30px;
+  font-weight: 500;
 
-  background: #ffffff;
+  letter-spacing: 1.5px;
 
-  border:
-    1px solid
-    #d7d7d7;
-
-  box-shadow:
-    0 4px 15px
-    rgba(0,0,0,0.08);
-
-  font-size: 18px;
-
-  font-weight: 600;
-
-  letter-spacing: 1px;
+  text-transform: uppercase;
 
 }
 
+
+/* Small status mark */
 
 #status.ready::before {
 
-  content: "⌗";
+  content: "";
 
-  font-size: 25px;
+  width: 8px;
+  height: 8px;
 
-  font-weight: 700;
+  border-radius: 50%;
 
-}
-
-
-.ready {
-
-  color: #111111;
+  background: #111111;
 
 }
 
 
-.processing {
+/* Processing */
+
+#status.processing {
 
   color: #555555;
 
 }
 
 
-.processing::before {
+#status.processing::before {
 
-  content: "•••";
+  content: "";
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    #555555;
+
+}
+
+
+/* Error */
+
+#status.error {
+
+  color: #111111;
+
+}
+
+
+#status.error::before {
+
+  content: "!";
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 18px;
+  height: 18px;
+
+  border:
+    1px solid
+    #111111;
+
+  border-radius: 50%;
+
+  font-size: 12px;
+
+}
+
+
+/* =================================================
+   FOOTER
+================================================= */
+
+.footer {
+
+  position: relative;
+
+  z-index: 2;
+
+  padding:
+    12px
+    20px
+    25px;
+
+  font-size: 11px;
 
   letter-spacing: 3px;
 
-}
+  text-transform: uppercase;
 
-
-.error {
-
-  color: #ffffff !important;
-
-  background: #111111 !important;
-
-  border-color: #111111 !important;
-
-}
-
-
-.success {
-
-  color: #111111;
+  color: #777777;
 
 }
 
@@ -380,10 +490,7 @@ body::before {
   z-index: 20;
 
   background:
-    rgba(255,255,255,0.94);
-
-  backdrop-filter:
-    blur(8px);
+    rgba(255,255,255,0.97);
 
   align-items: center;
 
@@ -391,10 +498,12 @@ body::before {
 
   padding: 25px;
 
+  overflow: hidden;
+
 }
 
 
-/* Faint Rosenberg logo */
+/* Result watermark */
 
 .result::before {
 
@@ -402,7 +511,14 @@ body::before {
 
   position: absolute;
 
-  inset: 0;
+  top: 50%;
+  left: 50%;
+
+  width: 850px;
+  height: 850px;
+
+  transform:
+    translate(-50%, -50%);
 
   background-image:
     url("logo.png");
@@ -411,10 +527,9 @@ body::before {
 
   background-position: center;
 
-  background-size:
-    min(850px, 90vw);
+  background-size: contain;
 
-  opacity: 0.09;
+  opacity: 0.035;
 
   filter: grayscale(100%);
 
@@ -422,6 +537,10 @@ body::before {
 
 }
 
+
+/* =================================================
+   RESULT CARD
+================================================= */
 
 .resultCard {
 
@@ -435,17 +554,9 @@ body::before {
 
   background: #ffffff;
 
-  border-radius: 24px;
-
-  overflow: hidden;
-
-  box-shadow:
-    0 15px 55px
-    rgba(0,0,0,0.20);
-
   border:
     1px solid
-    #e2e2e2;
+    #111111;
 
 }
 
@@ -457,21 +568,21 @@ body::before {
 .resultContent {
 
   padding:
-    48px
+    55px
     30px
-    42px;
+    48px;
 
 }
 
 
 .resultIcon {
 
-  width: 70px;
-  height: 70px;
+  width: 62px;
+  height: 62px;
 
   margin:
     0 auto
-    22px;
+    25px;
 
   display: flex;
 
@@ -479,15 +590,17 @@ body::before {
 
   justify-content: center;
 
+  border:
+    1px solid
+    #111111;
+
   border-radius: 50%;
 
-  background: #111111;
+  color: #111111;
 
-  color: #ffffff;
+  font-size: 30px;
 
-  font-size: 38px;
-
-  font-weight: 600;
+  font-weight: 400;
 
 }
 
@@ -497,25 +610,31 @@ body::before {
   margin:
     0
     0
-    18px;
+    22px;
 
-  font-size: clamp(27px, 5vw, 38px);
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
-  font-weight: 700;
+  font-size:
+    clamp(28px, 5vw, 40px);
 
-  letter-spacing: 2px;
+  font-weight: 400;
+
+  letter-spacing: 1px;
 
 }
 
 
 .result .name {
 
-  font-size: clamp(34px, 7vw, 48px);
+  font-size:
+    clamp(32px, 7vw, 48px);
 
-  font-weight: 700;
+  font-weight: 600;
 
   margin:
-    10px
     0
     18px;
 
@@ -524,22 +643,22 @@ body::before {
 
 .result .message {
 
-  font-size: 19px;
+  font-size: 17px;
 
   color: #555555;
 
   letter-spacing: 0.5px;
+
+  line-height: 1.5;
 
 }
 
 
 .resultTime {
 
-  font-size: 27px;
+  font-size: 20px;
 
-  font-weight: 500;
-
-  margin-top: 10px;
+  margin-top: 8px;
 
 }
 
@@ -550,55 +669,105 @@ body::before {
 
 .resultFooter {
 
-  background: #111111;
-
-  color: #ffffff;
+  border-top:
+    1px solid
+    #111111;
 
   padding:
-    17px
+    15px
     20px;
 
-  font-size: 15px;
+  font-size: 11px;
 
-  font-weight: 500;
+  letter-spacing: 2px;
 
-  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  color: #555555;
 
 }
 
 
 /* =================================================
-   FOOTER
+   LARGE SCREENS
 ================================================= */
 
-.footer {
+@media (min-width: 900px) {
 
-  padding:
-    18px
-    20px
-    25px;
+  .branding {
 
-  font-size: 13px;
+    padding-top: 45px;
 
-  color: #777777;
+  }
 
-  letter-spacing: 1px;
+
+  .schoolLogo {
+
+    width: 190px;
+
+  }
+
+
+  .container {
+
+    padding-top: 15px;
+
+  }
+
+
+  .scannerFrame {
+
+    max-width: 620px;
+
+  }
 
 }
 
 
 /* =================================================
-   MOBILE / IPAD
+   IPAD / TABLET
 ================================================= */
 
 @media (max-width: 700px) {
 
-  .header {
+  .branding {
 
     padding:
-      24px
-      15px
-      22px;
+      28px
+      20px
+      15px;
+
+  }
+
+
+  .schoolLogo {
+
+    width: 145px;
+
+    margin-bottom: 14px;
+
+  }
+
+
+  .brandTitle {
+
+    font-size: 27px;
+
+  }
+
+
+  .brandSubtitle {
+
+    font-size: 13px;
+
+    letter-spacing: 1.5px;
+
+  }
+
+
+  .divider {
+
+    margin-top: 18px;
 
   }
 
@@ -606,24 +775,23 @@ body::before {
   .container {
 
     padding:
-      25px
       15px
-      15px;
+      15px
+      5px;
 
   }
 
 
-  .instruction::before,
-  .instruction::after {
+  .instruction {
 
-    width: 35px;
+    margin-bottom: 18px;
 
   }
 
 
-  #reader {
+  .scannerFrame {
 
-    border-radius: 18px;
+    padding: 5px;
 
   }
 
@@ -631,9 +799,9 @@ body::before {
   .resultContent {
 
     padding:
-      40px
+      45px
       20px
-      35px;
+      40px;
 
   }
 
@@ -641,21 +809,74 @@ body::before {
 
 
 /* =================================================
-   LARGE IPAD LANDSCAPE
+   VERY SMALL SCREENS
 ================================================= */
 
-@media (min-width: 900px) {
+@media (max-height: 700px) {
 
-  .container {
+  .branding {
 
-    padding-top: 42px;
+    padding-top: 18px;
 
   }
 
 
-  #reader {
+  .schoolLogo {
 
-    max-width: 620px;
+    width: 125px;
+
+    margin-bottom: 10px;
+
+  }
+
+
+  .brandTitle {
+
+    font-size: 25px;
+
+  }
+
+
+  .brandSubtitle {
+
+    margin-top: 6px;
+
+  }
+
+
+  .divider {
+
+    margin-top: 12px;
+
+  }
+
+
+  .container {
+
+    padding-top: 10px;
+
+  }
+
+
+  .instruction {
+
+    margin-bottom: 12px;
+
+    font-size: 22px;
+
+  }
+
+
+  #status {
+
+    margin-top: 12px;
+
+  }
+
+
+  .footer {
+
+    padding-bottom: 12px;
 
   }
 
@@ -673,27 +894,42 @@ body::before {
 
 
   <!-- =============================================
-       HEADER
+       ROSENBERG BRANDING
   ============================================== -->
 
-  <div class="header">
+  <header class="branding">
 
-    <h1>
-      ROSENBERG HEALTH &amp; FITNESS
+    <img
+      src="logo.png"
+      alt="Institut auf dem Rosenberg"
+      class="schoolLogo"
+    >
+
+
+    <h1 class="brandTitle">
+
+      Rosenberg Health &amp; Fitness
+
     </h1>
 
-    <p>
+
+    <p class="brandSubtitle">
+
       Student Check-In / Check-Out
+
     </p>
 
-  </div>
+
+    <div class="divider"></div>
+
+  </header>
 
 
   <!-- =============================================
-       MAIN SCANNER
+       SCANNER
   ============================================== -->
 
-  <div class="container">
+  <main class="container">
 
 
     <div id="scannerSection">
@@ -706,7 +942,11 @@ body::before {
       </div>
 
 
-      <div id="reader"></div>
+      <div class="scannerFrame">
+
+        <div id="reader"></div>
+
+      </div>
 
 
       <div
@@ -722,11 +962,11 @@ body::before {
     </div>
 
 
-  </div>
+  </main>
 
 
   <!-- =============================================
-       RESULT
+       RESULT SCREEN
   ============================================== -->
 
   <div
@@ -744,7 +984,9 @@ body::before {
           id="resultIcon"
           class="resultIcon"
         >
+
           ✓
+
         </div>
 
 
@@ -791,11 +1033,11 @@ body::before {
        FOOTER
   ============================================== -->
 
-  <div class="footer">
+  <footer class="footer">
 
     Health &amp; Fitness
 
-  </div>
+  </footer>
 
 
 </div>
@@ -909,7 +1151,8 @@ function processQRCode(studentId) {
 
   /*
    * Pause scanning while processing.
-   * Camera remains active.
+   *
+   * The camera remains active.
    */
 
   try {
@@ -926,7 +1169,7 @@ function processQRCode(studentId) {
 
 
   /*
-   * Create unique JSONP callback.
+   * Create unique callback name.
    */
 
   const callbackName =
@@ -1016,8 +1259,7 @@ function handleResult(result) {
 
   /*
    * Populate result.
-
-  */
+   */
 
   document.getElementById(
     "resultTitle"
@@ -1038,8 +1280,8 @@ function handleResult(result) {
 
 
   /*
-   * Keep time field available for
-   * future use.
+   * Keep time field available
+   * for future use.
    */
 
   document.getElementById(
