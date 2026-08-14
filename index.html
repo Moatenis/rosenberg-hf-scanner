@@ -1322,13 +1322,17 @@ function handleAttendanceBridgeMessage(event) {
    */
 
   if (
-    event.origin !==
-    "https://script.google.com"
-  ) {
+  !event.origin.includes(
+    "googleusercontent.com"
+  ) &&
+  !event.origin.includes(
+    "script.google.com"
+  )
+) {
 
-    return;
+  return;
 
-  }
+}
 
 
   /*
