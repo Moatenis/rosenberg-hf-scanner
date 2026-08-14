@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Rosenberg Health & Fitness</title>
+
+  <!-- QR scanner library -->
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      text-align: center;
+    }
+
+    .header {
+      background: #1f4e78;
+      color: white;
+      padding: 28px 20px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 30px;
+      font-weight: 600;
+    }
+
+    .header p {
+      margin: 8px 0 0;
+      font-size: 17px;
+    }
+
+    .container {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    .instruction {
+      font-size: 25px;
+      font-weight: 500;
+      margin-bottom: 25px;
+    }
+
+    #reader {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+    }
+
+    #status {
+      margin-top: 25px;
+      font-size: 21px;
+      font-weight: 500;
+      min-height: 30px;
+    }
+
+    .ready {
+      color: #555;
+    }
+
+    .processing {
+      color: #1f4e78;
+    }
+
+    .error {
+      color: #dc3545;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 15px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <h1>ROSENBERG HEALTH & FITNESS</h1>
+    <p>Student Check-In / Check-Out</p>
+  </div>
+
+  <div class="container">
+
+    <div class="instruction">
+      Please scan your QR code
+    </div>
+
+    <div id="reader"></div>
+
+    <div id="status" class="ready">
+      Ready to scan
+    </div>
+
+    <div class="footer">
+      Health & Fitness
+    </div>
+
+  </div>
+
+
+  <script>
+
+    /*
+     * YOUR EXISTING GOOGLE APPS SCRIPT WEB APP
+     *
+     * The QR scanner sends the Student ID
+     * to this address.
+     */
+    const APPS_SCRIPT_URL =
+      "https://script.google.com/a/macros/instrosenberg.ch/s/AKfycbzZq6AKRHz_6-ab83I6ALVQrsslcyKvlCASxOOOWKjindU6Byg0ZPRdIMGkJ1kk0Kx3/exec";
+
+
+    let scanner = null;
+    let scanLocked = false;
+
+
+    /*
+     * Start the camera.
+     */
+    function startScanner() {
+
+      scanLocked = false;
+
+      document.getElementById("status").textContent =
+        "Ready to scan";
+
+      document.getElementById("status").className =
+        "ready";
+
+
+      scanner = new Html5Qrcode("reader");
+
+
+      scanner.start(
+
+        {
+          facingMode: "environment"
+        },
+
+        {
+          fps: 10,
+
+          qrbox: {
+            width: 250,
+            height: 250
+          }
+        },
+
+        function(decodedText) {
+
+          if (scanLocked) {
+            return;
+          }
+
+          scanLocked = true;
+
+          processQRCode(decodedText);
+
+        },
+
+        function(errorMessage) {
+
+          /*
+           * Normal scanning errors are ignored.
+           */
+
+        }
+
+      )
+
+      .catch(function(error) {
+
+        console.error(error);
+
+        document.getElementById("status").textContent =
+          "Camera could not be started. Please allow camera access.";
+
+        document.getElementById("status").className =
+          "error";
+
+      });
+
+    }
+
+
+    /*
+     * QR CODE HAS BEEN READ
+     */
+    function processQRCode(studentId) {
+
+      document.getElementById("status").textContent =
+        "Processing...";
+
+      document.getElementById("status").className =
+        "processing";
+
+
+      if (scanner) {
+
+        scanner.stop()
+
+          .then(function() {
+
+            sendStudentToGoogle(studentId);
+
+          })
+
+          .catch(function() {
+
+            sendStudentToGoogle(studentId);
+
+          });
+
+      }
+
+      else {
+
+        sendStudentToGoogle(studentId);
+
+      }
+
+    }
+
+
+    /*
+     * Send the Student ID to Google Apps Script.
+     */
+    function sendStudentToGoogle(studentId) {
+
+      /*
+       * The QR code should contain something like:
+       *
+       * ROS001
+       *
+       * We add it to the Apps Script URL.
+       */
+
+      const url =
+        APPS_SCRIPT_URL +
+        "?id=" +
+        encodeURIComponent(studentId);
+
+
+      window.location.href = url;
+
+    }
+
+
+    /*
+     * Start the scanner when the page opens.
+     */
+    window.addEventListener(
+      "load",
+      startScanner
+    );
+
+  </script>
+
+</body>
+</html>
