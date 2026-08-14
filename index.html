@@ -14,19 +14,16 @@
 Rosenberg Health & Fitness
 </title>
 
-
 <script
   src="https://unpkg.com/html5-qrcode"
   type="text/javascript">
 </script>
-
 
 <style>
 
 * {
   box-sizing: border-box;
 }
-
 
 html,
 body {
@@ -44,7 +41,6 @@ body {
   color: #111111;
 
 }
-
 
 body {
 
@@ -78,7 +74,6 @@ body {
 
 }
 
-
 .header h1 {
 
   margin: 0;
@@ -95,7 +90,6 @@ body {
   letter-spacing: 1px;
 
 }
-
 
 .header p {
 
@@ -116,7 +110,7 @@ body {
 
 
 /* =========================================================
-   MAIN CONTAINER
+   MAIN
    ========================================================= */
 
 .container {
@@ -133,7 +127,6 @@ body {
     30px;
 
 }
-
 
 .instruction {
 
@@ -175,7 +168,6 @@ body {
 
 }
 
-
 #reader video {
 
   width: 100% !important;
@@ -190,20 +182,17 @@ body {
 
 }
 
-
 #reader__scan_region {
 
   min-height: 0 !important;
 
 }
 
-
 #reader__dashboard {
 
   display: none !important;
 
 }
-
 
 #reader__status_span {
 
@@ -230,32 +219,20 @@ body {
 
 }
 
-
 .ready {
-
   color: #111111;
-
 }
-
 
 .processing {
-
   color: #555555;
-
 }
-
 
 .error {
-
   color: #b00000;
-
 }
 
-
 .success {
-
   color: #111111;
-
 }
 
 
@@ -289,7 +266,6 @@ body {
 
 }
 
-
 .resultCard {
 
   width: 100%;
@@ -304,7 +280,6 @@ body {
 
 }
 
-
 .resultContent {
 
   padding:
@@ -312,7 +287,6 @@ body {
     25px;
 
 }
-
 
 .result h1 {
 
@@ -332,7 +306,6 @@ body {
 
 }
 
-
 .name {
 
   font-size: 40px;
@@ -343,7 +316,6 @@ body {
 
 }
 
-
 .message {
 
   font-size: 18px;
@@ -352,11 +324,11 @@ body {
 
 }
 
-
 .resultFooter {
 
   border-top:
-    1px solid
+    1px
+    solid
     #111111;
 
   padding: 14px;
@@ -373,7 +345,7 @@ body {
 
 
 /* =========================================================
-   MOBILE / iPAD
+   iPAD / MOBILE
    ========================================================= */
 
 @media (max-width: 700px) {
@@ -387,13 +359,11 @@ body {
 
   }
 
-
   .header h1 {
 
     font-size: 25px;
 
   }
-
 
   .header p {
 
@@ -402,7 +372,6 @@ body {
     letter-spacing: 1.5px;
 
   }
-
 
   .container {
 
@@ -413,7 +382,6 @@ body {
 
   }
 
-
   .instruction {
 
     font-size: 23px;
@@ -422,13 +390,11 @@ body {
 
   }
 
-
   #reader {
 
     max-width: 330px;
 
   }
-
 
   #reader video {
 
@@ -470,9 +436,7 @@ body {
 
     </div>
 
-
     <div id="reader"></div>
-
 
     <div
       id="status"
@@ -509,9 +473,7 @@ body {
 
       </div>
 
-      <div
-        class="resultFooter"
-      >
+      <div class="resultFooter">
 
         Returning to scanner...
 
@@ -531,21 +493,15 @@ body {
    CONFIGURATION
    ========================================================= */
 
-
 const ATTENDANCE_ENDPOINT =
   "https://script.google.com/a/macros/instrosenberg.ch/s/AKfycbx92HMvs_apPqSTs1MRV3A4FmSm6rocPec8aD9k_y5HeLisnyhu3K1pcCqVAYDon7Zs/exec";
 
 
-const QR_BOX_SIZE =
-  220;
+const QR_BOX_SIZE = 220;
 
+const SCAN_FPS = 10;
 
-const SCAN_FPS =
-  10;
-
-
-const ATTENDANCE_TIMEOUT =
-  15000;
+const ATTENDANCE_TIMEOUT = 15000;
 
 
 /* =========================================================
@@ -573,14 +529,9 @@ function startScanner() {
 
   scanner.start(
 
-    /*
-     * FRONT CAMERA
-     */
-
     {
       facingMode: "user"
     },
-
 
     {
 
@@ -597,11 +548,9 @@ function startScanner() {
 
       },
 
-      aspectRatio:
-        1.0
+      aspectRatio: 1.0
 
     },
-
 
     function(decodedText) {
 
@@ -622,7 +571,6 @@ function startScanner() {
 
     },
 
-
     function(errorMessage) {
 
       /*
@@ -641,7 +589,6 @@ function startScanner() {
         "Camera error:",
         error
       );
-
 
       showError(
         "Camera could not be started."
@@ -671,9 +618,7 @@ function processQRCode(
 
     if (scanner) {
 
-      scanner.pause(
-        true
-      );
+      scanner.pause(true);
 
     }
 
@@ -725,10 +670,8 @@ function sendAttendanceRequest(
 
 
   /*
-   * Store the student ID.
-   *
-   * We will use this later if we need
-   * the notification request.
+   * Save the student ID so the notification
+   * request can use it after attendance succeeds.
    */
 
   window.lastScannedStudentId =
@@ -738,7 +681,7 @@ function sendAttendanceRequest(
 
 
   /*
-   * JSONP callback.
+   * Attendance JSONP callback.
    */
 
   window[callbackName] =
@@ -774,7 +717,7 @@ function sendAttendanceRequest(
 
 
   /*
-   * Build Apps Script URL.
+   * Build attendance request.
    */
 
   const url =
@@ -799,10 +742,6 @@ function sendAttendanceRequest(
   );
 
 
-  /*
-   * Create JSONP script.
-   */
-
   script =
     document.createElement(
       "script"
@@ -812,14 +751,9 @@ function sendAttendanceRequest(
   script.src =
     url;
 
-
   script.async =
     true;
 
-
-  /*
-   * Request failed.
-   */
 
   script.onerror =
     function(error) {
@@ -862,17 +796,13 @@ function sendAttendanceRequest(
     };
 
 
-  /*
-   * Add request to page.
-   */
-
   document.body.appendChild(
     script
   );
 
 
   /*
-   * Timeout.
+   * Safety timeout.
    */
 
   timeoutId =
@@ -911,6 +841,248 @@ function sendAttendanceRequest(
       },
       ATTENDANCE_TIMEOUT
     );
+
+}
+
+
+/* =========================================================
+   HANDLE ATTENDANCE RESULT
+   ========================================================= */
+
+function handleAttendanceResult(
+  result
+) {
+
+  console.log(
+    "Attendance response:",
+    result
+  );
+
+
+  if (
+    !result ||
+    typeof result !== "object"
+  ) {
+
+    showError(
+      "Invalid response from the attendance system."
+    );
+
+
+    resumeScanner();
+
+    return;
+
+  }
+
+
+  /*
+   * Attendance failed or student not found.
+   */
+
+  if (
+    result.success === false
+  ) {
+
+    showResult(
+
+      result.title ||
+        "Unable to check in/out",
+
+      result.name ||
+        "",
+
+      result.message ||
+        "Please try again."
+
+    );
+
+
+    return;
+
+  }
+
+
+  /*
+   * Attendance succeeded.
+   *
+   * SHOW THE RESULT FIRST.
+   *
+   * We do not wait for email/dashboard.
+   */
+
+  if (
+    result.success === true
+  ) {
+
+    showResult(
+
+      result.title ||
+        "",
+
+      result.name ||
+        "",
+
+      result.message ||
+        ""
+
+    );
+
+
+    /*
+     * Start the secondary actions separately.
+     *
+     * They do not block the result.
+     */
+
+    sendBackgroundUpdate(
+      window.lastScannedStudentId,
+      result.action
+    );
+
+
+    return;
+
+  }
+
+
+  showError(
+    "Unexpected response from the attendance system."
+  );
+
+
+  resumeScanner();
+
+}
+
+
+/* =========================================================
+   BACKGROUND EMAIL + DASHBOARD UPDATE
+   ========================================================= */
+
+function sendBackgroundUpdate(
+  studentId,
+  action
+) {
+
+  if (
+    !studentId ||
+    !action
+  ) {
+
+    return;
+
+  }
+
+
+  const callbackName =
+    "notificationCallback_" +
+    Date.now();
+
+
+  let script =
+    null;
+
+
+  /*
+   * Notification callback.
+   *
+   * We don't display anything to the user
+   * if this fails because attendance itself
+   * has already been recorded.
+   */
+
+  window[callbackName] =
+    function(response) {
+
+      console.log(
+        "Background update completed:",
+        response
+      );
+
+
+      cleanupJSONP(
+        script,
+        callbackName
+      );
+
+    };
+
+
+  const url =
+    ATTENDANCE_ENDPOINT +
+    "?notification=1" +
+    "&id=" +
+    encodeURIComponent(
+      String(
+        studentId
+      ).trim()
+    ) +
+    "&action=" +
+    encodeURIComponent(
+      action
+    ) +
+    "&timestamp=" +
+    encodeURIComponent(
+      Date.now()
+    ) +
+    "&callback=" +
+    encodeURIComponent(
+      callbackName
+    ) +
+    "&_=" +
+    Date.now();
+
+
+  console.log(
+    "Background update request:",
+    url
+  );
+
+
+  script =
+    document.createElement(
+      "script"
+    );
+
+
+  script.src =
+    url;
+
+  script.async =
+    true;
+
+
+  script.onerror =
+    function(error) {
+
+      console.warn(
+        "Background update failed:",
+        error
+      );
+
+
+      cleanupJSONP(
+        script,
+        callbackName
+      );
+
+    };
+
+
+  document.body.appendChild(
+    script
+  );
+
+
+  /*
+   * IMPORTANT:
+   *
+   * There is intentionally no timeout
+   * that affects the scanner result.
+   *
+   * Attendance is already complete.
+   */
 
 }
 
@@ -964,93 +1136,6 @@ function cleanupJSONP(
     ] = undefined;
 
   }
-
-}
-
-
-/* =========================================================
-   HANDLE RESULT
-   ========================================================= */
-
-function handleAttendanceResult(
-  result
-) {
-
-  console.log(
-    "Attendance response:",
-    result
-  );
-
-
-  if (
-    !result ||
-    typeof result !== "object"
-  ) {
-
-    showError(
-      "Invalid response from the attendance system."
-    );
-
-
-    resumeScanner();
-
-    return;
-
-  }
-
-
-  if (
-    result.success === false
-  ) {
-
-    showResult(
-
-      result.title ||
-        "Unable to check in/out",
-
-      result.name ||
-        "",
-
-      result.message ||
-        "Please try again."
-
-    );
-
-
-    return;
-
-  }
-
-
-  if (
-    result.success === true
-  ) {
-
-    showResult(
-
-      result.title ||
-        "",
-
-      result.name ||
-        "",
-
-      result.message ||
-        ""
-
-    );
-
-
-    return;
-
-  }
-
-
-  showError(
-    "Unexpected response from the attendance system."
-  );
-
-
-  resumeScanner();
 
 }
 
@@ -1228,7 +1313,6 @@ window.addEventListener(
 
   }
 );
-
 
 </script>
 
