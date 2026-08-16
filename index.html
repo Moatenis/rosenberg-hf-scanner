@@ -19,589 +19,325 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-
-    /* =========================================
-       PAGE
-       ========================================= */
-
     html,
     body {
-
       margin: 0;
       padding: 0;
-
       width: 100%;
       min-height: 100%;
-
       background: #ffffff;
       color: #111111;
-
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
     }
-
 
     body {
-
       display: flex;
       justify-content: center;
-
       min-height: 100vh;
-
       position: relative;
+      overflow-x: hidden;
     }
 
-
-    /* =========================================
-       ROSENBERG WATERMARK
-       ========================================= */
-
+    /* ROSENBERG WATERMARK */
     .watermark {
-
       position: fixed;
-
       top: 50%;
       left: 50%;
-
-      width: 430px;
-      height: 430px;
-
+      width: 560px;
+      height: 560px;
       object-fit: contain;
-
-      transform:
-        translate(-50%, -50%);
-
-      opacity: 0.055;
-
+      transform: translate(-50%, -50%);
+      opacity: 0.105;
       z-index: 0;
-
       pointer-events: none;
-
       user-select: none;
     }
 
-
-    /* =========================================
-       MAIN PAGE CONTAINER
-       ========================================= */
-
+    /* MAIN PAGE */
     .page {
-
       width: 100%;
       max-width: 620px;
-
       min-height: 100vh;
-
       display: flex;
       flex-direction: column;
-
       position: relative;
-
       z-index: 1;
     }
 
-
-    /* =========================================
-       HEADER
-       ========================================= */
-
+    /* HEADER */
     .header {
-
-      padding:
-        34px
-        25px
-        22px;
-
-      border-bottom:
-        1px solid #111111;
-
+      padding: 34px 25px 22px;
+      border-bottom: 1px solid rgba(17, 17, 17, 0.75);
       text-align: center;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
     }
-
 
     .brand {
-
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
+      font-family: Georgia, "Times New Roman", serif;
       font-size: 30px;
-
       font-weight: 400;
-
       letter-spacing: 1px;
-
       margin: 0;
-
       white-space: nowrap;
     }
-
 
     .subtitle {
-
       margin-top: 8px;
-
       font-size: 13px;
-
       letter-spacing: 2.5px;
-
       text-transform: uppercase;
-
       color: #555555;
-
       white-space: nowrap;
     }
 
-
-    /* =========================================
-       MAIN
-       ========================================= */
-
+    /* MAIN */
     .main {
-
       flex: 1;
-
-      padding:
-        35px
-        25px
-        30px;
-
+      padding: 35px 25px 30px;
       display: flex;
-
       flex-direction: column;
-
       align-items: center;
+      background: transparent;
     }
-
 
     .instruction {
-
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
+      font-family: Georgia, "Times New Roman", serif;
       font-size: 27px;
-
       text-align: center;
-
       margin-bottom: 25px;
+      background: rgba(255, 255, 255, 0.62);
+      padding: 4px 14px;
     }
 
-
-    /* =========================================
-       CODE DISPLAY
-       ========================================= */
-
+    /* CODE DISPLAY */
     .codeDisplay {
-
       width: 100%;
-
       max-width: 390px;
-
       height: 75px;
-
-      border:
-        1px solid #111111;
-
+      border: 1px solid rgba(17, 17, 17, 0.8);
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
+      font-family: Georgia, "Times New Roman", serif;
       font-size: 38px;
-
       letter-spacing: 8px;
-
       margin-bottom: 25px;
-
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
     }
-
 
     .placeholder {
-
-      color: #aaaaaa;
-
+      color: #888888;
       font-size: 18px;
-
       letter-spacing: 2px;
     }
 
-
-    /* =========================================
-       KEYPAD
-       ========================================= */
-
+    /* KEYPAD */
     .keypad {
-
       width: 100%;
-
       max-width: 390px;
-
       display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
+      grid-template-columns: repeat(3, 1fr);
       gap: 10px;
     }
 
-
     .key {
-
       height: 78px;
-
-      border:
-        1px solid #111111;
-
-      background: #ffffff;
-
+      border: 1px solid rgba(17, 17, 17, 0.82);
+      background: rgba(255, 255, 255, 0.68);
       color: #111111;
-
       font-size: 28px;
-
       font-weight: 400;
-
       cursor: pointer;
-
       touch-action: manipulation;
+      backdrop-filter: blur(1.5px);
+      -webkit-backdrop-filter: blur(1.5px);
+      transition: background 0.12s ease, color 0.12s ease, transform 0.08s ease;
     }
-
 
     .key:active {
-
-      background: #111111;
-
+      background: rgba(17, 17, 17, 0.86);
       color: #ffffff;
+      transform: scale(0.985);
     }
-
 
     .key.action {
-
       font-size: 19px;
-
       letter-spacing: 1px;
     }
-
 
     .key.clear {
-
       font-size: 18px;
-
-      color: #555555;
+      color: #333333;
     }
-
 
     .key.submit {
-
-      background: #111111;
-
+      background: rgba(17, 17, 17, 0.86);
       color: #ffffff;
-
       font-size: 18px;
-
       letter-spacing: 1px;
+      backdrop-filter: blur(1.5px);
+      -webkit-backdrop-filter: blur(1.5px);
     }
-
 
     .key.submit:active {
-
-      background: #333333;
+      background: rgba(51, 51, 51, 0.94);
     }
 
-
-    /* =========================================
-       STATUS MESSAGE
-       ========================================= */
-
+    /* STATUS */
     .status {
-
       min-height: 30px;
-
       width: 100%;
-
       margin-top: 20px;
-
       text-align: center;
-
       font-size: 14px;
-
       letter-spacing: 1px;
-
       text-transform: uppercase;
-
-      /*
-       * Keep messages such as:
-       *
-       * PLEASE ASK YOUR HOUSE TO RESERVE A GYM
-       * SPACE BEFORE CHECKING IN.
-       *
-       * on one line whenever possible.
-       */
-
       white-space: nowrap;
-
       overflow: visible;
+      background: rgba(255, 255, 255, 0.58);
+      padding: 4px 8px;
     }
 
-
-    .status.ready {
-
-      color: #555555;
-    }
-
-
+    .status.ready,
     .status.processing {
-
       color: #555555;
     }
-
 
     .status.error {
-
       color: #9d0000;
     }
 
-
-    /* =========================================
-       RESULT SCREEN
-       ========================================= */
-
+    /* RESULT SCREEN */
     .result {
-
       display: none;
-
       position: fixed;
-
       inset: 0;
-
-      background:
-        rgba(
-          255,
-          255,
-          255,
-          0.98
-        );
-
+      background: rgba(255, 255, 255, 0.94);
       z-index: 100;
-
       align-items: center;
-
       justify-content: center;
-
       padding: 25px;
     }
 
-
     .resultCard {
-
       width: 100%;
-
       max-width: 500px;
-
-      border:
-        1px solid #111111;
-
+      border: 1px solid #111111;
       text-align: center;
-
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
     }
-
 
     .resultContent {
-
-      padding:
-        55px
-        25px;
+      padding: 55px 25px;
     }
 
-
     .resultTitle {
-
-      margin:
-        0
-        0
-        25px;
-
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
+      margin: 0 0 25px;
+      font-family: Georgia, "Times New Roman", serif;
       font-size: 38px;
-
       font-weight: 400;
-
       letter-spacing: 1px;
     }
 
-
     .resultName {
-
       font-size: 40px;
-
       font-weight: 600;
-
       line-height: 1.15;
-
       margin-bottom: 20px;
     }
 
-
     .resultMessage {
-
       font-size: 18px;
-
       color: #555555;
-
       line-height: 1.5;
     }
 
-
     .resultFooter {
-
-      border-top:
-        1px solid #111111;
-
+      border-top: 1px solid #111111;
       padding: 14px;
-
       font-size: 11px;
-
       letter-spacing: 2px;
-
       text-transform: uppercase;
-
       color: #555555;
     }
 
-
-    /* =========================================
-       FOOTER
-       ========================================= */
-
+    /* FOOTER */
     .footer {
-
       padding: 18px;
-
       text-align: center;
-
       font-size: 10px;
-
       letter-spacing: 2px;
-
       text-transform: uppercase;
-
       color: #777777;
+      background: rgba(255, 255, 255, 0.62);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
     }
 
-
-    /* =========================================
-       MOBILE / IPAD
-       ========================================= */
-
+    /* MOBILE / IPAD */
     @media (max-width: 600px) {
-
-
       .header {
-
         padding-top: 25px;
       }
 
-
       .brand {
-
         font-size: 26px;
       }
 
-
       .instruction {
-
         font-size: 25px;
       }
 
-
       .key {
-
         height: 72px;
       }
 
-
       .watermark {
-
-        width: 360px;
-        height: 360px;
-
-        opacity: 0.05;
+        width: 470px;
+        height: 470px;
+        opacity: 0.10;
       }
-
 
       .status {
-
         font-size: 10px;
-
         letter-spacing: 0.5px;
       }
-
     }
 
-
-    /* =========================================
-       VERY SMALL SCREENS
-       ========================================= */
-
+    /* VERY SMALL SCREENS */
     @media (max-width: 420px) {
-
-
       .brand {
-
         font-size: 23px;
       }
 
-
       .subtitle {
-
         font-size: 10px;
-
         letter-spacing: 1.8px;
       }
 
-
       .instruction {
-
         font-size: 23px;
       }
 
-
       .codeDisplay {
-
         height: 70px;
       }
 
-
       .key {
-
         height: 68px;
       }
 
-
       .watermark {
-
-        width: 300px;
-        height: 300px;
+        width: 390px;
+        height: 390px;
+        opacity: 0.095;
       }
-
     }
 
   </style>
