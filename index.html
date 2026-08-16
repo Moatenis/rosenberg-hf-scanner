@@ -7,28 +7,16 @@
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
   >
 
   <title>Rosenberg Health & Fitness</title>
 
-
-  <!-- QR SCANNER LIBRARY -->
-
-  <script
-    src="https://unpkg.com/html5-qrcode"
-    type="text/javascript">
-  </script>
-
-
   <style>
-
-    /* =====================================================
-       GLOBAL
-       ===================================================== */
 
     * {
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
 
@@ -36,21 +24,14 @@
     body {
 
       margin: 0;
-
       padding: 0;
 
       width: 100%;
-
       min-height: 100%;
 
       background: #ffffff;
 
       color: #111111;
-
-    }
-
-
-    body {
 
       font-family:
         -apple-system,
@@ -59,18 +40,24 @@
         Arial,
         sans-serif;
 
-      text-align: center;
+    }
 
-      overflow-x: hidden;
+
+    body {
+
+      display: flex;
+
+      justify-content: center;
+
+      min-height: 100vh;
 
     }
 
 
-    /* =====================================================
-       PAGE
-       ===================================================== */
-
     .page {
+
+      width: 100%;
+      max-width: 620px;
 
       min-height: 100vh;
 
@@ -81,68 +68,47 @@
     }
 
 
-    /* =====================================================
+    /* =========================================
        HEADER
-       ===================================================== */
+       ========================================= */
 
     .header {
 
-      padding:
-        24px
-        20px
-        18px;
+      padding: 34px 25px 22px;
 
       border-bottom:
         1px solid #111111;
 
-    }
-
-
-    .logo {
-
-      width: 105px;
-
-      max-width: 30vw;
-
-      height: auto;
-
-      display: block;
-
-      margin:
-        0 auto
-        14px;
+      text-align: center;
 
     }
 
 
     .brand {
 
-      margin: 0;
-
       font-family:
         Georgia,
         "Times New Roman",
         serif;
 
-      font-size: 29px;
+      font-size: 30px;
 
       font-weight: 400;
 
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
 
-      line-height: 1.15;
+      margin: 0;
 
     }
 
 
     .subtitle {
 
-      margin:
-        8px 0 0;
+      margin-top: 8px;
 
       font-size: 13px;
 
-      letter-spacing: 3px;
+      letter-spacing: 2.5px;
 
       text-transform: uppercase;
 
@@ -151,13 +117,15 @@
     }
 
 
-    /* =====================================================
-       MAIN CONTENT
-       ===================================================== */
+    /* =========================================
+       MAIN
+       ========================================= */
 
-    .content {
+    .main {
 
       flex: 1;
+
+      padding: 35px 25px 30px;
 
       display: flex;
 
@@ -165,25 +133,10 @@
 
       align-items: center;
 
-      padding:
-        34px
-        20px
-        30px;
-
-    }
-
-
-    .scanner-section {
-
-      width: 100%;
-
     }
 
 
     .instruction {
-
-      margin:
-        0 0 22px;
 
       font-family:
         Georgia,
@@ -192,140 +145,195 @@
 
       font-size: 27px;
 
-      font-weight: 400;
+      text-align: center;
 
-      line-height: 1.2;
-
-    }
-
-
-    .divider {
-
-      width: 70px;
-
-      height: 1px;
-
-      background: #111111;
-
-      margin:
-        0 auto
-        25px;
+      margin-bottom: 25px;
 
     }
 
 
-    /* =====================================================
-       QR SCANNER
-       ===================================================== */
+    /* =========================================
+       CODE DISPLAY
+       ========================================= */
 
-    #reader {
+    .codeDisplay {
 
       width: 100%;
 
-      max-width: 380px;
+      max-width: 390px;
 
-      margin: 0 auto;
-
-      background: #111111;
+      height: 75px;
 
       border:
         1px solid #111111;
 
-      overflow: hidden;
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 38px;
+
+      letter-spacing: 8px;
+
+      margin-bottom: 25px;
+
+      background: #ffffff;
 
     }
 
 
-    #reader video {
+    .placeholder {
 
-      display: block;
+      color: #aaaaaa;
 
-      width: 100% !important;
-
-      height: auto !important;
-
-      object-fit: cover;
-
-    }
-
-
-    /*
-     * Hide unnecessary html5-qrcode controls.
-     */
-
-    #reader img {
-
-      display: none !important;
-
-    }
-
-
-    #reader__dashboard {
-
-      display: none !important;
-
-    }
-
-
-    #reader__dashboard_section_csr {
-
-      display: none !important;
-
-    }
-
-
-    #reader__scan_region {
-
-      width: 100% !important;
-
-      min-height: 260px;
-
-    }
-
-
-    /* =====================================================
-       STATUS
-       ===================================================== */
-
-    #status {
-
-      min-height: 25px;
-
-      margin-top: 18px;
-
-      font-size: 13px;
+      font-size: 18px;
 
       letter-spacing: 2px;
 
-      text-transform: uppercase;
+    }
+
+
+    /* =========================================
+       KEYPAD
+       ========================================= */
+
+    .keypad {
+
+      width: 100%;
+
+      max-width: 390px;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 10px;
 
     }
 
 
-    .ready {
+    .key {
+
+      height: 78px;
+
+      border:
+        1px solid #111111;
+
+      background: #ffffff;
 
       color: #111111;
 
+      font-size: 28px;
+
+      font-weight: 400;
+
+      cursor: pointer;
+
+      touch-action: manipulation;
+
     }
 
 
-    .processing {
+    .key:active {
+
+      background: #111111;
+
+      color: #ffffff;
+
+    }
+
+
+    .key.action {
+
+      font-size: 19px;
+
+      letter-spacing: 1px;
+
+    }
+
+
+    .key.clear {
+
+      font-size: 18px;
 
       color: #555555;
 
     }
 
 
-    .error {
+    .key.submit {
 
-      color: #9b0000;
+      background: #111111;
+
+      color: #ffffff;
+
+      font-size: 18px;
+
+      letter-spacing: 1px;
 
     }
 
 
-    /* =====================================================
+    .key.submit:active {
+
+      background: #333333;
+
+    }
+
+
+    /* =========================================
+       STATUS
+       ========================================= */
+
+    .status {
+
+      min-height: 30px;
+
+      margin-top: 20px;
+
+      text-align: center;
+
+      font-size: 14px;
+
+      letter-spacing: 1px;
+
+      text-transform: uppercase;
+
+    }
+
+
+    .status.ready {
+
+      color: #555555;
+
+    }
+
+
+    .status.processing {
+
+      color: #555555;
+
+    }
+
+
+    .status.error {
+
+      color: #9d0000;
+
+    }
+
+
+    /* =========================================
        RESULT SCREEN
-       ===================================================== */
+       ========================================= */
 
     .result {
 
@@ -335,15 +343,10 @@
 
       inset: 0;
 
-      z-index: 100;
-
       background:
-        rgba(
-          255,
-          255,
-          255,
-          0.98
-        );
+        rgba(255,255,255,0.98);
+
+      z-index: 100;
 
       align-items: center;
 
@@ -354,34 +357,32 @@
     }
 
 
-    .result-card {
+    .resultCard {
 
       width: 100%;
 
-      max-width: 520px;
+      max-width: 500px;
 
       border:
         1px solid #111111;
+
+      text-align: center;
 
       background: #ffffff;
 
     }
 
 
-    .result-content {
+    .resultContent {
 
-      padding:
-        55px
-        30px
-        50px;
+      padding: 55px 25px;
 
     }
 
 
-    .result-title {
+    .resultTitle {
 
-      margin:
-        0 0 25px;
+      margin: 0 0 25px;
 
       font-family:
         Georgia,
@@ -397,43 +398,38 @@
     }
 
 
-    .result-name {
+    .resultName {
 
-      margin:
-        0 0 20px;
-
-      font-size: 38px;
+      font-size: 40px;
 
       font-weight: 600;
 
       line-height: 1.15;
 
+      margin-bottom: 20px;
+
     }
 
 
-    .result-message {
+    .resultMessage {
 
-      margin: 0;
-
-      font-size: 17px;
-
-      line-height: 1.5;
+      font-size: 18px;
 
       color: #555555;
 
+      line-height: 1.5;
+
     }
 
 
-    .result-footer {
-
-      padding:
-        14px
-        20px;
+    .resultFooter {
 
       border-top:
         1px solid #111111;
 
-      font-size: 10px;
+      padding: 14px;
+
+      font-size: 11px;
 
       letter-spacing: 2px;
 
@@ -444,143 +440,62 @@
     }
 
 
-    /* =====================================================
+    /* =========================================
+       FOOTER
+       ========================================= */
+
+    .footer {
+
+      padding: 18px;
+
+      text-align: center;
+
+      font-size: 10px;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+
+      color: #777777;
+
+    }
+
+
+    /* =========================================
        MOBILE / IPAD
-       ===================================================== */
+       ========================================= */
 
-    @media (max-width: 700px) {
-
+    @media (max-width: 600px) {
 
       .header {
 
-        padding:
-          18px
-          15px
-          15px;
-
-      }
-
-
-      .logo {
-
-        width: 85px;
-
-        margin-bottom: 10px;
+        padding-top: 25px;
 
       }
 
 
       .brand {
 
-        font-size: 24px;
-
-        letter-spacing: 1px;
-
-      }
-
-
-      .subtitle {
-
-        font-size: 11px;
-
-        letter-spacing: 2px;
-
-      }
-
-
-      .content {
-
-        padding:
-          27px
-          15px
-          25px;
+        font-size: 26px;
 
       }
 
 
       .instruction {
 
-        font-size: 24px;
-
-        margin-bottom: 18px;
+        font-size: 25px;
 
       }
 
 
-      .divider {
+      .key {
 
-        margin-bottom: 20px;
-
-      }
-
-
-      #reader {
-
-        max-width: 340px;
-
-      }
-
-
-      .result-content {
-
-        padding:
-          45px
-          22px;
-
-      }
-
-
-      .result-title {
-
-        font-size: 32px;
-
-      }
-
-
-      .result-name {
-
-        font-size: 32px;
+        height: 72px;
 
       }
 
     }
 
-
-    /* =====================================================
-       SMALL PHONES
-       ===================================================== */
-
-    @media (max-width: 430px) {
-
-
-      .logo {
-
-        width: 75px;
-
-      }
-
-
-      .brand {
-
-        font-size: 22px;
-
-      }
-
-
-      .instruction {
-
-        font-size: 22px;
-
-      }
-
-
-      #reader {
-
-        max-width: 310px;
-
-      }
-
-    }
 
   </style>
 
@@ -590,342 +505,431 @@
 <body>
 
 
-  <div class="page">
+<div class="page">
 
 
-    <!-- =================================================
-         HEADER
-         ================================================= -->
+  <!-- =======================================
+       HEADER
+       ======================================== -->
 
-    <header class="header">
+  <header class="header">
+
+    <h1 class="brand">
+      Rosenberg Health &amp; Fitness
+    </h1>
+
+    <div class="subtitle">
+      Student Check-In / Check-Out
+    </div>
+
+  </header>
 
 
-      <img
-        src="logo.png"
-        alt="Institut auf dem Rosenberg"
-        class="logo"
+  <!-- =======================================
+       MAIN
+       ======================================== -->
+
+  <main class="main">
+
+
+    <div class="instruction">
+
+      Enter Your Student Code
+
+    </div>
+
+
+    <div
+      id="codeDisplay"
+      class="codeDisplay"
+    >
+
+      <span
+        id="placeholder"
+        class="placeholder"
       >
+        Student Code
+      </span>
+
+      <span
+        id="codeText"
+        style="display:none;"
+      ></span>
+
+    </div>
 
 
-      <h1 class="brand">
-        Rosenberg Health &amp; Fitness
-      </h1>
+    <!-- =====================================
+         KEYPAD
+         ====================================== -->
+
+    <div class="keypad">
 
 
-      <p class="subtitle">
-        Student Check-In / Check-Out
-      </p>
-
-
-    </header>
-
-
-
-    <!-- =================================================
-         MAIN
-         ================================================= -->
-
-    <main class="content">
-
-
-      <section
-        id="scanner-section"
-        class="scanner-section"
+      <button
+        class="key"
+        onclick="addDigit('1')"
       >
+        1
+      </button>
 
 
-        <h2 class="instruction">
-          Scan Your QR Code
-        </h2>
+      <button
+        class="key"
+        onclick="addDigit('2')"
+      >
+        2
+      </button>
 
 
-        <div class="divider"></div>
+      <button
+        class="key"
+        onclick="addDigit('3')"
+      >
+        3
+      </button>
 
 
-        <div id="reader"></div>
+      <button
+        class="key"
+        onclick="addDigit('4')"
+      >
+        4
+      </button>
 
 
-        <div
-          id="status"
-          class="ready"
-        >
-          Ready to scan
-        </div>
+      <button
+        class="key"
+        onclick="addDigit('5')"
+      >
+        5
+      </button>
 
 
-      </section>
+      <button
+        class="key"
+        onclick="addDigit('6')"
+      >
+        6
+      </button>
 
 
+      <button
+        class="key"
+        onclick="addDigit('7')"
+      >
+        7
+      </button>
 
-      <!-- =================================================
-           RESULT
-           ================================================= -->
+
+      <button
+        class="key"
+        onclick="addDigit('8')"
+      >
+        8
+      </button>
+
+
+      <button
+        class="key"
+        onclick="addDigit('9')"
+      >
+        9
+      </button>
+
+
+      <button
+        class="key action clear"
+        onclick="clearCode()"
+      >
+        CLEAR
+      </button>
+
+
+      <button
+        class="key"
+        onclick="addDigit('0')"
+      >
+        0
+      </button>
+
+
+      <button
+        class="key submit"
+        onclick="submitCode()"
+      >
+        ENTER
+      </button>
+
+
+    </div>
+
+
+    <div
+      id="status"
+      class="status ready"
+    >
+      Ready
+    </div>
+
+
+  </main>
+
+
+  <div class="footer">
+
+    Institut auf dem Rosenberg
+
+  </div>
+
+
+</div>
+
+
+<!-- =========================================
+     RESULT
+     ========================================== -->
+
+<div
+  id="result"
+  class="result"
+>
+
+
+  <div class="resultCard">
+
+
+    <div class="resultContent">
+
+
+      <h1
+        id="resultTitle"
+        class="resultTitle"
+      ></h1>
+
 
       <div
-        id="result"
-        class="result"
-      >
+        id="resultName"
+        class="resultName"
+      ></div>
 
 
-        <div class="result-card">
+      <div
+        id="resultMessage"
+        class="resultMessage"
+      ></div>
 
 
-          <div class="result-content">
+    </div>
 
 
-            <h2
-              id="result-title"
-              class="result-title">
-            </h2>
+    <div class="resultFooter">
 
+      Returning to check-in...
 
-            <div
-              id="result-name"
-              class="result-name">
-            </div>
-
-
-            <p
-              id="result-message"
-              class="result-message">
-            </p>
-
-
-          </div>
-
-
-          <div class="result-footer">
-
-            Returning to scanner...
-
-          </div>
-
-
-        </div>
-
-
-      </div>
-
-
-    </main>
+    </div>
 
 
   </div>
 
 
+</div>
+
 
 <script>
 
 
-/* =====================================================
-   CONFIGURATION
-   ===================================================== */
+/*************************************************
+ * CONFIGURATION
+ *************************************************/
 
-
-/*
- * NEW APPS SCRIPT WEB APP
- */
 
 const APPS_SCRIPT_URL =
   "https://script.google.com/a/macros/instrosenberg.ch/s/AKfycbyNZ1oONCoA8Ub0L4ceoAhYry0xEdx_DId7n3yolkM7xgLyMCSseMAGNTyZrb7MChEfLw/exec";
 
 
-/*
- * Scanner settings.
- */
-
-const CAMERA_FPS = 10;
+/*************************************************
+ * STATE
+ *************************************************/
 
 
-const QR_BOX_SIZE = 220;
+let studentCode = "";
+
+let locked = false;
 
 
-/*
- * How long the result remains on screen.
- */
-
-const RESULT_DURATION = 3000;
+/*************************************************
+ * UPDATE DISPLAY
+ *************************************************/
 
 
-/*
- * Maximum time we wait for Apps Script.
- */
-
-const REQUEST_TIMEOUT = 10000;
+function updateDisplay() {
 
 
-
-/* =====================================================
-   GLOBAL VARIABLES
-   ===================================================== */
-
-
-let scanner = null;
-
-
-let scanLocked = false;
-
-
-let callbackCounter = 0;
-
-
-
-/* =====================================================
-   START CAMERA
-   ===================================================== */
-
-
-function startScanner() {
-
-
-  /*
-   * Create the QR scanner.
-   */
-
-  scanner =
-    new Html5Qrcode(
-      "reader"
+  const placeholder =
+    document.getElementById(
+      "placeholder"
     );
 
 
-  /*
-   * IMPORTANT:
-   *
-   * "user" means the FRONT CAMERA.
-   *
-   * This is intentional because the scanner
-   * will be used on the front-facing iPad camera.
-   */
-
-  scanner
-    .start(
-
-      {
-        facingMode: "user"
-      },
-
-      {
-
-        fps:
-          CAMERA_FPS,
-
-        qrbox: {
-
-          width:
-            QR_BOX_SIZE,
-
-          height:
-            QR_BOX_SIZE
-
-        },
-
-        aspectRatio:
-          1.0
-
-      },
-
-
-      /*
-       * QR CODE FOUND
-       */
-
-      function(decodedText) {
-
-
-        /*
-         * Prevent duplicate scans.
-         */
-
-        if (scanLocked) {
-
-          return;
-
-        }
-
-
-        scanLocked =
-          true;
-
-
-        /*
-         * Send the QR value to Apps Script.
-         */
-
-        processQRCode(
-          decodedText
-        );
-
-
-      },
-
-
-      /*
-       * NORMAL SCANNING ERRORS
-       *
-       * These happen constantly while the
-       * scanner is looking for a QR code.
-       *
-       * We therefore ignore them.
-       */
-
-      function(errorMessage) {
-
-        // Intentionally ignored.
-
-      }
-
-    )
-
-
-    /*
-     * CAMERA ERROR
-     */
-
-    .catch(
-      function(error) {
-
-
-        console.error(
-          "Camera could not be started:",
-          error
-        );
-
-
-        showError(
-          "Camera could not be started."
-        );
-
-
-      }
+  const codeText =
+    document.getElementById(
+      "codeText"
     );
+
+
+  if (
+    studentCode.length === 0
+  ) {
+
+    placeholder.style.display =
+      "inline";
+
+    codeText.style.display =
+      "none";
+
+    codeText.textContent =
+      "";
+
+    return;
+
+  }
+
+
+  placeholder.style.display =
+    "none";
+
+
+  codeText.style.display =
+    "inline";
+
+
+  codeText.textContent =
+    studentCode;
 
 }
 
 
+/*************************************************
+ * ADD DIGIT
+ *************************************************/
 
-/* =====================================================
-   PROCESS QR CODE
-   ===================================================== */
 
-
-function processQRCode(
-  studentId
+function addDigit(
+  digit
 ) {
 
 
-  /*
-   * Clean the QR value.
-   */
+  if (locked) {
 
-  studentId =
-    String(
-      studentId
-    ).trim();
+    return;
+
+  }
 
 
   /*
-   * Show processing status.
+   * Maximum 2 digits for now
+   * if using codes 1–80.
+   *
+   * This still allows:
+   *
+   * 1
+   * 2
+   * 10
+   * 80
    */
+
+  if (
+    studentCode.length >= 2
+  ) {
+
+    return;
+
+  }
+
+
+  studentCode +=
+    digit;
+
+
+  updateDisplay();
+
+
+  /*
+   * Automatically submit
+   * after 1–2 digit code.
+   *
+   * For example:
+   *
+   * 1 → submit immediately
+   *
+   * This is convenient but we
+   * will first use ENTER during
+   * testing.
+   */
+
+}
+
+
+/*************************************************
+ * CLEAR
+ *************************************************/
+
+
+function clearCode() {
+
+
+  if (locked) {
+
+    return;
+
+  }
+
+
+  studentCode = "";
+
+  updateDisplay();
+
+
+  setStatus(
+    "Ready",
+    "ready"
+  );
+
+}
+
+
+/*************************************************
+ * SUBMIT
+ *************************************************/
+
+
+function submitCode() {
+
+
+  if (locked) {
+
+    return;
+
+  }
+
+
+  if (
+    studentCode === ""
+  ) {
+
+    setStatus(
+      "Please enter your student code.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  locked = true;
+
 
   setStatus(
     "Processing...",
@@ -933,187 +937,90 @@ function processQRCode(
   );
 
 
-  /*
-   * Send request to Apps Script.
-   */
-
-  sendAttendanceRequest(
-    studentId
+  callAttendanceSystem(
+    studentCode
   );
 
 }
 
 
+/*************************************************
+ * CALL APPS SCRIPT
+ *************************************************/
 
-/* =====================================================
-   SEND ATTENDANCE REQUEST
-   ===================================================== */
 
-
-function sendAttendanceRequest(
-  studentId
+function callAttendanceSystem(
+  code
 ) {
 
 
   /*
-   * Create a unique callback name.
+   * JSONP is used because this
+   * page is hosted on GitHub Pages
+   * and the Apps Script is hosted
+   * on Google's domain.
    */
-
-  callbackCounter++;
 
 
   const callbackName =
     "attendanceCallback_" +
-    callbackCounter;
+    Date.now();
 
-
-  let finished =
-    false;
-
-
-  let timeoutId =
-    null;
-
-
-  let script =
-    null;
-
-
-
-  /*
-   * Apps Script will call this function
-   * when it has finished processing.
-   */
 
   window[callbackName] =
     function(result) {
 
 
-      /*
-       * Ignore duplicate responses.
-       */
+      try {
 
-      if (finished) {
-
-        return;
+        handleResult(
+          result
+        );
 
       }
 
+      finally {
 
-      finished =
-        true;
+        delete window[
+          callbackName
+        ];
 
-
-      /*
-       * Stop timeout.
-       */
-
-      clearTimeout(
-        timeoutId
-      );
-
-
-      /*
-       * Remove temporary script.
-       */
-
-      cleanupRequest(
-        script,
-        callbackName
-      );
-
-
-      /*
-       * Process response.
-       */
-
-      handleResult(
-        result
-      );
+      }
 
     };
 
 
-
-  /*
-   * Build Apps Script URL.
-   */
-
-  const url =
-    APPS_SCRIPT_URL +
-    "?id=" +
-    encodeURIComponent(
-      studentId
-    ) +
-    "&callback=" +
-    encodeURIComponent(
-      callbackName
-    ) +
-    "&_=" +
-    Date.now();
-
-
-
-  console.log(
-    "Sending attendance request:",
-    studentId
-  );
-
-
-
-  /*
-   * Create JSONP script.
-   */
-
-  script =
+  const script =
     document.createElement(
       "script"
     );
 
 
+  const separator =
+    APPS_SCRIPT_URL
+      .includes("?")
+      ? "&"
+      : "?";
+
+
   script.src =
-    url;
+    APPS_SCRIPT_URL +
+    separator +
+    "code=" +
+    encodeURIComponent(
+      code
+    ) +
+    "&callback=" +
+    callbackName;
 
-
-  script.async =
-    true;
-
-
-
-  /*
-   * Network error.
-   */
 
   script.onerror =
-    function(error) {
+    function() {
 
 
-      if (finished) {
-
-        return;
-
-      }
-
-
-      finished =
-        true;
-
-
-      clearTimeout(
-        timeoutId
-      );
-
-
-      cleanupRequest(
-        script,
+      delete window[
         callbackName
-      );
-
-
-      console.error(
-        "Apps Script request failed:",
-        error
-      );
+      ];
 
 
       showError(
@@ -1121,75 +1028,19 @@ function sendAttendanceRequest(
       );
 
 
-      unlockScanner();
-
     };
 
-
-
-  /*
-   * Add request to page.
-   */
 
   document.body.appendChild(
     script
   );
 
-
-
-  /*
-   * Safety timeout.
-   */
-
-  timeoutId =
-    setTimeout(
-
-      function() {
-
-
-        if (finished) {
-
-          return;
-
-        }
-
-
-        finished =
-          true;
-
-
-        cleanupRequest(
-          script,
-          callbackName
-        );
-
-
-        console.error(
-          "Attendance request timed out."
-        );
-
-
-        showError(
-          "The attendance system is taking too long to respond."
-        );
-
-
-        unlockScanner();
-
-
-      },
-
-      REQUEST_TIMEOUT
-
-    );
-
 }
 
 
-
-/* =====================================================
-   HANDLE RESULT
-   ===================================================== */
+/*************************************************
+ * HANDLE RESULT
+ *************************************************/
 
 
 function handleResult(
@@ -1197,55 +1048,20 @@ function handleResult(
 ) {
 
 
-  console.log(
-    "Attendance result:",
-    result
-  );
-
-
-  /*
-   * Make sure we received an object.
-   */
-
   if (
     !result ||
-    typeof result !== "object"
-  ) {
-
-
-    showError(
-      "Invalid response from the attendance system."
-    );
-
-
-    unlockScanner();
-
-
-    return;
-
-  }
-
-
-
-  /*
-   * Server rejected the request.
-   */
-
-  if (
     result.success !== true
   ) {
 
 
-    showResult(
+    showError(
 
-      result.title ||
-        "Unable to check in/out",
+      result &&
+      result.message
 
-      result.name ||
-        "",
+        ? result.message
 
-      result.message ||
-        "Please try again."
+        : "Student not found."
 
     );
 
@@ -1255,132 +1071,98 @@ function handleResult(
   }
 
 
-
   /*
-   * Successful attendance.
+   * Hide main interface.
    */
 
-  showResult(
-
-    result.title,
-
-    result.name,
-
-    result.message
-
-  );
-
-}
-
-
-
-/* =====================================================
-   SHOW RESULT
-   ===================================================== */
-
-
-function showResult(
-  title,
-  name,
-  message
-) {
-
-
-  /*
-   * Hide scanner.
-   */
-
-  document.getElementById(
-    "scanner-section"
+  document.querySelector(
+    ".main"
   ).style.display =
     "none";
 
 
-
   /*
-   * Show result overlay.
+   * Show result.
    */
 
-  const result =
+  const resultElement =
     document.getElementById(
       "result"
     );
 
 
-  result.style.display =
+  resultElement.style.display =
     "flex";
 
 
-
-  /*
-   * Fill result.
-   */
-
   document.getElementById(
-    "result-title"
+    "resultTitle"
   ).textContent =
-    title || "";
+    result.title || "";
 
 
   document.getElementById(
-    "result-name"
+    "resultName"
   ).textContent =
-    name || "";
+    result.name || "";
 
 
   document.getElementById(
-    "result-message"
+    "resultMessage"
   ).textContent =
-    message || "";
-
+    result.message || "";
 
 
   /*
-   * Return to scanner.
+   * Return to scanner
+   * after 3 seconds.
    */
 
   setTimeout(
 
     function() {
 
-
-      result.style.display =
-        "none";
-
-
-      document.getElementById(
-        "scanner-section"
-      ).style.display =
-        "block";
-
-
-      setStatus(
-        "Ready to scan",
-        "ready"
-      );
-
-
-      unlockScanner();
-
+      resetInterface();
 
     },
 
-    RESULT_DURATION
+    3000
 
   );
 
 }
 
 
+/*************************************************
+ * ERROR
+ *************************************************/
 
-/* =====================================================
-   STATUS
-   ===================================================== */
+
+function showError(
+  message
+) {
+
+
+  setStatus(
+    message,
+    "error"
+  );
+
+
+  locked = false;
+
+
+}
+
+
+/*************************************************
+ * STATUS
+ *************************************************/
 
 
 function setStatus(
   message,
-  className
+  type
 ) {
 
 
@@ -1395,27 +1177,18 @@ function setStatus(
 
 
   status.className =
-    className ||
-    "ready";
+    "status " +
+    type;
 
 }
 
 
-
-/* =====================================================
-   ERROR
-   ===================================================== */
-
-
-function showError(
-  message
-) {
+/*************************************************
+ * RESET
+ *************************************************/
 
 
-  document.getElementById(
-    "scanner-section"
-  ).style.display =
-    "block";
+function resetInterface() {
 
 
   document.getElementById(
@@ -1424,115 +1197,109 @@ function showError(
     "none";
 
 
+  document.querySelector(
+    ".main"
+  ).style.display =
+    "flex";
+
+
+  studentCode = "";
+
+  locked = false;
+
+
+  updateDisplay();
+
+
   setStatus(
-    message,
-    "error"
+    "Ready",
+    "ready"
   );
 
 }
 
 
-
-/* =====================================================
-   UNLOCK SCANNER
-   ===================================================== */
-
-
-function unlockScanner() {
+/*************************************************
+ * KEYBOARD SUPPORT
+ *************************************************/
 
 
-  scanLocked =
-    false;
-
-}
-
+document.addEventListener(
+  "keydown",
+  function(event) {
 
 
-/* =====================================================
-   CLEANUP JSONP REQUEST
-   ===================================================== */
+    if (locked) {
 
-
-function cleanupRequest(
-  script,
-  callbackName
-) {
-
-
-  /*
-   * Remove temporary script element.
-   */
-
-  try {
-
-
-    if (
-      script &&
-      script.parentNode
-    ) {
-
-
-      script.parentNode.removeChild(
-        script
-      );
-
+      return;
 
     }
 
 
-  }
+    /*
+     * Number keys.
+     */
 
-  catch (error) {
+    if (
+      /^[0-9]$/.test(
+        event.key
+      )
+    ) {
 
+      addDigit(
+        event.key
+      );
 
-    console.warn(
-      "Could not remove request:",
-      error
-    );
+      return;
 
-
-  }
-
-
-
-  /*
-   * Remove callback function.
-   */
-
-  try {
+    }
 
 
-    delete window[
-      callbackName
-    ];
+    /*
+     * Enter.
+     */
+
+    if (
+      event.key === "Enter"
+    ) {
+
+      submitCode();
+
+      return;
+
+    }
 
 
-  }
+    /*
+     * Backspace.
+     */
 
-  catch (error) {
+    if (
+      event.key === "Backspace"
+    ) {
 
+      studentCode =
+        studentCode.slice(
+          0,
+          -1
+        );
 
-    window[
-      callbackName
-    ] = undefined;
+      updateDisplay();
 
-
-  }
-
-}
-
-
-
-/* =====================================================
-   PAGE LOAD
-   ===================================================== */
+    }
 
 
-window.addEventListener(
-  "load",
-  function() {
+    /*
+     * Escape = clear.
+     */
 
-    startScanner();
+    if (
+      event.key === "Escape"
+    ) {
+
+      clearCode();
+
+    }
 
   }
 );
