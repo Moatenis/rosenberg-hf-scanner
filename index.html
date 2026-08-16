@@ -19,52 +19,34 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-
     html,
     body {
-
       margin: 0;
       padding: 0;
-
       width: 100%;
       min-height: 100%;
-
       background: #ffffff;
-
       color: #111111;
-
       font-family:
         -apple-system,
         BlinkMacSystemFont,
         "Segoe UI",
         Arial,
         sans-serif;
-
     }
-
 
     body {
-
       display: flex;
-
       justify-content: center;
-
       min-height: 100vh;
-
     }
 
-
     .page {
-
       width: 100%;
       max-width: 620px;
-
       min-height: 100vh;
-
       display: flex;
-
       flex-direction: column;
-
     }
 
 
@@ -73,47 +55,39 @@
        ========================================= */
 
     .header {
-
-      padding: 34px 25px 22px;
-
-      border-bottom:
-        1px solid #111111;
-
+      padding: 26px 25px 22px;
+      border-bottom: 1px solid #111111;
       text-align: center;
-
     }
 
+    .logo {
+      display: block;
+      width: 82px;
+      height: 82px;
+      object-fit: contain;
+      margin: 0 auto 14px auto;
+    }
 
     .brand {
-
       font-family:
         Georgia,
         "Times New Roman",
         serif;
 
       font-size: 30px;
-
       font-weight: 400;
-
       letter-spacing: 1px;
-
       margin: 0;
-
+      white-space: nowrap;
     }
 
-
     .subtitle {
-
       margin-top: 8px;
-
       font-size: 13px;
-
       letter-spacing: 2.5px;
-
       text-transform: uppercase;
-
       color: #555555;
-
+      white-space: nowrap;
     }
 
 
@@ -122,33 +96,22 @@
        ========================================= */
 
     .main {
-
       flex: 1;
-
       padding: 35px 25px 30px;
-
       display: flex;
-
       flex-direction: column;
-
       align-items: center;
-
     }
 
-
     .instruction {
-
       font-family:
         Georgia,
         "Times New Roman",
         serif;
 
       font-size: 27px;
-
       text-align: center;
-
       margin-bottom: 25px;
-
     }
 
 
@@ -157,20 +120,14 @@
        ========================================= */
 
     .codeDisplay {
-
       width: 100%;
-
       max-width: 390px;
-
       height: 75px;
 
-      border:
-        1px solid #111111;
+      border: 1px solid #111111;
 
       display: flex;
-
       align-items: center;
-
       justify-content: center;
 
       font-family:
@@ -179,24 +136,16 @@
         serif;
 
       font-size: 38px;
-
       letter-spacing: 8px;
 
       margin-bottom: 25px;
-
       background: #ffffff;
-
     }
 
-
     .placeholder {
-
       color: #aaaaaa;
-
       font-size: 18px;
-
       letter-spacing: 2px;
-
     }
 
 
@@ -205,9 +154,7 @@
        ========================================= */
 
     .keypad {
-
       width: 100%;
-
       max-width: 390px;
 
       display: grid;
@@ -216,76 +163,48 @@
         repeat(3, 1fr);
 
       gap: 10px;
-
     }
 
-
     .key {
-
       height: 78px;
 
-      border:
-        1px solid #111111;
+      border: 1px solid #111111;
 
       background: #ffffff;
-
       color: #111111;
 
       font-size: 28px;
-
       font-weight: 400;
 
       cursor: pointer;
-
       touch-action: manipulation;
-
     }
-
 
     .key:active {
-
       background: #111111;
-
       color: #ffffff;
-
     }
-
 
     .key.action {
-
       font-size: 19px;
-
       letter-spacing: 1px;
-
     }
-
 
     .key.clear {
-
       font-size: 18px;
-
       color: #555555;
-
     }
 
-
     .key.submit {
-
       background: #111111;
-
       color: #ffffff;
 
       font-size: 18px;
-
       letter-spacing: 1px;
-
     }
 
-
     .key.submit:active {
-
       background: #333333;
-
     }
 
 
@@ -294,40 +213,32 @@
        ========================================= */
 
     .status {
-
       min-height: 30px;
+      width: 100%;
 
       margin-top: 20px;
 
       text-align: center;
 
-      font-size: 14px;
-
-      letter-spacing: 1px;
+      font-size: clamp(10px, 2vw, 14px);
+      letter-spacing: 0.8px;
 
       text-transform: uppercase;
 
+      white-space: nowrap;
+      overflow: visible;
     }
-
 
     .status.ready {
-
       color: #555555;
-
     }
-
 
     .status.processing {
-
       color: #555555;
-
     }
 
-
     .status.error {
-
       color: #9d0000;
-
     }
 
 
@@ -336,11 +247,9 @@
        ========================================= */
 
     .result {
-
       display: none;
 
       position: fixed;
-
       inset: 0;
 
       background:
@@ -349,39 +258,27 @@
       z-index: 100;
 
       align-items: center;
-
       justify-content: center;
 
       padding: 25px;
-
     }
 
-
     .resultCard {
-
       width: 100%;
-
       max-width: 500px;
 
-      border:
-        1px solid #111111;
+      border: 1px solid #111111;
 
       text-align: center;
 
       background: #ffffff;
-
     }
-
 
     .resultContent {
-
       padding: 55px 25px;
-
     }
 
-
     .resultTitle {
-
       margin: 0 0 25px;
 
       font-family:
@@ -390,53 +287,33 @@
         serif;
 
       font-size: 38px;
-
       font-weight: 400;
-
       letter-spacing: 1px;
-
     }
-
 
     .resultName {
-
       font-size: 40px;
-
       font-weight: 600;
-
       line-height: 1.15;
-
       margin-bottom: 20px;
-
     }
-
 
     .resultMessage {
-
       font-size: 18px;
-
       color: #555555;
-
       line-height: 1.5;
-
     }
 
-
     .resultFooter {
-
-      border-top:
-        1px solid #111111;
+      border-top: 1px solid #111111;
 
       padding: 14px;
 
       font-size: 11px;
-
       letter-spacing: 2px;
 
       text-transform: uppercase;
-
       color: #555555;
-
     }
 
 
@@ -445,19 +322,16 @@
        ========================================= */
 
     .footer {
-
       padding: 18px;
 
       text-align: center;
 
       font-size: 10px;
-
       letter-spacing: 2px;
 
       text-transform: uppercase;
 
       color: #777777;
-
     }
 
 
@@ -468,34 +342,38 @@
     @media (max-width: 600px) {
 
       .header {
-
-        padding-top: 25px;
-
+        padding-top: 22px;
       }
 
+      .logo {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 12px;
+      }
 
       .brand {
-
         font-size: 26px;
-
       }
 
+      .subtitle {
+        font-size: 11px;
+        letter-spacing: 2px;
+      }
 
       .instruction {
-
         font-size: 25px;
-
       }
 
-
       .key {
-
         height: 72px;
+      }
 
+      .status {
+        font-size: 10px;
+        letter-spacing: 0.5px;
       }
 
     }
-
 
   </style>
 
@@ -504,809 +382,726 @@
 
 <body>
 
+  <div class="page">
 
-<div class="page">
+
+    <!-- =======================================
+         HEADER
+         ======================================== -->
+
+    <header class="header">
+
+      <img
+        src="logo.png"
+        alt="Institut auf dem Rosenberg"
+        class="logo"
+      >
+
+      <h1 class="brand">
+        Rosenberg Health &amp; Fitness
+      </h1>
+
+      <div class="subtitle">
+        Student Check-In / Check-Out
+      </div>
+
+    </header>
 
 
-  <!-- =======================================
-       HEADER
-       ======================================== -->
+    <!-- =======================================
+         MAIN
+         ======================================== -->
 
-  <header class="header">
+    <main class="main">
 
-    <h1 class="brand">
-      Rosenberg Health &amp; Fitness
-    </h1>
+      <div class="instruction">
+        Enter Your Student Code
+      </div>
 
-    <div class="subtitle">
-      Student Check-In / Check-Out
+
+      <div
+        id="codeDisplay"
+        class="codeDisplay"
+      >
+
+        <span
+          id="placeholder"
+          class="placeholder"
+        >
+          Student Code
+        </span>
+
+        <span
+          id="codeText"
+          style="display:none;"
+        ></span>
+
+      </div>
+
+
+      <!-- =====================================
+           KEYPAD
+           ====================================== -->
+
+      <div class="keypad">
+
+
+        <button
+          class="key"
+          onclick="addDigit('1')"
+        >
+          1
+        </button>
+
+
+        <button
+          class="key"
+          onclick="addDigit('2')"
+        >
+          2
+        </button>
+
+
+        <button
+          class="key"
+          onclick="addDigit('3')"
+        >
+          3
+        </button>
+
+
+        <button
+          class="key"
+          onclick="addDigit('4')"
+        >
+          4
+        </button>
+
+
+        <button
+          class="key"
+          onclick="addDigit('5')"
+        >
+          5
+        </button>
+
+
+        <button
+          class="key"
+          onclick="addDigit('6')"
+        >
+          6
+        </button>
+
+
+        <button
+          class="key"
+          onclick="addDigit('7')"
+        >
+          7
+        </button>
+
+
+        <button
+          class="key"
+          onclick="addDigit('8')"
+        >
+          8
+        </button>
+
+
+        <button
+          class="key"
+          onclick="addDigit('9')"
+        >
+          9
+        </button>
+
+
+        <button
+          class="key action clear"
+          onclick="clearCode()"
+        >
+          CLEAR
+        </button>
+
+
+        <button
+          class="key"
+          onclick="addDigit('0')"
+        >
+          0
+        </button>
+
+
+        <button
+          class="key submit"
+          onclick="submitCode()"
+        >
+          ENTER
+        </button>
+
+      </div>
+
+
+      <div
+        id="status"
+        class="status ready"
+      >
+        Ready
+      </div>
+
+    </main>
+
+
+    <div class="footer">
+      Institut auf dem Rosenberg
     </div>
-
-  </header>
-
-
-  <!-- =======================================
-       MAIN
-       ======================================== -->
-
-  <main class="main">
-
-
-    <div class="instruction">
-
-      Enter Your Student Code
-
-    </div>
-
-
-    <div
-      id="codeDisplay"
-      class="codeDisplay"
-    >
-
-      <span
-        id="placeholder"
-        class="placeholder"
-      >
-        Student Code
-      </span>
-
-      <span
-        id="codeText"
-        style="display:none;"
-      ></span>
-
-    </div>
-
-
-    <!-- =====================================
-         KEYPAD
-         ====================================== -->
-
-    <div class="keypad">
-
-
-      <button
-        class="key"
-        onclick="addDigit('1')"
-      >
-        1
-      </button>
-
-
-      <button
-        class="key"
-        onclick="addDigit('2')"
-      >
-        2
-      </button>
-
-
-      <button
-        class="key"
-        onclick="addDigit('3')"
-      >
-        3
-      </button>
-
-
-      <button
-        class="key"
-        onclick="addDigit('4')"
-      >
-        4
-      </button>
-
-
-      <button
-        class="key"
-        onclick="addDigit('5')"
-      >
-        5
-      </button>
-
-
-      <button
-        class="key"
-        onclick="addDigit('6')"
-      >
-        6
-      </button>
-
-
-      <button
-        class="key"
-        onclick="addDigit('7')"
-      >
-        7
-      </button>
-
-
-      <button
-        class="key"
-        onclick="addDigit('8')"
-      >
-        8
-      </button>
-
-
-      <button
-        class="key"
-        onclick="addDigit('9')"
-      >
-        9
-      </button>
-
-
-      <button
-        class="key action clear"
-        onclick="clearCode()"
-      >
-        CLEAR
-      </button>
-
-
-      <button
-        class="key"
-        onclick="addDigit('0')"
-      >
-        0
-      </button>
-
-
-      <button
-        class="key submit"
-        onclick="submitCode()"
-      >
-        ENTER
-      </button>
-
-
-    </div>
-
-
-    <div
-      id="status"
-      class="status ready"
-    >
-      Ready
-    </div>
-
-
-  </main>
-
-
-  <div class="footer">
-
-    Institut auf dem Rosenberg
 
   </div>
 
 
-</div>
+  <!-- =========================================
+       RESULT
+       ========================================== -->
+
+  <div
+    id="result"
+    class="result"
+  >
+
+    <div class="resultCard">
+
+      <div class="resultContent">
+
+        <h1
+          id="resultTitle"
+          class="resultTitle"
+        ></h1>
 
 
-<!-- =========================================
-     RESULT
-     ========================================== -->
-
-<div
-  id="result"
-  class="result"
->
+        <div
+          id="resultName"
+          class="resultName"
+        ></div>
 
 
-  <div class="resultCard">
+        <div
+          id="resultMessage"
+          class="resultMessage"
+        ></div>
+
+      </div>
 
 
-    <div class="resultContent">
-
-
-      <h1
-        id="resultTitle"
-        class="resultTitle"
-      ></h1>
-
-
-      <div
-        id="resultName"
-        class="resultName"
-      ></div>
-
-
-      <div
-        id="resultMessage"
-        class="resultMessage"
-      ></div>
-
-
-    </div>
-
-
-    <div class="resultFooter">
-
-      Returning to check-in...
+      <div class="resultFooter">
+        Returning to check-in...
+      </div>
 
     </div>
-
 
   </div>
 
 
-</div>
+  <script>
 
 
-<script>
+    /*************************************************
+     * CONFIGURATION
+     *************************************************/
 
+    const APPS_SCRIPT_URL =
+      "https://script.google.com/a/macros/instrosenberg.ch/s/AKfycbyNZ1oONCoA8Ub0L4ceoAhYry0xEdx_DId7n3yolkM7xgLyMCSseMAGNTyZrb7MChEfLw/exec";
 
-/*************************************************
- * CONFIGURATION
- *************************************************/
 
+    /*************************************************
+     * STATE
+     *************************************************/
 
-const APPS_SCRIPT_URL =
-  "https://script.google.com/a/macros/instrosenberg.ch/s/AKfycbyNZ1oONCoA8Ub0L4ceoAhYry0xEdx_DId7n3yolkM7xgLyMCSseMAGNTyZrb7MChEfLw/exec";
+    let studentCode = "";
+    let locked = false;
 
 
-/*************************************************
- * STATE
- *************************************************/
+    /*************************************************
+     * UPDATE DISPLAY
+     *************************************************/
 
+    function updateDisplay() {
 
-let studentCode = "";
-
-let locked = false;
-
-
-/*************************************************
- * UPDATE DISPLAY
- *************************************************/
-
-
-function updateDisplay() {
-
-
-  const placeholder =
-    document.getElementById(
-      "placeholder"
-    );
-
-
-  const codeText =
-    document.getElementById(
-      "codeText"
-    );
-
-
-  if (
-    studentCode.length === 0
-  ) {
-
-    placeholder.style.display =
-      "inline";
-
-    codeText.style.display =
-      "none";
-
-    codeText.textContent =
-      "";
-
-    return;
-
-  }
-
-
-  placeholder.style.display =
-    "none";
-
-
-  codeText.style.display =
-    "inline";
-
-
-  codeText.textContent =
-    studentCode;
-
-}
-
-
-/*************************************************
- * ADD DIGIT
- *************************************************/
-
-
-function addDigit(
-  digit
-) {
-
-
-  if (locked) {
-
-    return;
-
-  }
-
-
-  /*
-   * Maximum 2 digits for now
-   * if using codes 1–80.
-   *
-   * This still allows:
-   *
-   * 1
-   * 2
-   * 10
-   * 80
-   */
-
-  if (
-    studentCode.length >= 2
-  ) {
-
-    return;
-
-  }
-
-
-  studentCode +=
-    digit;
-
-
-  updateDisplay();
-
-
-  /*
-   * Automatically submit
-   * after 1–2 digit code.
-   *
-   * For example:
-   *
-   * 1 → submit immediately
-   *
-   * This is convenient but we
-   * will first use ENTER during
-   * testing.
-   */
-
-}
-
-
-/*************************************************
- * CLEAR
- *************************************************/
-
-
-function clearCode() {
-
-
-  if (locked) {
-
-    return;
-
-  }
-
-
-  studentCode = "";
-
-  updateDisplay();
-
-
-  setStatus(
-    "Ready",
-    "ready"
-  );
-
-}
-
-
-/*************************************************
- * SUBMIT
- *************************************************/
-
-
-function submitCode() {
-
-
-  if (locked) {
-
-    return;
-
-  }
-
-
-  if (
-    studentCode === ""
-  ) {
-
-    setStatus(
-      "Please enter your student code.",
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  locked = true;
-
-
-  setStatus(
-    "Processing...",
-    "processing"
-  );
-
-
-  callAttendanceSystem(
-    studentCode
-  );
-
-}
-
-
-/*************************************************
- * CALL APPS SCRIPT
- *************************************************/
-
-
-function callAttendanceSystem(
-  code
-) {
-
-
-  /*
-   * JSONP is used because this
-   * page is hosted on GitHub Pages
-   * and the Apps Script is hosted
-   * on Google's domain.
-   */
-
-
-  const callbackName =
-    "attendanceCallback_" +
-    Date.now();
-
-
-  window[callbackName] =
-    function(result) {
-
-
-      try {
-
-        handleResult(
-          result
+      const placeholder =
+        document.getElementById(
+          "placeholder"
         );
+
+      const codeText =
+        document.getElementById(
+          "codeText"
+        );
+
+
+      if (
+        studentCode.length === 0
+      ) {
+
+        placeholder.style.display =
+          "inline";
+
+        codeText.style.display =
+          "none";
+
+        codeText.textContent =
+          "";
+
+        return;
 
       }
 
-      finally {
 
-        delete window[
-          callbackName
-        ];
+      placeholder.style.display =
+        "none";
+
+      codeText.style.display =
+        "inline";
+
+      codeText.textContent =
+        studentCode;
+
+    }
+
+
+    /*************************************************
+     * ADD DIGIT
+     *************************************************/
+
+    function addDigit(
+      digit
+    ) {
+
+      if (locked) {
+        return;
+      }
+
+
+      /*
+       * Maximum 2 digits for now
+       * if using codes 1–80.
+       */
+
+      if (
+        studentCode.length >= 2
+      ) {
+
+        return;
 
       }
 
-    };
 
-
-  const script =
-    document.createElement(
-      "script"
-    );
-
-
-  const separator =
-    APPS_SCRIPT_URL
-      .includes("?")
-      ? "&"
-      : "?";
-
-
-  script.src =
-    APPS_SCRIPT_URL +
-    separator +
-    "code=" +
-    encodeURIComponent(
-      code
-    ) +
-    "&callback=" +
-    callbackName;
-
-
-  script.onerror =
-    function() {
-
-
-      delete window[
-        callbackName
-      ];
-
-
-      showError(
-        "Could not connect to the attendance system."
-      );
-
-
-    };
-
-
-  document.body.appendChild(
-    script
-  );
-
-}
-
-
-/*************************************************
- * HANDLE RESULT
- *************************************************/
-
-
-function handleResult(
-  result
-) {
-
-
-  if (
-    !result ||
-    result.success !== true
-  ) {
-
-
-    showError(
-
-      result &&
-      result.message
-
-        ? result.message
-
-        : "Student not found."
-
-    );
-
-
-    return;
-
-  }
-
-
-  /*
-   * Hide main interface.
-   */
-
-  document.querySelector(
-    ".main"
-  ).style.display =
-    "none";
-
-
-  /*
-   * Show result.
-   */
-
-  const resultElement =
-    document.getElementById(
-      "result"
-    );
-
-
-  resultElement.style.display =
-    "flex";
-
-
-  document.getElementById(
-    "resultTitle"
-  ).textContent =
-    result.title || "";
-
-
-  document.getElementById(
-    "resultName"
-  ).textContent =
-    result.name || "";
-
-
-  document.getElementById(
-    "resultMessage"
-  ).textContent =
-    result.message || "";
-
-
-  /*
-   * Return to scanner
-   * after 3 seconds.
-   */
-
-  setTimeout(
-
-    function() {
-
-      resetInterface();
-
-    },
-
-    3000
-
-  );
-
-}
-
-
-/*************************************************
- * ERROR
- *************************************************/
-
-
-function showError(
-  message
-) {
-
-
-  setStatus(
-    message,
-    "error"
-  );
-
-
-  locked = false;
-
-
-}
-
-
-/*************************************************
- * STATUS
- *************************************************/
-
-
-function setStatus(
-  message,
-  type
-) {
-
-
-  const status =
-    document.getElementById(
-      "status"
-    );
-
-
-  status.textContent =
-    message;
-
-
-  status.className =
-    "status " +
-    type;
-
-}
-
-
-/*************************************************
- * RESET
- *************************************************/
-
-
-function resetInterface() {
-
-
-  document.getElementById(
-    "result"
-  ).style.display =
-    "none";
-
-
-  document.querySelector(
-    ".main"
-  ).style.display =
-    "flex";
-
-
-  studentCode = "";
-
-  locked = false;
-
-
-  updateDisplay();
-
-
-  setStatus(
-    "Ready",
-    "ready"
-  );
-
-}
-
-
-/*************************************************
- * KEYBOARD SUPPORT
- *************************************************/
-
-
-document.addEventListener(
-  "keydown",
-  function(event) {
-
-
-    if (locked) {
-
-      return;
-
-    }
-
-
-    /*
-     * Number keys.
-     */
-
-    if (
-      /^[0-9]$/.test(
-        event.key
-      )
-    ) {
-
-      addDigit(
-        event.key
-      );
-
-      return;
-
-    }
-
-
-    /*
-     * Enter.
-     */
-
-    if (
-      event.key === "Enter"
-    ) {
-
-      submitCode();
-
-      return;
-
-    }
-
-
-    /*
-     * Backspace.
-     */
-
-    if (
-      event.key === "Backspace"
-    ) {
-
-      studentCode =
-        studentCode.slice(
-          0,
-          -1
-        );
+      studentCode +=
+        digit;
 
       updateDisplay();
 
     }
 
 
-    /*
-     * Escape = clear.
-     */
+    /*************************************************
+     * CLEAR
+     *************************************************/
 
-    if (
-      event.key === "Escape"
-    ) {
+    function clearCode() {
 
-      clearCode();
+      if (locked) {
+        return;
+      }
+
+
+      studentCode = "";
+
+      updateDisplay();
+
+      setStatus(
+        "Ready",
+        "ready"
+      );
 
     }
 
-  }
-);
+
+    /*************************************************
+     * SUBMIT
+     *************************************************/
+
+    function submitCode() {
+
+      if (locked) {
+        return;
+      }
 
 
-</script>
+      if (
+        studentCode === ""
+      ) {
 
+        setStatus(
+          "Please enter your student code.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      locked = true;
+
+
+      setStatus(
+        "Processing...",
+        "processing"
+      );
+
+
+      callAttendanceSystem(
+        studentCode
+      );
+
+    }
+
+
+    /*************************************************
+     * CALL APPS SCRIPT
+     *************************************************/
+
+    function callAttendanceSystem(
+      code
+    ) {
+
+      /*
+       * JSONP is used because this
+       * page is hosted on GitHub Pages
+       * and Apps Script is hosted
+       * on Google's domain.
+       */
+
+      const callbackName =
+        "attendanceCallback_" +
+        Date.now();
+
+
+      window[callbackName] =
+        function(result) {
+
+          try {
+
+            handleResult(
+              result
+            );
+
+          }
+
+          finally {
+
+            delete window[
+              callbackName
+            ];
+
+          }
+
+        };
+
+
+      const script =
+        document.createElement(
+          "script"
+        );
+
+
+      const separator =
+        APPS_SCRIPT_URL
+          .includes("?")
+          ? "&"
+          : "?";
+
+
+      script.src =
+        APPS_SCRIPT_URL +
+        separator +
+        "code=" +
+        encodeURIComponent(
+          code
+        ) +
+        "&callback=" +
+        callbackName;
+
+
+      script.onerror =
+        function() {
+
+          delete window[
+            callbackName
+          ];
+
+
+          showError(
+            "Could not connect to the attendance system."
+          );
+
+        };
+
+
+      document.body.appendChild(
+        script
+      );
+
+    }
+
+
+    /*************************************************
+     * HANDLE RESULT
+     *************************************************/
+
+    function handleResult(
+      result
+    ) {
+
+      if (
+        !result ||
+        result.success !== true
+      ) {
+
+        showError(
+          result &&
+          result.message
+
+            ? result.message
+
+            : "Student not found."
+        );
+
+        return;
+
+      }
+
+
+      /*
+       * Hide main interface.
+       */
+
+      document.querySelector(
+        ".main"
+      ).style.display =
+        "none";
+
+
+      /*
+       * Show result.
+       */
+
+      const resultElement =
+        document.getElementById(
+          "result"
+        );
+
+
+      resultElement.style.display =
+        "flex";
+
+
+      document.getElementById(
+        "resultTitle"
+      ).textContent =
+        result.title || "";
+
+
+      document.getElementById(
+        "resultName"
+      ).textContent =
+        result.name || "";
+
+
+      document.getElementById(
+        "resultMessage"
+      ).textContent =
+        result.message || "";
+
+
+      /*
+       * Return to scanner
+       * after 3 seconds.
+       */
+
+      setTimeout(
+        function() {
+
+          resetInterface();
+
+        },
+        3000
+      );
+
+    }
+
+
+    /*************************************************
+     * ERROR
+     *************************************************/
+
+    function showError(
+      message
+    ) {
+
+      setStatus(
+        message,
+        "error"
+      );
+
+      locked = false;
+
+    }
+
+
+    /*************************************************
+     * STATUS
+     *************************************************/
+
+    function setStatus(
+      message,
+      type
+    ) {
+
+      const status =
+        document.getElementById(
+          "status"
+        );
+
+
+      status.textContent =
+        message;
+
+
+      status.className =
+        "status " +
+        type;
+
+    }
+
+
+    /*************************************************
+     * RESET
+     *************************************************/
+
+    function resetInterface() {
+
+      document.getElementById(
+        "result"
+      ).style.display =
+        "none";
+
+
+      document.querySelector(
+        ".main"
+      ).style.display =
+        "flex";
+
+
+      studentCode = "";
+
+      locked = false;
+
+
+      updateDisplay();
+
+
+      setStatus(
+        "Ready",
+        "ready"
+      );
+
+    }
+
+
+    /*************************************************
+     * KEYBOARD SUPPORT
+     *************************************************/
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (locked) {
+          return;
+        }
+
+
+        /*
+         * Number keys.
+         */
+
+        if (
+          /^[0-9]$/.test(
+            event.key
+          )
+        ) {
+
+          addDigit(
+            event.key
+          );
+
+          return;
+
+        }
+
+
+        /*
+         * Enter.
+         */
+
+        if (
+          event.key === "Enter"
+        ) {
+
+          submitCode();
+
+          return;
+
+        }
+
+
+        /*
+         * Backspace.
+         */
+
+        if (
+          event.key === "Backspace"
+        ) {
+
+          studentCode =
+            studentCode.slice(
+              0,
+              -1
+            );
+
+          updateDisplay();
+
+        }
+
+
+        /*
+         * Escape = clear.
+         */
+
+        if (
+          event.key === "Escape"
+        ) {
+
+          clearCode();
+
+        }
+
+      }
+    );
+
+  </script>
 
 </body>
 
